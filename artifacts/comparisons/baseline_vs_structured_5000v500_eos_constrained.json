@@ -1,0 +1,86 @@
+{
+  "baseline_checkpoint": "artifacts\\experiments\\pythia70m-baseline-5000-eos-constrained\\best-epoch-1",
+  "structured_checkpoint": "artifacts\\experiments\\pythia70m-structured-node-types-5000-eos-constrained\\best-epoch-1",
+  "test_path": "data\\compare_eval_500.jsonl",
+  "max_samples": 500,
+  "batch_size": 16,
+  "max_new_tokens": 32,
+  "baseline": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.398,
+    "symbolic_accuracy": 0.41,
+    "sample_mistakes": [
+      {
+        "prompt": "substitute x = -3 into -x - 2 =>",
+        "target": "1",
+        "prediction": "-3",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -2*x - 4 = -6 for x =>",
+        "target": "x = 1",
+        "prediction": "x = -3",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 3 into 2 - 5*x =>",
+        "target": "-13",
+        "prediction": "-9",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 + 3*x + 2 =>",
+        "target": "(x + 1)*(x + 2)",
+        "prediction": "(x + 2)*(x + 2)",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve x - 2 = -3 for x =>",
+        "target": "x = -1",
+        "prediction": "x = -3",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "structured": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.326,
+    "symbolic_accuracy": 0.326,
+    "sample_mistakes": [
+      {
+        "prompt": "substitute x = -3 into -x - 2 =>",
+        "target": "1",
+        "prediction": "-1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 + 3*x =>",
+        "target": "x*(x + 3)",
+        "prediction": "x*(x - 3)",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -2*x - 4 = -6 for x =>",
+        "target": "x = 1",
+        "prediction": "x = -4",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 3 into 2 - 5*x =>",
+        "target": "-13",
+        "prediction": "-5",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 + 3*x + 2 =>",
+        "target": "(x + 1)*(x + 2)",
+        "prediction": "(x - 2)*(x + 2)",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "accuracy_delta": {
+    "exact_match_accuracy": -0.07200000000000001,
+    "symbolic_accuracy": -0.08399999999999996
+  }
+}

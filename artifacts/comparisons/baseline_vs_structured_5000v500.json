@@ -1,0 +1,86 @@
+{
+  "baseline_checkpoint": "artifacts\\experiments\\pythia70m-baseline-5000\\best-epoch-1",
+  "structured_checkpoint": "artifacts\\experiments\\pythia70m-structured-node-types-5000\\best-epoch-1",
+  "test_path": "data\\compare_eval_500.jsonl",
+  "max_samples": 500,
+  "batch_size": 16,
+  "max_new_tokens": 32,
+  "baseline": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "substitute x = -3 into -x - 2 =>",
+        "target": "1",
+        "prediction": "-3*x -4*x -4*x + 4*x - 4*x - 4*x - 4*x - 4*x",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 2*x - 10 =>",
+        "target": "2*x - 10",
+        "prediction": "2*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x -",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "simplify 5*x + 1 =>",
+        "target": "5*x + 1",
+        "prediction": "5*x + 1*x + 1*x + 1*x + 1*x + 1*x + 1*x + 1*x +",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 + 3*x =>",
+        "target": "x*(x + 3)",
+        "prediction": "x*(x + 3)x**2 + 3*x + 3*x + 3*x + 3*x + 3*x + 3*",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -2*x - 4 = -6 for x =>",
+        "target": "x = 1",
+        "prediction": "x = -3*x = -3*x -3*x -3*x -3*x -3*x -3*x -",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "structured": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "substitute x = -3 into -x - 2 =>",
+        "target": "1",
+        "prediction": "-2/4, -4?\n\n-2, -1, -1, -2, -3, -2*j, -2",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 2*x - 10 =>",
+        "target": "2*x - 10",
+        "prediction": "2*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x.\n-2*",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "simplify 5*x + 1 =>",
+        "target": "5*x + 1",
+        "prediction": "5*x + 1*x + 5*x + 5*x + 5*x.\n-6*o**2 + 10*o +",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 + 3*x =>",
+        "target": "x*(x + 3)",
+        "prediction": "x*(x + 3) + 3*x\n\nLet r = -2 + 2. Let p(d) = d**2 + 2*",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -2*x - 4 = -6 for x =>",
+        "target": "x = 1",
+        "prediction": "x = -5*w + 2*s.\n-2, -2*j\nLet w(j) = -2*j**2",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "accuracy_delta": {
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0
+  }
+}

@@ -14,6 +14,7 @@ Tasks for LLM:
 
 Here are some examples of basic algebra tasks for the LLM to solve, with the prompt and the correct output:
 
+```text
 Prompt: simplify x + x + 2
 Output: 2*x + 2
 

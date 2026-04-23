@@ -1,0 +1,24 @@
+Experiment: pythia70m-structured-node-types
+Model: EleutherAI/pythia-70m-deduped
+Device: cpu
+Output directory: artifacts\experiments\pythia70m-structured-node-types
+Metrics file: artifacts\experiments\pythia70m-structured-node-types\metrics.jsonl
+Best checkpoint: artifacts\experiments\pythia70m-structured-node-types\best-epoch-1
+Total parameters: 70431232
+Trainable parameters: 4608
+Frozen parameters: 70426624
+Train examples: 8
+Validation examples: 4
+Test examples: 4
+Epochs: 1
+Batch size: 2
+Eval batch size: 2
+Learning rate: 0.0005
+Weight decay: 0.0
+Max grad norm: 1.0
+Max length: 128
+Seed: 42
+Best validation loss: 2.208030
+Last validation loss: 2.208030
+Test loss: 2.227155
+Generation evaluation: skipped in v1 for inputs_embeds-based structured model.

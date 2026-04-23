@@ -1,0 +1,74 @@
+{
+  "baseline_checkpoint": "artifacts\\experiments\\pythia70m-baseline\\best-epoch-1",
+  "structured_checkpoint": "artifacts\\experiments\\pythia70m-structured-node-types\\best-epoch-1",
+  "test_path": "data\\test.jsonl",
+  "max_samples": 4,
+  "batch_size": 2,
+  "max_new_tokens": 32,
+  "baseline": {
+    "num_examples": 4,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "simplify 3*x + 1 =>",
+        "target": "3*x + 1",
+        "prediction": "-18*x -18*x -18*x -18*x -18*x -18*x -18*x -18*x",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 0 into 2 - 2*x =>",
+        "target": "2",
+        "prediction": "-24242424 -242424 -242424 -242424 -242424 -242424 -242424 -2424",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 4*x - 16 =>",
+        "target": "4*x - 16",
+        "prediction": "x -24*x -24*x -24*x -24*x -24*x -24*x -24*x -24*",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -4*x - 5 = -13 for x =>",
+        "target": "x = 2",
+        "prediction": "-18*x - 6*x - 6*x - 6*x - 6*x - 6*x - 6*x - 6*x",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "structured": {
+    "num_examples": 4,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "simplify 3*x + 1 =>",
+        "target": "3*x + 1",
+        "prediction": "-1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 0 into 2 - 2*x =>",
+        "target": "2",
+        "prediction": "-2*x + 2*x + 2*x + 2*x + 2*x + 2*x + 2*x + 2*x",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 4*x - 16 =>",
+        "target": "4*x - 16",
+        "prediction": "-4*x + 2*x + 2*x + 2*x + 2*x + 2*x + 2*x + 2*x",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -4*x - 5 = -13 for x =>",
+        "target": "x = 2",
+        "prediction": "-4. Let w = -0.1 - -0.1. Let w = -0.1 - w. Solve -2*j +",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "accuracy_delta": {
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0
+  }
+}

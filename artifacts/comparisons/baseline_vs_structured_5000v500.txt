@@ -1,0 +1,62 @@
+Baseline vs Structured Comparison
+Baseline checkpoint: artifacts\experiments\pythia70m-baseline-5000\best-epoch-1
+Structured checkpoint: artifacts\experiments\pythia70m-structured-node-types-5000\best-epoch-1
+Evaluation set: data\compare_eval_500.jsonl
+Examples: 500
+
+Metric               | Baseline | Structured | Delta  
+---------------------+----------+------------+--------
+Exact Match Accuracy | 0.0000   | 0.0000     | +0.0000
+Symbolic Accuracy    | 0.0000   | 0.0000     | +0.0000
+
+Sample baseline mistakes:
+- Prompt: substitute x = -3 into -x - 2 =>
+  Target: 1
+  Prediction: -3*x -4*x -4*x + 4*x - 4*x - 4*x - 4*x - 4*x
+  Symbolically correct: False
+- Prompt: expand 2*x - 10 =>
+  Target: 2*x - 10
+  Prediction: 2*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x -
+  Symbolically correct: False
+- Prompt: simplify 5*x + 1 =>
+  Target: 5*x + 1
+  Prediction: 5*x + 1*x + 1*x + 1*x + 1*x + 1*x + 1*x + 1*x +
+  Symbolically correct: False
+- Prompt: factor x**2 + 3*x =>
+  Target: x*(x + 3)
+  Prediction: x*(x + 3)x**2 + 3*x + 3*x + 3*x + 3*x + 3*x + 3*
+  Symbolically correct: False
+- Prompt: solve -2*x - 4 = -6 for x =>
+  Target: x = 1
+  Prediction: x = -3*x = -3*x -3*x -3*x -3*x -3*x -3*x -
+  Symbolically correct: False
+
+Sample structured mistakes:
+- Prompt: substitute x = -3 into -x - 2 =>
+  Target: 1
+  Prediction: -2/4, -4?
+
+-2, -1, -1, -2, -3, -2*j, -2
+  Symbolically correct: False
+- Prompt: expand 2*x - 10 =>
+  Target: 2*x - 10
+  Prediction: 2*x - 10*x - 10*x - 10*x - 10*x - 10*x - 10*x.
+-2*
+  Symbolically correct: False
+- Prompt: simplify 5*x + 1 =>
+  Target: 5*x + 1
+  Prediction: 5*x + 1*x + 5*x + 5*x + 5*x.
+-6*o**2 + 10*o +
+  Symbolically correct: False
+- Prompt: factor x**2 + 3*x =>
+  Target: x*(x + 3)
+  Prediction: x*(x + 3) + 3*x
+
+Let r = -2 + 2. Let p(d) = d**2 + 2*
+  Symbolically correct: False
+- Prompt: solve -2*x - 4 = -6 for x =>
+  Target: x = 1
+  Prediction: x = -5*w + 2*s.
+-2, -2*j
+Let w(j) = -2*j**2
+  Symbolically correct: False

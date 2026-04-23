@@ -1,0 +1,28 @@
+Experiment: pythia70m-baseline-5000
+Model: EleutherAI/pythia-70m-deduped
+Device: cpu
+Output directory: artifacts\experiments\pythia70m-baseline-5000
+Metrics file: artifacts\experiments\pythia70m-baseline-5000\metrics.jsonl
+Best checkpoint: artifacts\experiments\pythia70m-baseline-5000\best-epoch-1
+Total parameters: 70426624
+Trainable parameters: 70426624
+Frozen parameters: 0
+Train examples: 5000
+Validation examples: 500
+Test examples: 500
+Epochs: 1
+Batch size: 16
+Eval batch size: 16
+Learning rate: 5e-05
+Weight decay: 0.01
+Max grad norm: 1.0
+Max length: 128
+Max new tokens: 32
+Seed: 42
+Best validation loss: 0.454975
+Last validation loss: 0.454975
+Last validation exact match accuracy: 0.000000
+Last validation symbolic accuracy: 0.000000
+Test loss: 0.454975
+Test exact match accuracy: 0.000000
+Test symbolic accuracy: 0.000000
