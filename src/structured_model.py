@@ -1,4 +1,4 @@
-"""Structured Pythia model with learned node-type embeddings."""
+"""Structured causal LM with learned node-type embeddings."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from pathlib import Path
 
 import torch
 from torch import nn
-from transformers import GPTNeoXForCausalLM
+from transformers import AutoModelForCausalLM
 
 try:
     from .node_types import NUM_NODE_TYPES
@@ -14,24 +14,26 @@ except ImportError:
     from node_types import NUM_NODE_TYPES
 
 
-class StructuredPythia(nn.Module):
-    """Wrap GPTNeoXForCausalLM and add one learned node-type embedding per token."""
+class StructuredCausalLM(nn.Module):
+    """Wrap a causal LM and add one learned node-type embedding per token."""
 
-    def __init__(self, model_name: str, freeze_base: bool = True):
+    def __init__(self, model_name: str, freeze_base: bool = False):
         super().__init__()
         self.model_name = model_name
         self.freeze_base = freeze_base
         # Load the base causal LM exactly once and keep its architecture unchanged.
-        self.base = GPTNeoXForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
-        hidden_size = self.base.config.hidden_size
+        self.base = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+        hidden_size = getattr(self.base.config, "hidden_size", None)
+        if hidden_size is None:
+            hidden_size = getattr(self.base.config, "n_embd")
         # One learned vector per node type, matched to the LM hidden size.
         self.node_type_embedding = nn.Embedding(NUM_NODE_TYPES, hidden_size)
 
-        # Zero init keeps the first forward pass identical to the frozen baseline.
+        # Zero init keeps the first forward pass identical to the unstructured base LM.
         nn.init.zeros_(self.node_type_embedding.weight)
 
         if freeze_base:
-            # Baseline structured training only updates the added node-type embedding table.
+            # Optional ablation: only update the added node-type embedding table.
             for parameter in self.base.parameters():
                 parameter.requires_grad = False
 
@@ -59,7 +61,7 @@ class StructuredPythia(nn.Module):
         save_path.mkdir(parents=True, exist_ok=True)
         # Save the base LM in standard Hugging Face format.
         self.base.save_pretrained(save_path)
-        # Save the extra structured weights separately because they are not part of GPTNeoX itself.
+        # Save the extra structured weights separately because they are not part of the base LM itself.
         torch.save(
             {
                 "node_type_embedding": self.node_type_embedding.state_dict(),
@@ -70,7 +72,7 @@ class StructuredPythia(nn.Module):
         return save_path
 
     @classmethod
-    def from_checkpoint(cls, checkpoint_dir: str | Path, freeze_base: bool = True) -> "StructuredPythia":
+    def from_checkpoint(cls, checkpoint_dir: str | Path, freeze_base: bool = False) -> "StructuredCausalLM":
         checkpoint_path = Path(checkpoint_dir)
         # Rebuild the wrapper from the saved base-model directory.
         model = cls(str(checkpoint_path), freeze_base=freeze_base)
@@ -80,3 +82,7 @@ class StructuredPythia(nn.Module):
             state = torch.load(state_path, map_location="cpu")
             model.node_type_embedding.load_state_dict(state["node_type_embedding"])
         return model
+
+
+# Backwards-compatible name for older scripts/checkpoints in this project.
+StructuredPythia = StructuredCausalLM

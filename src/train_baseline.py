@@ -1,3 +1,5 @@
+"""Baseline GPT-2 fine-tuning for algebra prompt/output pairs."""
+
 from __future__ import annotations
 
 import argparse
@@ -12,22 +14,36 @@ import torch
 from torch.optim import AdamW
 from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
-from transformers import AutoTokenizer, GPTNeoXForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 try:
     from .algebra_generation import (
         build_allowed_token_mask,
         generate_baseline_predictions as constrained_generate_baseline_predictions,
     )
+    from .utils import (
+        append_jsonl,
+        count_parameters,
+        ensure_padding_token,
+        move_batch_to_device,
+        write_summary,
+    )
 except ImportError:
     from algebra_generation import (
         build_allowed_token_mask,
         generate_baseline_predictions as constrained_generate_baseline_predictions,
     )
+    from utils import (
+        append_jsonl,
+        count_parameters,
+        ensure_padding_token,
+        move_batch_to_device,
+        write_summary,
+    )
 
 
-DEFAULT_MODEL_NAME = "EleutherAI/pythia-70m-deduped"
-DEFAULT_EXPERIMENT_NAME = "pythia70m-baseline"
+DEFAULT_MODEL_NAME = "gpt2"
+DEFAULT_EXPERIMENT_NAME = "gpt2-small-baseline"
 SYMPY_LOCALS = {name: sp.Symbol(name) for name in ("x", "y", "z")}
 
 
@@ -38,6 +54,8 @@ class AlgebraExample:
 
 
 class JsonlAlgebraDataset(Dataset[AlgebraExample]):
+    """Read prompt/output examples from the project JSONL format."""
+
     def __init__(self, path: Path):
         self.path = path
         self.examples = self._load_examples(path)
@@ -65,6 +83,8 @@ class JsonlAlgebraDataset(Dataset[AlgebraExample]):
         return self.examples[index]
 
     def take(self, count: int | None) -> "JsonlAlgebraDataset":
+        """Return a lightweight prefix subset for smoke tests and smaller runs."""
+
         if count is None or count >= len(self.examples):
             return self
         subset = JsonlAlgebraDataset.__new__(JsonlAlgebraDataset)
@@ -74,6 +94,8 @@ class JsonlAlgebraDataset(Dataset[AlgebraExample]):
 
 
 class CausalLmPromptMaskingDataset(Dataset[dict[str, torch.Tensor | str]]):
+    """Tokenize prompt+answer text while masking prompt tokens out of the loss."""
+
     def __init__(
         self,
         examples: JsonlAlgebraDataset,
@@ -111,6 +133,7 @@ class CausalLmPromptMaskingDataset(Dataset[dict[str, torch.Tensor | str]]):
         attention_mask = torch.tensor(full_enc["attention_mask"], dtype=torch.long)
         labels = input_ids.clone()
 
+        # The model sees the prompt as context, but gradients only come from answer tokens.
         prompt_len = min(len(prompt_enc["input_ids"]), labels.shape[0])
         labels[:prompt_len] = -100
 
@@ -124,8 +147,9 @@ class CausalLmPromptMaskingDataset(Dataset[dict[str, torch.Tensor | str]]):
 
 
 class PromptMaskingCollator:
+    """Right-pad variable-length causal LM examples into one batch."""
+
     def __init__(self, tokenizer: Any):
-        self.tokenizer = tokenizer
         self.pad_token_id = tokenizer.pad_token_id
         if self.pad_token_id is None:
             raise ValueError("Tokenizer must have a pad_token_id before batching.")
@@ -179,18 +203,8 @@ class PromptMaskingCollator:
         }
 
 
-def move_batch_to_device(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
-    moved: dict[str, Any] = {}
-    for key, value in batch.items():
-        if torch.is_tensor(value):
-            moved[key] = value.to(device)
-        else:
-            moved[key] = value
-    return moved
-
-
 @torch.no_grad()
-def evaluate_loss(model: GPTNeoXForCausalLM, dataloader: DataLoader, device: torch.device) -> float:
+def evaluate_loss(model: torch.nn.Module, dataloader: DataLoader, device: torch.device) -> float:
     model.eval()
     total_loss = 0.0
     total_examples = 0
@@ -211,7 +225,7 @@ def evaluate_loss(model: GPTNeoXForCausalLM, dataloader: DataLoader, device: tor
 
 @torch.no_grad()
 def evaluate_generation_metrics(
-    model: GPTNeoXForCausalLM,
+    model: torch.nn.Module,
     tokenizer: Any,
     dataset: JsonlAlgebraDataset,
     device: torch.device,
@@ -253,7 +267,7 @@ def evaluate_generation_metrics(
 
 
 def maybe_save_checkpoint(
-    model: GPTNeoXForCausalLM,
+    model: torch.nn.Module,
     tokenizer: Any,
     checkpoint_dir: Path,
     step_name: str,
@@ -265,24 +279,9 @@ def maybe_save_checkpoint(
     return save_dir
 
 
-def append_jsonl(path: Path, record: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(record) + "\n")
-
-
-def write_summary(path: Path, lines: list[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
-def count_parameters(model: GPTNeoXForCausalLM) -> tuple[int, int]:
-    total_params = sum(parameter.numel() for parameter in model.parameters())
-    trainable_params = sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
-    return total_params, trainable_params
-
-
 def parse_symbolic_answer(text: str) -> sp.Basic | sp.Equality | None:
+    """Parse a generated algebra answer into a SymPy expression/equality when possible."""
+
     cleaned = text.strip()
     if not cleaned:
         return None
@@ -299,6 +298,8 @@ def parse_symbolic_answer(text: str) -> sp.Basic | sp.Equality | None:
 
 
 def is_symbolically_equivalent(prediction: str, target: str) -> bool:
+    """Compare answers by symbolic meaning, allowing algebraically equivalent text."""
+
     parsed_prediction = parse_symbolic_answer(prediction)
     parsed_target = parse_symbolic_answer(target)
 
@@ -328,7 +329,7 @@ def is_symbolically_equivalent(prediction: str, target: str) -> bool:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train Pythia-70M on algebra prompt/output pairs.")
+    parser = argparse.ArgumentParser(description="Fine-tune GPT-2 small on algebra prompt/output pairs.")
     parser.add_argument("--train-path", type=Path, default=Path("data/train.jsonl"))
     parser.add_argument("--val-path", type=Path, default=Path("data/val.jsonl"))
     parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
@@ -362,15 +363,19 @@ def main() -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
+    # GPT-2 has no dedicated pad token, so use EOS as padding without growing the vocab.
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer_vocab_grew = ensure_padding_token(tokenizer)
 
-    model = GPTNeoXForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.float32)
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.float32)
+    if tokenizer_vocab_grew or len(tokenizer) != model.get_input_embeddings().num_embeddings:
+        model.resize_token_embeddings(len(tokenizer))
+    model.config.pad_token_id = tokenizer.pad_token_id
     model.to(device)
     total_params, trainable_params = count_parameters(model)
     allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.config.vocab_size)
 
+    # Baseline examples use only text; prompt labels are masked inside the dataset wrapper.
     train_examples = JsonlAlgebraDataset(args.train_path).take(args.max_train_samples)
     val_examples = JsonlAlgebraDataset(args.val_path).take(args.max_val_samples)
     test_examples = JsonlAlgebraDataset(args.test_path).take(args.max_test_samples)
@@ -403,6 +408,7 @@ def main() -> None:
         num_workers=args.num_workers,
     )
 
+    # Full fine-tuning: every GPT-2 parameter is trainable in the baseline.
     optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metrics_file = args.metrics_file or (args.output_dir / "metrics.jsonl")
@@ -542,7 +548,8 @@ def main() -> None:
 
     if best_checkpoint is not None:
         print(f"Loading best checkpoint from {best_checkpoint}")
-        model = GPTNeoXForCausalLM.from_pretrained(best_checkpoint).to(device)
+        model = AutoModelForCausalLM.from_pretrained(best_checkpoint, torch_dtype=torch.float32).to(device)
+        model.config.pad_token_id = tokenizer.pad_token_id
     else:
         best_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
 

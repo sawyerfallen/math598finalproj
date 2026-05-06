@@ -1,9 +1,8 @@
-"""Training script for the structured Pythia-70M node-type baseline."""
+"""Training script for the structured GPT-2 small node-type baseline."""
 
 from __future__ import annotations
 
 import argparse
-import json
 import math
 from pathlib import Path
 from typing import Any
@@ -17,54 +16,47 @@ from transformers import AutoTokenizer
 try:
     from .node_types import ID_TO_NODE_TYPE
     from .structured_dataset import StructuredCollator, StructuredJsonlDataset
-    from .structured_model import StructuredPythia
+    from .structured_model import StructuredCausalLM
+    from .utils import (
+        append_jsonl,
+        count_parameters,
+        ensure_padding_token,
+        move_batch_to_device,
+        write_summary,
+    )
 except ImportError:
     from node_types import ID_TO_NODE_TYPE
     from structured_dataset import StructuredCollator, StructuredJsonlDataset
-    from structured_model import StructuredPythia
+    from structured_model import StructuredCausalLM
+    from utils import (
+        append_jsonl,
+        count_parameters,
+        ensure_padding_token,
+        move_batch_to_device,
+        write_summary,
+    )
 
 
-DEFAULT_MODEL_NAME = "EleutherAI/pythia-70m-deduped"
-DEFAULT_EXPERIMENT_NAME = "pythia70m-structured-node-types"
+DEFAULT_MODEL_NAME = "gpt2"
+DEFAULT_EXPERIMENT_NAME = "gpt2-small-structured-node-types"
 
 
-def append_jsonl(path: Path, record: dict[str, Any]) -> None:
-    """Append one metrics record so long runs can be inspected incrementally."""
+def resize_base_embeddings_if_needed(
+    model: StructuredCausalLM,
+    tokenizer: Any,
+    tokenizer_vocab_grew: bool,
+) -> None:
+    """Keep the base LM embedding table aligned with the tokenizer."""
 
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(record) + "\n")
-
-
-def write_summary(path: Path, lines: list[str]) -> None:
-    """Write a short human-readable summary for the completed run."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
-def count_parameters(model: torch.nn.Module) -> tuple[int, int]:
-    """Return total parameters and the subset that will receive gradients."""
-
-    total_params = sum(parameter.numel() for parameter in model.parameters())
-    trainable_params = sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
-    return total_params, trainable_params
-
-
-def move_batch_to_device(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
-    """Move all tensor values in a batch dict onto the selected device."""
-
-    moved: dict[str, Any] = {}
-    for key, value in batch.items():
-        if torch.is_tensor(value):
-            moved[key] = value.to(device)
-        else:
-            moved[key] = value
-    return moved
+    if tokenizer_vocab_grew or len(tokenizer) != model.base.get_input_embeddings().num_embeddings:
+        model.base.resize_token_embeddings(len(tokenizer))
+        if model.freeze_base:
+            for parameter in model.base.parameters():
+                parameter.requires_grad = False
 
 
 @torch.no_grad()
-def evaluate_loss(model: StructuredPythia, dataloader: DataLoader, device: torch.device) -> float:
+def evaluate_loss(model: StructuredCausalLM, dataloader: DataLoader, device: torch.device) -> float:
     """Compute mean validation/test loss over a dataloader."""
 
     model.eval()
@@ -88,7 +80,7 @@ def evaluate_loss(model: StructuredPythia, dataloader: DataLoader, device: torch
 
 
 def maybe_save_checkpoint(
-    model: StructuredPythia,
+    model: StructuredCausalLM,
     tokenizer: Any,
     checkpoint_dir: Path,
     step_name: str,
@@ -104,7 +96,7 @@ def maybe_save_checkpoint(
 def parse_args() -> argparse.Namespace:
     """Define CLI flags for training, evaluation, and smoke testing."""
 
-    parser = argparse.ArgumentParser(description="Train a structured Pythia-70M baseline with node-type embeddings.")
+    parser = argparse.ArgumentParser(description="Train a structured GPT-2 small baseline with node-type embeddings.")
     parser.add_argument("--train-path", type=Path, default=Path("data/train.jsonl"))
     parser.add_argument("--val-path", type=Path, default=Path("data/val.jsonl"))
     parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
@@ -115,8 +107,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--eval-batch-size", type=int, default=8)
     parser.add_argument("--epochs", type=int, default=3)
-    parser.add_argument("--lr", type=float, default=5e-4)
-    parser.add_argument("--weight-decay", type=float, default=0.0)
+    parser.add_argument("--lr", type=float, default=5e-5)
+    parser.add_argument("--weight-decay", type=float, default=0.01)
     parser.add_argument("--max-grad-norm", type=float, default=1.0)
     parser.add_argument("--max-length", type=int, default=128)
     parser.add_argument("--max-train-samples", type=int, default=None)
@@ -126,6 +118,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--smoke-test", action="store_true")
+    parser.add_argument(
+        "--freeze-base",
+        action="store_true",
+        help="Freeze GPT-2 and train only the added node-type embeddings.",
+    )
     return parser.parse_args()
 
 
@@ -157,8 +154,7 @@ def run_smoke_test(args: argparse.Namespace) -> None:
     print(f"Using device: {device}")
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer_vocab_grew = ensure_padding_token(tokenizer)
 
     dataset = StructuredJsonlDataset(args.train_path, tokenizer, max_length=args.max_length).take(
         args.max_train_samples or 2
@@ -182,7 +178,9 @@ def run_smoke_test(args: argparse.Namespace) -> None:
     print(f"Batch labels shape: {tuple(batch['labels'].shape)}")
     print(f"Batch node_type_ids shape: {tuple(batch['node_type_ids'].shape)}")
 
-    model = StructuredPythia(args.model_name, freeze_base=True).to(device)
+    model = StructuredCausalLM(args.model_name, freeze_base=args.freeze_base).to(device)
+    resize_base_embeddings_if_needed(model, tokenizer, tokenizer_vocab_grew)
+    model.base.config.pad_token_id = tokenizer.pad_token_id
     batch = move_batch_to_device(batch, device)
 
     with torch.no_grad():
@@ -215,12 +213,12 @@ def main() -> None:
     print(f"Using device: {device}")
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-    if tokenizer.pad_token is None:
-        # Decoder-only tokenizers often lack a pad token; eos is the standard fallback.
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer_vocab_grew = ensure_padding_token(tokenizer)
 
-    # The base LM is frozen; only the added node-type embedding table is trainable.
-    model = StructuredPythia(args.model_name, freeze_base=True).to(device)
+    # By default, fine-tune GPT-2 and the added node-type embedding table together.
+    model = StructuredCausalLM(args.model_name, freeze_base=args.freeze_base).to(device)
+    resize_base_embeddings_if_needed(model, tokenizer, tokenizer_vocab_grew)
+    model.base.config.pad_token_id = tokenizer.pad_token_id
     total_params, trainable_params = count_parameters(model)
 
     train_dataset = StructuredJsonlDataset(args.train_path, tokenizer, max_length=args.max_length).take(
@@ -257,7 +255,7 @@ def main() -> None:
     )
 
     optimizer = AdamW(
-        # Restrict optimization to trainable parameters so the frozen base model stays untouched.
+        # If --freeze-base is used, this naturally excludes the frozen GPT-2 weights.
         [parameter for parameter in model.parameters() if parameter.requires_grad],
         lr=args.lr,
         weight_decay=args.weight_decay,
@@ -295,6 +293,7 @@ def main() -> None:
             "max_grad_norm": args.max_grad_norm,
             "max_length": args.max_length,
             "seed": args.seed,
+            "freeze_base": args.freeze_base,
             "sample_prompt": sample_item["prompt"],
             "sample_output": sample_item["output"],
             "sample_input_length": int(sample_item["input_ids"].shape[0]),
@@ -318,7 +317,7 @@ def main() -> None:
             )
             loss = outputs.loss
             loss.backward()
-            # Clip gradients on the small trainable head for stability.
+            # Clip gradients before the optimizer step, whether GPT-2 is frozen or fully fine-tuned.
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
             optimizer.step()
             optimizer.zero_grad(set_to_none=True)
@@ -381,7 +380,8 @@ def main() -> None:
     if best_checkpoint is not None:
         print(f"Loading best checkpoint from {best_checkpoint}")
         # Reload the best checkpoint before touching the held-out test set.
-        model = StructuredPythia.from_checkpoint(best_checkpoint, freeze_base=True).to(device)
+        model = StructuredCausalLM.from_checkpoint(best_checkpoint, freeze_base=args.freeze_base).to(device)
+        model.base.config.pad_token_id = tokenizer.pad_token_id
     else:
         best_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
 
@@ -414,6 +414,7 @@ def main() -> None:
             f"Total parameters: {total_params}",
             f"Trainable parameters: {trainable_params}",
             f"Frozen parameters: {total_params - trainable_params}",
+            f"Freeze base: {args.freeze_base}",
             f"Train examples: {len(train_dataset)}",
             f"Validation examples: {len(val_dataset)}",
             f"Test examples: {len(test_dataset)}",

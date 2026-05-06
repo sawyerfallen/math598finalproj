@@ -1,10 +1,12 @@
+"""Generate synthetic algebra datasets for baseline and structured training."""
+
 from __future__ import annotations
 
 import json
 import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Dict, List, Optional
+from collections.abc import Callable
 
 import sympy as sp
 
@@ -25,6 +27,8 @@ class Example:
 
 
 class AlgebraDatasetGenerator:
+    """Create synthetic algebra prompt/output pairs with SymPy-checked targets."""
+
     def __init__(self, seed: int = 0):
         self.rng = random.Random(seed)
 
@@ -107,8 +111,8 @@ class AlgebraDatasetGenerator:
             output=f"x = {sol}",
         )
 
-    def sample_example(self, task: Optional[str] = None) -> Example:
-        builders: Dict[str, Callable[[], Example]] = {
+    def sample_example(self, task: str | None = None) -> Example:
+        builders: dict[str, Callable[[], Example]] = {
             "simplify": self.make_simplify_example,
             "expand": self.make_expand_example,
             "factor": self.make_factor_example,
@@ -121,7 +125,9 @@ class AlgebraDatasetGenerator:
             raise ValueError(f"Unknown task: {task}")
         return builders[task]()
 
-    def generate(self, n: int, task_weights: Optional[Dict[str, float]] = None) -> List[Example]:
+    def generate(self, n: int, task_weights: dict[str, float] | None = None) -> list[Example]:
+        """Sample a mixed task dataset, optionally with custom per-task weights."""
+
         tasks = ["simplify", "expand", "factor", "substitute", "solve"]
         weights = [1.0, 1.0, 1.0, 1.0, 1.0]
 
@@ -130,7 +136,7 @@ class AlgebraDatasetGenerator:
             if sum(weights) <= 0:
                 raise ValueError("task_weights must contain at least one positive weight")
 
-        examples: List[Example] = []
+        examples: list[Example] = []
         for _ in range(n):
             task = self.rng.choices(tasks, weights=weights, k=1)[0]
             examples.append(self.sample_example(task))
@@ -138,10 +144,12 @@ class AlgebraDatasetGenerator:
 
 
 def train_val_test_split(
-    items: List[Example],
+    items: list[Example],
     train_frac: float = 0.85,
     val_frac: float = 0.08,
-) -> tuple[List[Example], List[Example], List[Example]]:
+) -> tuple[list[Example], list[Example], list[Example]]:
+    """Split a shuffled example list into train/validation/test slices."""
+
     n = len(items)
     n_train = int(n * train_frac)
     n_val = int(n * val_frac)
@@ -152,7 +160,9 @@ def train_val_test_split(
     return train, val, test
 
 
-def save_jsonl(path: Path, examples: List[Example]) -> None:
+def save_jsonl(path: Path, examples: list[Example]) -> None:
+    """Write examples in the JSONL format consumed by the trainers."""
+
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for ex in examples:

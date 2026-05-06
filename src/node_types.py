@@ -1,4 +1,4 @@
-"""Node-type vocabulary used by the structured Pythia baseline."""
+"""Node-type vocabulary used by the structured GPT-2 small baseline."""
 
 from __future__ import annotations
 

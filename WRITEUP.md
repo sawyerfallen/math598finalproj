@@ -4,7 +4,7 @@ I want to test whether adding explicit structural encodings to mathematical symb
 
 - How do you plan to answer it? How does your proposed method relate to existing ones?
 
-I compare two versions of Pythia-70M on the same synthetic algebra dataset: a baseline trained only on prompt-output text pairs, and a structured model that adds learned node-type embeddings to the token embeddings. Currently, due to Codex misunderstanding my instructions, the structured model is not fine-tuned on the dataset like the original model is. The parser assigns symbolic labels to prompt tokens, and those labels are aligned to tokenizer pieces before being passed into the model. This is related to structure-aware methods in the literature, but my implementation is a simpler typed-embedding approach rather than a full tree encoder.
+I compare two versions of GPT-2 small on the same synthetic algebra dataset: a baseline trained only on prompt-output text pairs, and a structured model that adds learned node-type embeddings to the token embeddings. I switched from Pythia-70M to GPT-2 small because GPT-2 uses learned absolute positional embeddings rather than rotary positional embeddings. The structured model is now fine-tuned on the same training set as the baseline model, with both the GPT-2 weights and the added node-type embeddings updated during training. The parser assigns symbolic labels to prompt tokens, and those labels are aligned to tokenizer pieces before being passed into the model. This is related to structure-aware methods in the literature, but my implementation is a simpler typed-embedding approach rather than a full tree encoder.
 
 - What experiments have you run, what results have you gotten? How did they make you change your mind?
 
@@ -15,7 +15,7 @@ I (mostly Codex) have already built the dataset pipeline, baseline trainer, stru
 | Exact Match Accuracy | 0.3980 | 0.3260 | -0.0720 |
 | Symbolic Accuracy | 0.4100 | 0.3260 | -0.0840 |
 
-I think the structured response is doing worse because it was not fine tuned on the dataset, unlike the original model. This is due to Codex misunderstanding my directions. 
+The previous structured run likely did worse because it only trained the added node-type embeddings while the underlying language model stayed frozen. The current setup fixes that comparison by fine-tuning the structured model on the same dataset as the baseline.
 
 
 - What experiments do you have left to run?
@@ -32,5 +32,5 @@ If better-trained models still show no difference, then the conclusion will be t
 
 Prompting the agent is a challenge for me, I don't have much experience using them, and it does not always listen to me. It is also difficult for me to interpret the massive amounts of code it puts out in a timely manner, and as someone who really thinks paying attention to detail is valuable, this is frustrating. Ensuring everything is correct is important for a project like this.
 
-I still need to fix the structured model, so it is actually fine tuned on the data also, for a fair comparison.
+I still need to rerun the structured experiment with the updated full fine-tuning setup so the comparison reflects the corrected training procedure.
 

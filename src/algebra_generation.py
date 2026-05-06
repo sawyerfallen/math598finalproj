@@ -9,11 +9,11 @@ import torch
 try:
     from .node_types import NODE_TYPE_TO_ID
     from .structured_dataset import align_prompt_node_type_ids
-    from .structured_model import StructuredPythia
+    from .structured_model import StructuredCausalLM
 except ImportError:
     from node_types import NODE_TYPE_TO_ID
     from structured_dataset import align_prompt_node_type_ids
-    from structured_model import StructuredPythia
+    from structured_model import StructuredCausalLM
 
 
 OTHER_NODE_TYPE_ID = NODE_TYPE_TO_ID["OTHER"]
@@ -174,7 +174,7 @@ def build_structured_prompt_batch(prompts: list[str], tokenizer: Any) -> dict[st
 
 @torch.no_grad()
 def generate_structured_predictions(
-    model: StructuredPythia,
+    model: StructuredCausalLM,
     tokenizer: Any,
     prompts: list[str],
     device: torch.device,

@@ -1,3 +1,5 @@
+"""Compare saved baseline and structured checkpoints on algebra generation."""
+
 from __future__ import annotations
 
 import argparse
@@ -6,23 +8,26 @@ from pathlib import Path
 from typing import Any
 
 import torch
-from transformers import AutoTokenizer, GPTNeoXForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from src.algebra_generation import (
     build_allowed_token_mask,
     generate_baseline_predictions,
     generate_structured_predictions,
 )
-from src.structured_model import StructuredPythia
+from src.structured_model import StructuredCausalLM
 from src.train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
+from src.utils import ensure_padding_token
 
 
-DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/experiments/pythia70m-baseline/best-epoch-1")
-DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/experiments/pythia70m-structured-node-types/best-epoch-1")
-DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/baseline_vs_structured.json")
-DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/baseline_vs_structured.txt")
+DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/experiments/gpt2-small-baseline/best-epoch-1")
+DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/experiments/gpt2-small-structured-node-types/best-epoch-1")
+DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.json")
+DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.txt")
+
+
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Compare saved baseline and structured Pythia checkpoints.")
+    parser = argparse.ArgumentParser(description="Compare saved baseline and structured GPT-2 small checkpoints.")
     parser.add_argument("--baseline-checkpoint", type=Path, default=DEFAULT_BASELINE_CHECKPOINT)
     parser.add_argument("--structured-checkpoint", type=Path, default=DEFAULT_STRUCTURED_CHECKPOINT)
     parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
@@ -36,15 +41,43 @@ def parse_args() -> argparse.Namespace:
 
 
 def load_examples(path: Path, max_samples: int | None) -> JsonlAlgebraDataset:
+    """Load the evaluation split and optionally keep only a prefix for quick runs."""
+
     dataset = JsonlAlgebraDataset(path)
     return dataset.take(max_samples)
 
 
-def move_tensors_to_device(batch: dict[str, torch.Tensor], device: torch.device) -> dict[str, torch.Tensor]:
-    return {key: value.to(device) for key, value in batch.items()}
+def load_baseline_model(checkpoint: Path, device: torch.device) -> tuple[Any, torch.nn.Module, torch.Tensor]:
+    """Load the baseline tokenizer/model pair and build its constrained decoding mask."""
+
+    tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+    tokenizer_vocab_grew = ensure_padding_token(tokenizer)
+    model = AutoModelForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float32).to(device)
+    if tokenizer_vocab_grew or len(tokenizer) != model.get_input_embeddings().num_embeddings:
+        model.resize_token_embeddings(len(tokenizer))
+    model.config.pad_token_id = tokenizer.pad_token_id
+    allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.config.vocab_size)
+    return tokenizer, model, allowed_token_mask
+
+
+def load_structured_model(checkpoint: Path, device: torch.device) -> tuple[Any, StructuredCausalLM, torch.Tensor]:
+    """Load the structured wrapper and keep tokenizer/model vocabulary sizes aligned."""
+
+    tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+    tokenizer_vocab_grew = ensure_padding_token(tokenizer)
+    model = StructuredCausalLM.from_checkpoint(checkpoint, freeze_base=True).to(device)
+    if tokenizer_vocab_grew or len(tokenizer) != model.base.get_input_embeddings().num_embeddings:
+        model.base.resize_token_embeddings(len(tokenizer))
+        for parameter in model.base.parameters():
+            parameter.requires_grad = False
+    model.base.config.pad_token_id = tokenizer.pad_token_id
+    allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.base.config.vocab_size)
+    return tokenizer, model, allowed_token_mask
 
 
 def compute_accuracy_metrics(predictions: list[str], dataset: JsonlAlgebraDataset) -> dict[str, Any]:
+    """Compute exact-string and SymPy-based symbolic accuracies."""
+
     exact_matches = 0
     symbolic_matches = 0
     mistakes = []
@@ -183,24 +216,13 @@ def main() -> None:
     dataset = load_examples(args.test_path, args.max_samples)
     print(f"Loaded {len(dataset)} comparison examples from {args.test_path}")
 
-    baseline_tokenizer = AutoTokenizer.from_pretrained(args.baseline_checkpoint)
-    if baseline_tokenizer.pad_token is None:
-        baseline_tokenizer.pad_token = baseline_tokenizer.eos_token
-    baseline_model = GPTNeoXForCausalLM.from_pretrained(args.baseline_checkpoint, torch_dtype=torch.float32).to(device)
-    baseline_allowed_token_mask = build_allowed_token_mask(
-        baseline_tokenizer,
+    baseline_tokenizer, baseline_model, baseline_allowed_token_mask = load_baseline_model(
+        args.baseline_checkpoint,
         device,
-        vocab_size=baseline_model.config.vocab_size,
     )
-
-    structured_tokenizer = AutoTokenizer.from_pretrained(args.structured_checkpoint)
-    if structured_tokenizer.pad_token is None:
-        structured_tokenizer.pad_token = structured_tokenizer.eos_token
-    structured_model = StructuredPythia.from_checkpoint(args.structured_checkpoint, freeze_base=True).to(device)
-    structured_allowed_token_mask = build_allowed_token_mask(
-        structured_tokenizer,
+    structured_tokenizer, structured_model, structured_allowed_token_mask = load_structured_model(
+        args.structured_checkpoint,
         device,
-        vocab_size=structured_model.base.config.vocab_size,
     )
 
     baseline_predictions: list[str] = []

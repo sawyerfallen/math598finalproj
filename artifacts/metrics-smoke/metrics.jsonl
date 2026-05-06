@@ -1,3 +1,0 @@
-{"event": "run_start", "model_name": "EleutherAI/pythia-70m-deduped", "device": "cpu", "train_examples": 8, "val_examples": 4, "test_examples": 4, "batch_size": 2, "eval_batch_size": 2, "epochs": 1, "learning_rate": 5e-05, "weight_decay": 0.01, "max_grad_norm": 1.0, "max_length": 128, "max_new_tokens": 32, "seed": 42, "sample_prompt": "expand 4*x - 20 =>", "sample_output": "4*x - 20", "sample_input_length": 12, "sample_masked_positions": 7}
-{"event": "epoch_end", "epoch": 1, "global_step": 4, "train_loss": 2.485569030046463, "val_loss": 2.873923897743225, "val_generation_accuracy": 0.0}
-{"event": "test_end", "best_checkpoint": "artifacts\\metrics-smoke\\best-epoch-1", "best_val_loss": 2.873923897743225, "test_loss": 3.037932872772217, "test_generation_accuracy": 0.0}
