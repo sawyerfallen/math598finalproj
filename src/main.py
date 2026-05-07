@@ -34,6 +34,7 @@ DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-ba
 DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-structured-node-types/final-model")
 DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.json")
 DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.txt")
+DEFAULT_PER_SAMPLE_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured_per_sample.jsonl")
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,6 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-new-tokens", type=int, default=32)
     parser.add_argument("--output-path", type=Path, default=DEFAULT_OUTPUT_PATH)
     parser.add_argument("--text-output-path", type=Path, default=DEFAULT_TEXT_OUTPUT_PATH)
+    parser.add_argument("--per-sample-output-path", type=Path, default=DEFAULT_PER_SAMPLE_OUTPUT_PATH)
     parser.add_argument("--seed", type=int, default=42)
     return parser.parse_args()
 
@@ -66,6 +68,7 @@ def load_baseline_model(checkpoint: Path, device: torch.device) -> tuple[Any, to
     if tokenizer_vocab_grew or len(tokenizer) != model.get_input_embeddings().num_embeddings:
         model.resize_token_embeddings(len(tokenizer))
     model.config.pad_token_id = tokenizer.pad_token_id
+    model.eval()
     allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.config.vocab_size)
     return tokenizer, model, allowed_token_mask
 
@@ -81,6 +84,7 @@ def load_structured_model(checkpoint: Path, device: torch.device) -> tuple[Any, 
         for parameter in model.base.parameters():
             parameter.requires_grad = False
     model.base.config.pad_token_id = tokenizer.pad_token_id
+    model.eval()
     allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.base.config.vocab_size)
     return tokenizer, model, allowed_token_mask
 
@@ -119,6 +123,61 @@ def compute_accuracy_metrics(predictions: list[str], dataset: JsonlAlgebraDatase
         "symbolic_accuracy": symbolic_matches / total,
         "sample_mistakes": mistakes,
     }
+
+
+def build_per_sample_records(
+    dataset: JsonlAlgebraDataset,
+    baseline_predictions: list[str],
+    structured_predictions: list[str],
+) -> list[dict[str, Any]]:
+    """Build one saved record per test example for later plotting and inspection."""
+
+    records = []
+    for index, (example, baseline_prediction, structured_prediction) in enumerate(
+        zip(dataset.examples, baseline_predictions, structured_predictions)
+    ):
+        target = example.output.strip()
+        baseline_exact_match = baseline_prediction == target
+        baseline_symbolic_match = is_symbolically_equivalent(baseline_prediction, target)
+        structured_exact_match = structured_prediction == target
+        structured_symbolic_match = is_symbolically_equivalent(structured_prediction, target)
+
+        records.append(
+            {
+                "sample_index": index,
+                "prompt": example.prompt,
+                "target": target,
+                "baseline": {
+                    "prediction": baseline_prediction,
+                    "exact_match": baseline_exact_match,
+                    "symbolic_match": baseline_symbolic_match,
+                },
+                "structured": {
+                    "prediction": structured_prediction,
+                    "exact_match": structured_exact_match,
+                    "symbolic_match": structured_symbolic_match,
+                },
+                "comparison": {
+                    "both_symbolically_correct": baseline_symbolic_match and structured_symbolic_match,
+                    "only_baseline_symbolically_correct": baseline_symbolic_match
+                    and not structured_symbolic_match,
+                    "only_structured_symbolically_correct": structured_symbolic_match
+                    and not baseline_symbolic_match,
+                    "both_symbolically_wrong": not baseline_symbolic_match and not structured_symbolic_match,
+                },
+            }
+        )
+
+    return records
+
+
+def write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    """Write structured per-example data in a plotting-friendly JSONL format."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        for record in records:
+            handle.write(json.dumps(record) + "\n")
 
 
 def print_metrics(label: str, metrics: dict[str, Any]) -> None:
@@ -173,6 +232,7 @@ def build_text_summary(
         f"Baseline checkpoint: {args.baseline_checkpoint}",
         f"Structured checkpoint: {args.structured_checkpoint}",
         f"Evaluation set: {args.test_path}",
+        f"Per-sample output: {args.per_sample_output_path}",
         f"Examples: {baseline_metrics['num_examples']}",
         "",
         table,
@@ -261,8 +321,16 @@ def main() -> None:
             )
         )
 
+    if len(baseline_predictions) != len(dataset) or len(structured_predictions) != len(dataset):
+        raise RuntimeError(
+            "Comparison produced an unexpected number of predictions: "
+            f"dataset={len(dataset)}, baseline={len(baseline_predictions)}, "
+            f"structured={len(structured_predictions)}"
+        )
+
     baseline_metrics = compute_accuracy_metrics(baseline_predictions, dataset)
     structured_metrics = compute_accuracy_metrics(structured_predictions, dataset)
+    per_sample_records = build_per_sample_records(dataset, baseline_predictions, structured_predictions)
     table = build_comparison_table(baseline_metrics, structured_metrics)
 
     print_metrics("Baseline", baseline_metrics)
@@ -274,6 +342,7 @@ def main() -> None:
         "baseline_checkpoint": str(args.baseline_checkpoint),
         "structured_checkpoint": str(args.structured_checkpoint),
         "test_path": str(args.test_path),
+        "per_sample_output_path": str(args.per_sample_output_path),
         "max_samples": args.max_samples,
         "batch_size": args.batch_size,
         "max_new_tokens": args.max_new_tokens,
@@ -289,12 +358,14 @@ def main() -> None:
 
     args.output_path.parent.mkdir(parents=True, exist_ok=True)
     args.output_path.write_text(json.dumps(comparison, indent=2), encoding="utf-8")
+    write_jsonl(args.per_sample_output_path, per_sample_records)
     args.text_output_path.parent.mkdir(parents=True, exist_ok=True)
     args.text_output_path.write_text(
         build_text_summary(args, baseline_metrics, structured_metrics, table),
         encoding="utf-8",
     )
     print(f"Saved comparison to {args.output_path}")
+    print(f"Saved per-sample comparison to {args.per_sample_output_path}")
     print(f"Saved text comparison to {args.text_output_path}")
 
 

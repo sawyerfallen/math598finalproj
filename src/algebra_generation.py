@@ -103,12 +103,17 @@ def generate_baseline_predictions(
         unfinished = torch.ones(encoded["input_ids"].shape[0], dtype=torch.bool, device=device)
         eos_token_id = tokenizer.eos_token_id
         pad_token_id = tokenizer.pad_token_id or 0
+        next_input_ids = encoded["input_ids"]
+        past_key_values = None
 
         for _ in range(max_new_tokens):
             outputs = model(
-                input_ids=encoded["input_ids"],
+                input_ids=next_input_ids,
                 attention_mask=encoded["attention_mask"],
+                past_key_values=past_key_values,
+                use_cache=True,
             )
+            past_key_values = outputs.past_key_values
             next_token_logits = _apply_output_constraints(outputs.logits[:, -1, :], allowed_token_mask)
             next_token = next_token_logits.argmax(dim=-1)
 
@@ -128,6 +133,7 @@ def generate_baseline_predictions(
                 [encoded["attention_mask"], unfinished.long().unsqueeze(1)],
                 dim=1,
             )
+            next_input_ids = next_token.unsqueeze(1)
 
             if eos_token_id is not None:
                 unfinished = unfinished & (next_token != eos_token_id)
@@ -190,13 +196,19 @@ def generate_structured_predictions(
     unfinished = torch.ones(batch["input_ids"].shape[0], dtype=torch.bool, device=device)
     eos_token_id = tokenizer.eos_token_id
     pad_token_id = tokenizer.pad_token_id or 0
+    next_input_ids = batch["input_ids"]
+    next_node_type_ids = batch["node_type_ids"]
+    past_key_values = None
 
     for _ in range(max_new_tokens):
         outputs = model(
-            input_ids=batch["input_ids"],
-            node_type_ids=batch["node_type_ids"],
+            input_ids=next_input_ids,
+            node_type_ids=next_node_type_ids,
             attention_mask=batch["attention_mask"],
+            past_key_values=past_key_values,
+            use_cache=True,
         )
+        past_key_values = outputs.past_key_values
         next_token_logits = _apply_output_constraints(outputs.logits[:, -1, :], allowed_token_mask)
         next_token = next_token_logits.argmax(dim=-1)
 
@@ -211,18 +223,12 @@ def generate_structured_predictions(
             if unfinished[row_index] and token_id != pad_token_id:
                 generated_token_rows[row_index].append(token_id)
 
-        batch["input_ids"] = torch.cat([batch["input_ids"], next_token.unsqueeze(1)], dim=1)
         batch["attention_mask"] = torch.cat(
             [batch["attention_mask"], unfinished.long().unsqueeze(1)],
             dim=1,
         )
-        batch["node_type_ids"] = torch.cat(
-            [
-                batch["node_type_ids"],
-                torch.full((len(prompts), 1), OTHER_NODE_TYPE_ID, dtype=torch.long, device=device),
-            ],
-            dim=1,
-        )
+        next_input_ids = next_token.unsqueeze(1)
+        next_node_type_ids = torch.full((len(prompts), 1), OTHER_NODE_TYPE_ID, dtype=torch.long, device=device)
 
         if eos_token_id is not None:
             unfinished = unfinished & (next_token != eos_token_id)

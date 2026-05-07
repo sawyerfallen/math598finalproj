@@ -18,6 +18,8 @@ dependencies = [
 compare-models = "src.main:main"
 generate-dataset = "src.dataset_generator:main"
 plot-test-losses = "src.plot_test_losses:main"
+plot-batch-losses = "src.plot_batch_losses:main"
+plot-comparison-accuracy = "src.plot_comparison_accuracy:main"
 train-baseline = "src.train_baseline:main"
 train-structured = "src.train_structured:main"
 

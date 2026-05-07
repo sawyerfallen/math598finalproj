@@ -468,6 +468,16 @@ def main() -> None:
             epoch_loss_sum += loss.item()
             epoch_steps += 1
             progress.set_postfix(loss=f"{loss.item():.4f}")
+            append_jsonl(
+                metrics_file,
+                {
+                    "event": "batch_end",
+                    "epoch": epoch + 1,
+                    "global_step": global_step,
+                    "epoch_step": epoch_steps,
+                    "train_loss": loss.item(),
+                },
+            )
 
             if args.eval_every_steps > 0 and global_step % args.eval_every_steps == 0:
                 val_loss = evaluate_loss(model, val_loader, device)

@@ -56,7 +56,13 @@ Train the structured model with full fine-tuning and save `final-model`, metrics
 `uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-node-types --output-dir artifacts/models_training_info/gpt2-small-structured-node-types --epochs 1`
 
 Compare a saved baseline checkpoint against a saved structured checkpoint without retraining:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline/final-model --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-node-types/final-model --test-path data/test.jsonl --output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.txt`
+`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline/final-model --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-node-types/final-model --test-path data/test.jsonl --output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured-per-sample.jsonl`
 
 Plot the saved per-sample test losses:
 `uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline/test_sample_losses.jsonl`
+
+Plot training loss over batches for both one-epoch runs:
+`uv run plot-batch-losses artifacts/models_training_info/gpt2-small-baseline/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-node-types/metrics.jsonl --labels baseline structured --output-path artifacts/plots/gpt2-small-batch-losses.png`
+
+Plot comparison accuracies from the saved per-sample JSONL:
+`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-baseline-vs-structured-per-sample.jsonl --prefix gpt2-small-baseline-vs-structured`

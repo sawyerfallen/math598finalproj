@@ -43,6 +43,8 @@ class StructuredCausalLM(nn.Module):
         node_type_ids: torch.Tensor,
         attention_mask: torch.Tensor | None = None,
         labels: torch.Tensor | None = None,
+        past_key_values=None,
+        use_cache: bool | None = None,
     ):
         # Reuse the base model's token embedding layer so vocabulary handling stays identical.
         token_embeds = self.base.get_input_embeddings()(input_ids)
@@ -54,6 +56,8 @@ class StructuredCausalLM(nn.Module):
             inputs_embeds=inputs_embeds,
             attention_mask=attention_mask,
             labels=labels,
+            past_key_values=past_key_values,
+            use_cache=use_cache,
         )
 
     def save_pretrained(self, save_dir: str | Path) -> Path:

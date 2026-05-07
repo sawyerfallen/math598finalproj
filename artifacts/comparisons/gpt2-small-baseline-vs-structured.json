@@ -1,0 +1,87 @@
+{
+  "baseline_checkpoint": "artifacts\\models_training_info\\gpt2-small-baseline\\final-model",
+  "structured_checkpoint": "artifacts\\models_training_info\\gpt2-small-structured-node-types\\final-model",
+  "test_path": "data\\test.jsonl",
+  "per_sample_output_path": "artifacts\\comparisons\\gpt2-small-baseline-vs-structured-per-sample.jsonl",
+  "max_samples": null,
+  "batch_size": 64,
+  "max_new_tokens": 32,
+  "baseline": {
+    "num_examples": 420,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "simplify 3*x + 1 =>",
+        "target": "3*x + 1",
+        "prediction": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 0 into 2 - 2*x =>",
+        "target": "2",
+        "prediction": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 4*x - 16 =>",
+        "target": "4*x - 16",
+        "prediction": "- 16*x - 16*x - 16*x - 16*x - 16*x - 16*x - 16*x - 16*x",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -4*x - 5 = -13 for x =>",
+        "target": "x = 2",
+        "prediction": "-5 = -5 = -5 = -5 = -5 = -5 = -5 = -5 = -5 = -5 = -5",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 - 5*x =>",
+        "target": "x*(x - 5)",
+        "prediction": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "structured": {
+    "num_examples": 420,
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0,
+    "sample_mistakes": [
+      {
+        "prompt": "simplify 3*x + 1 =>",
+        "target": "3*x + 1",
+        "prediction": "1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "substitute x = 0 into 2 - 2*x =>",
+        "target": "2",
+        "prediction": "2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 - 2 -",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "expand 4*x - 16 =>",
+        "target": "4*x - 16",
+        "prediction": "4*x - 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -4*x - 5 = -13 for x =>",
+        "target": "x = 2",
+        "prediction": "5 = -5 - 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5 = 5",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "factor x**2 - 5*x =>",
+        "target": "x*(x - 5)",
+        "prediction": "x + 5*x + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 +",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "accuracy_delta": {
+    "exact_match_accuracy": 0.0,
+    "symbolic_accuracy": 0.0
+  }
+}
