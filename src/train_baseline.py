@@ -1,4 +1,4 @@
-"""Baseline GPT-2 fine-tuning for algebra prompt/output pairs."""
+"""Baseline causal-LM fine-tuning for algebra prompt/output pairs."""
 
 from __future__ import annotations
 
@@ -17,24 +17,18 @@ from tqdm.auto import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 try:
-    from .algebra_generation import (
-        build_allowed_token_mask,
-        generate_baseline_predictions as constrained_generate_baseline_predictions,
-    )
     from .utils import (
         append_jsonl,
+        causal_lm_sample_losses,
         count_parameters,
         ensure_padding_token,
         move_batch_to_device,
         write_summary,
     )
 except ImportError:
-    from algebra_generation import (
-        build_allowed_token_mask,
-        generate_baseline_predictions as constrained_generate_baseline_predictions,
-    )
     from utils import (
         append_jsonl,
+        causal_lm_sample_losses,
         count_parameters,
         ensure_padding_token,
         move_batch_to_device,
@@ -44,6 +38,7 @@ except ImportError:
 
 DEFAULT_MODEL_NAME = "gpt2"
 DEFAULT_EXPERIMENT_NAME = "gpt2-small-baseline"
+DEFAULT_ARTIFACTS_ROOT = Path("artifacts") / "models_training_info"
 SYMPY_LOCALS = {name: sp.Symbol(name) for name in ("x", "y", "z")}
 
 
@@ -224,46 +219,34 @@ def evaluate_loss(model: torch.nn.Module, dataloader: DataLoader, device: torch.
 
 
 @torch.no_grad()
-def evaluate_generation_metrics(
-    model: torch.nn.Module,
-    tokenizer: Any,
-    dataset: JsonlAlgebraDataset,
-    device: torch.device,
-    batch_size: int,
-    max_new_tokens: int,
-    allowed_token_mask: torch.Tensor,
-) -> dict[str, float]:
+def collect_sample_losses(model: torch.nn.Module, dataloader: DataLoader, device: torch.device) -> list[dict[str, Any]]:
+    """Collect one masked next-token loss per evaluation example."""
+
     model.eval()
-    predictions: list[str] = []
+    sample_records: list[dict[str, Any]] = []
+    sample_index = 0
 
-    for start in tqdm(range(0, len(dataset), batch_size), desc="Generating", leave=False):
-        prompts = [example.prompt for example in dataset.examples[start:start + batch_size]]
-        predictions.extend(
-            constrained_generate_baseline_predictions(
-                model=model,
-                tokenizer=tokenizer,
-                prompts=prompts,
-                device=device,
-                max_new_tokens=max_new_tokens,
-                allowed_token_mask=allowed_token_mask,
-            )
+    for batch in dataloader:
+        batch = move_batch_to_device(batch, device)
+        outputs = model(
+            input_ids=batch["input_ids"],
+            attention_mask=batch["attention_mask"],
+            labels=batch["labels"],
         )
+        sample_losses = causal_lm_sample_losses(outputs.logits, batch["labels"]).detach().cpu().tolist()
 
-    exact_matches = 0
-    symbolic_matches = 0
+        for loss_value, prompt, output_text in zip(sample_losses, batch["prompts"], batch["outputs"]):
+            sample_records.append(
+                {
+                    "sample_index": sample_index,
+                    "prompt": prompt,
+                    "output": output_text,
+                    "loss": float(loss_value),
+                }
+            )
+            sample_index += 1
 
-    for prediction, example in zip(predictions, dataset.examples):
-        target = example.output.strip()
-        if prediction == target:
-            exact_matches += 1
-        if is_symbolically_equivalent(prediction, target):
-            symbolic_matches += 1
-
-    total = max(len(dataset), 1)
-    return {
-        "exact_match_accuracy": exact_matches / total,
-        "symbolic_accuracy": symbolic_matches / total,
-    }
+    return sample_records
 
 
 def maybe_save_checkpoint(
@@ -329,7 +312,7 @@ def is_symbolically_equivalent(prediction: str, target: str) -> bool:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Fine-tune GPT-2 small on algebra prompt/output pairs.")
+    parser = argparse.ArgumentParser(description="Fine-tune a causal LM on algebra prompt/output pairs.")
     parser.add_argument("--train-path", type=Path, default=Path("data/train.jsonl"))
     parser.add_argument("--val-path", type=Path, default=Path("data/val.jsonl"))
     parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
@@ -344,13 +327,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight-decay", type=float, default=0.01)
     parser.add_argument("--max-grad-norm", type=float, default=1.0)
     parser.add_argument("--max-length", type=int, default=128)
-    parser.add_argument("--max-new-tokens", type=int, default=32)
     parser.add_argument("--max-train-samples", type=int, default=None)
     parser.add_argument("--max-val-samples", type=int, default=None)
     parser.add_argument("--max-test-samples", type=int, default=None)
     parser.add_argument("--eval-every-steps", type=int, default=0)
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--save-best-checkpoint",
+        action="store_true",
+        help="Also save and reload the lowest-validation-loss checkpoint in addition to final-model.",
+    )
     return parser.parse_args()
 
 
@@ -358,12 +345,12 @@ def main() -> None:
     args = parse_args()
     torch.manual_seed(args.seed)
     if args.output_dir is None:
-        args.output_dir = Path("artifacts") / "experiments" / args.experiment_name
+        args.output_dir = DEFAULT_ARTIFACTS_ROOT / args.experiment_name
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    # GPT-2 has no dedicated pad token, so use EOS as padding without growing the vocab.
+    # Decoder-only tokenizers often have no dedicated pad token, so use EOS as padding when needed.
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     tokenizer_vocab_grew = ensure_padding_token(tokenizer)
 
@@ -373,7 +360,6 @@ def main() -> None:
     model.config.pad_token_id = tokenizer.pad_token_id
     model.to(device)
     total_params, trainable_params = count_parameters(model)
-    allowed_token_mask = build_allowed_token_mask(tokenizer, device, vocab_size=model.config.vocab_size)
 
     # Baseline examples use only text; prompt labels are masked inside the dataset wrapper.
     train_examples = JsonlAlgebraDataset(args.train_path).take(args.max_train_samples)
@@ -408,21 +394,22 @@ def main() -> None:
         num_workers=args.num_workers,
     )
 
-    # Full fine-tuning: every GPT-2 parameter is trainable in the baseline.
+    # Full fine-tuning: every base-model parameter is trainable in the baseline.
     optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metrics_file = args.metrics_file or (args.output_dir / "metrics.jsonl")
     summary_file = args.output_dir / "summary.txt"
+    sample_losses_file = args.output_dir / "test_sample_losses.jsonl"
 
     if metrics_file.exists():
         metrics_file.unlink()
+    if sample_losses_file.exists():
+        sample_losses_file.unlink()
 
     best_val_loss = math.inf
     best_checkpoint: Path | None = None
     global_step = 0
     last_val_loss = math.inf
-    last_val_exact_match_accuracy = 0.0
-    last_val_symbolic_accuracy = 0.0
 
     sample_item = train_dataset[0]
     print("Baseline preprocessing example:")
@@ -449,8 +436,8 @@ def main() -> None:
             "weight_decay": args.weight_decay,
             "max_grad_norm": args.max_grad_norm,
             "max_length": args.max_length,
-            "max_new_tokens": args.max_new_tokens,
             "seed": args.seed,
+            "save_best_checkpoint": args.save_best_checkpoint,
             "sample_prompt": sample_item["prompt"],
             "sample_output": sample_item["output"],
             "sample_input_length": int(sample_item["input_ids"].shape[0]),
@@ -494,7 +481,7 @@ def main() -> None:
                         "val_loss": val_loss,
                     },
                 )
-                if val_loss < best_val_loss:
+                if args.save_best_checkpoint and val_loss < best_val_loss:
                     best_val_loss = val_loss
                     best_checkpoint = maybe_save_checkpoint(
                         model,
@@ -504,24 +491,11 @@ def main() -> None:
                     )
 
         val_loss = evaluate_loss(model, val_loader, device)
-        val_metrics = evaluate_generation_metrics(
-            model,
-            tokenizer,
-            val_examples,
-            device,
-            batch_size=args.eval_batch_size,
-            max_new_tokens=args.max_new_tokens,
-            allowed_token_mask=allowed_token_mask,
-        )
         last_val_loss = val_loss
-        last_val_exact_match_accuracy = val_metrics["exact_match_accuracy"]
-        last_val_symbolic_accuracy = val_metrics["symbolic_accuracy"]
         print(
             f"Epoch {epoch + 1}: "
             f"train_loss={epoch_loss_sum / max(epoch_steps, 1):.4f} "
-            f"val_loss={val_loss:.4f} "
-            f"val_exact_match_accuracy={val_metrics['exact_match_accuracy']:.4f} "
-            f"val_symbolic_accuracy={val_metrics['symbolic_accuracy']:.4f}"
+            f"val_loss={val_loss:.4f}"
         )
         append_jsonl(
             metrics_file,
@@ -531,13 +505,10 @@ def main() -> None:
                 "global_step": global_step,
                 "train_loss": epoch_loss_sum / max(epoch_steps, 1),
                 "val_loss": val_loss,
-                "val_exact_match_accuracy": val_metrics["exact_match_accuracy"],
-                "val_generation_accuracy": val_metrics["exact_match_accuracy"],
-                "val_symbolic_accuracy": val_metrics["symbolic_accuracy"],
             },
         )
 
-        if val_loss < best_val_loss:
+        if args.save_best_checkpoint and val_loss < best_val_loss:
             best_val_loss = val_loss
             best_checkpoint = maybe_save_checkpoint(
                 model,
@@ -546,39 +517,29 @@ def main() -> None:
                 f"best-epoch-{epoch + 1}",
             )
 
-    if best_checkpoint is not None:
+    final_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
+
+    if args.save_best_checkpoint and best_checkpoint is not None:
         print(f"Loading best checkpoint from {best_checkpoint}")
         model = AutoModelForCausalLM.from_pretrained(best_checkpoint, torch_dtype=torch.float32).to(device)
         model.config.pad_token_id = tokenizer.pad_token_id
     else:
-        best_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
+        best_checkpoint = final_checkpoint
 
     test_loss = evaluate_loss(model, test_loader, device)
-    test_metrics = evaluate_generation_metrics(
-        model,
-        tokenizer,
-        test_examples,
-        device,
-        batch_size=args.eval_batch_size,
-        max_new_tokens=args.max_new_tokens,
-        allowed_token_mask=allowed_token_mask,
-    )
-    test_exact_match_accuracy = test_metrics["exact_match_accuracy"]
-    test_symbolic_accuracy = test_metrics["symbolic_accuracy"]
+    test_sample_losses = collect_sample_losses(model, test_loader, device)
+    for sample_record in test_sample_losses:
+        append_jsonl(sample_losses_file, sample_record)
     print(f"Test loss: {test_loss:.4f}")
-    print(f"Test exact match accuracy: {test_exact_match_accuracy:.4f}")
-    print(f"Test symbolic accuracy: {test_symbolic_accuracy:.4f}")
     print(f"Best checkpoint: {best_checkpoint}")
     append_jsonl(
         metrics_file,
         {
             "event": "test_end",
             "best_checkpoint": str(best_checkpoint),
+            "final_checkpoint": str(final_checkpoint),
             "best_val_loss": best_val_loss,
             "test_loss": test_loss,
-            "test_exact_match_accuracy": test_exact_match_accuracy,
-            "test_generation_accuracy": test_exact_match_accuracy,
-            "test_symbolic_accuracy": test_symbolic_accuracy,
         },
     )
     write_summary(
@@ -589,7 +550,9 @@ def main() -> None:
             f"Device: {device}",
             f"Output directory: {args.output_dir}",
             f"Metrics file: {metrics_file}",
+            f"Test sample losses file: {sample_losses_file}",
             f"Best checkpoint: {best_checkpoint}",
+            f"Final checkpoint: {final_checkpoint}",
             f"Total parameters: {total_params}",
             f"Trainable parameters: {trainable_params}",
             f"Frozen parameters: {total_params - trainable_params}",
@@ -603,19 +566,18 @@ def main() -> None:
             f"Weight decay: {args.weight_decay}",
             f"Max grad norm: {args.max_grad_norm}",
             f"Max length: {args.max_length}",
-            f"Max new tokens: {args.max_new_tokens}",
             f"Seed: {args.seed}",
+            f"Save best checkpoint: {args.save_best_checkpoint}",
             f"Best validation loss: {best_val_loss:.6f}",
             f"Last validation loss: {last_val_loss:.6f}",
-            f"Last validation exact match accuracy: {last_val_exact_match_accuracy:.6f}",
-            f"Last validation symbolic accuracy: {last_val_symbolic_accuracy:.6f}",
             f"Test loss: {test_loss:.6f}",
-            f"Test exact match accuracy: {test_exact_match_accuracy:.6f}",
-            f"Test symbolic accuracy: {test_symbolic_accuracy:.6f}",
+            "Generation evaluation: skipped during training; use compare-models on saved checkpoints.",
         ],
     )
     print(f"Metrics file: {metrics_file}")
     print(f"Summary file: {summary_file}")
+    print(f"Test sample losses file: {sample_losses_file}")
+    print(f"Final checkpoint: {final_checkpoint}")
 
 
 if __name__ == "__main__":

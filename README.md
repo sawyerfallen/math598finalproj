@@ -1,6 +1,6 @@
 Map of code:
 
-1. `main.py` runs both models on the same testing set, computes the accuracy, and writes it to a json and txt
+1. `src/main.py` runs both models on the same testing set, computes the accuracy, and writes it to a json and txt
 
 2. `src/train_baseline.py` fine-tunes the normal GPT-2 small model, without my additional labelings
 
@@ -27,7 +27,7 @@ Map of code:
 
 Overall the structured model goes from `parser`, which turns the prompt text into the tokens and the labels, to `node_types` which maps these to ints, to `structured_dataset` which tokenizes it, to `structured_model` which adds the typed embeddings to the standard embeddings, to `train_structured` which fine-tunes GPT-2 small and the typed embeddings together. `train_structured` also has `--freeze-base` if I want an ablation where only the added typed embeddings train.
 
-9. `dataset_generator` just makes a dataset using sympy to ensure it's correct.
+9. `src/dataset_generator.py` just makes a dataset using sympy to ensure it's correct.
 
 10. `data` folder contains the train/test/validation splits from the generator.
 
@@ -40,3 +40,23 @@ Overall the structured model goes from `parser`, which turns the prompt text int
 Questions:
 
 What are some tips with prompting coding agents?
+
+Pipeline commands:
+
+Generate the default 6000-example dataset split:
+`uv run generate-dataset`
+
+Generate a custom dataset split:
+`uv run generate-dataset --dataset-size 12000 --output-dir data`
+
+Train the baseline model and save `final-model`, metrics, per-sample test losses, and a summary:
+`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline --output-dir artifacts/models_training_info/gpt2-small-baseline --epochs 1`
+
+Train the structured model with full fine-tuning and save `final-model`, metrics, per-sample test losses, and a summary:
+`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-node-types --output-dir artifacts/models_training_info/gpt2-small-structured-node-types --epochs 1`
+
+Compare a saved baseline checkpoint against a saved structured checkpoint without retraining:
+`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline/final-model --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-node-types/final-model --test-path data/test.jsonl --output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.txt`
+
+Plot the saved per-sample test losses:
+`uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline/test_sample_losses.jsonl`

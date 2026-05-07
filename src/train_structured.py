@@ -1,4 +1,4 @@
-"""Training script for the structured GPT-2 small node-type baseline."""
+"""Training script for the structured causal-LM node-type baseline."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ try:
     from .structured_model import StructuredCausalLM
     from .utils import (
         append_jsonl,
+        causal_lm_sample_losses,
         count_parameters,
         ensure_padding_token,
         move_batch_to_device,
@@ -30,6 +31,7 @@ except ImportError:
     from structured_model import StructuredCausalLM
     from utils import (
         append_jsonl,
+        causal_lm_sample_losses,
         count_parameters,
         ensure_padding_token,
         move_batch_to_device,
@@ -39,6 +41,7 @@ except ImportError:
 
 DEFAULT_MODEL_NAME = "gpt2"
 DEFAULT_EXPERIMENT_NAME = "gpt2-small-structured-node-types"
+DEFAULT_ARTIFACTS_ROOT = Path("artifacts") / "models_training_info"
 
 
 def resize_base_embeddings_if_needed(
@@ -79,6 +82,38 @@ def evaluate_loss(model: StructuredCausalLM, dataloader: DataLoader, device: tor
     return total_loss / max(total_examples, 1)
 
 
+@torch.no_grad()
+def collect_sample_losses(model: StructuredCausalLM, dataloader: DataLoader, device: torch.device) -> list[dict[str, Any]]:
+    """Collect one masked next-token loss per evaluation example."""
+
+    model.eval()
+    sample_records: list[dict[str, Any]] = []
+    sample_index = 0
+
+    for batch in dataloader:
+        batch = move_batch_to_device(batch, device)
+        outputs = model(
+            input_ids=batch["input_ids"],
+            node_type_ids=batch["node_type_ids"],
+            attention_mask=batch["attention_mask"],
+            labels=batch["labels"],
+        )
+        sample_losses = causal_lm_sample_losses(outputs.logits, batch["labels"]).detach().cpu().tolist()
+
+        for loss_value, prompt, output_text in zip(sample_losses, batch["prompts"], batch["outputs"]):
+            sample_records.append(
+                {
+                    "sample_index": sample_index,
+                    "prompt": prompt,
+                    "output": output_text,
+                    "loss": float(loss_value),
+                }
+            )
+            sample_index += 1
+
+    return sample_records
+
+
 def maybe_save_checkpoint(
     model: StructuredCausalLM,
     tokenizer: Any,
@@ -96,7 +131,7 @@ def maybe_save_checkpoint(
 def parse_args() -> argparse.Namespace:
     """Define CLI flags for training, evaluation, and smoke testing."""
 
-    parser = argparse.ArgumentParser(description="Train a structured GPT-2 small baseline with node-type embeddings.")
+    parser = argparse.ArgumentParser(description="Train a structured causal LM with node-type embeddings.")
     parser.add_argument("--train-path", type=Path, default=Path("data/train.jsonl"))
     parser.add_argument("--val-path", type=Path, default=Path("data/val.jsonl"))
     parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
@@ -117,11 +152,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval-every-steps", type=int, default=0)
     parser.add_argument("--num-workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--save-best-checkpoint",
+        action="store_true",
+        help="Also save and reload the lowest-validation-loss checkpoint in addition to final-model.",
+    )
     parser.add_argument("--smoke-test", action="store_true")
     parser.add_argument(
         "--freeze-base",
         action="store_true",
-        help="Freeze GPT-2 and train only the added node-type embeddings.",
+        help="Freeze the base LM and train only the added node-type embeddings.",
     )
     return parser.parse_args()
 
@@ -207,7 +247,7 @@ def main() -> None:
 
     if args.output_dir is None:
         # Keep structured experiments in their own artifact folder by default.
-        args.output_dir = Path("artifacts") / "experiments" / args.experiment_name
+        args.output_dir = DEFAULT_ARTIFACTS_ROOT / args.experiment_name
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -215,7 +255,7 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     tokenizer_vocab_grew = ensure_padding_token(tokenizer)
 
-    # By default, fine-tune GPT-2 and the added node-type embedding table together.
+    # By default, fine-tune the base LM and the added node-type embedding table together.
     model = StructuredCausalLM(args.model_name, freeze_base=args.freeze_base).to(device)
     resize_base_embeddings_if_needed(model, tokenizer, tokenizer_vocab_grew)
     model.base.config.pad_token_id = tokenizer.pad_token_id
@@ -255,7 +295,7 @@ def main() -> None:
     )
 
     optimizer = AdamW(
-        # If --freeze-base is used, this naturally excludes the frozen GPT-2 weights.
+        # If --freeze-base is used, this naturally excludes the frozen base-model weights.
         [parameter for parameter in model.parameters() if parameter.requires_grad],
         lr=args.lr,
         weight_decay=args.weight_decay,
@@ -263,8 +303,11 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metrics_file = args.metrics_file or (args.output_dir / "metrics.jsonl")
     summary_file = args.output_dir / "summary.txt"
+    sample_losses_file = args.output_dir / "test_sample_losses.jsonl"
     if metrics_file.exists():
         metrics_file.unlink()
+    if sample_losses_file.exists():
+        sample_losses_file.unlink()
 
     best_val_loss = math.inf
     best_checkpoint: Path | None = None
@@ -294,6 +337,7 @@ def main() -> None:
             "max_length": args.max_length,
             "seed": args.seed,
             "freeze_base": args.freeze_base,
+            "save_best_checkpoint": args.save_best_checkpoint,
             "sample_prompt": sample_item["prompt"],
             "sample_output": sample_item["output"],
             "sample_input_length": int(sample_item["input_ids"].shape[0]),
@@ -317,7 +361,7 @@ def main() -> None:
             )
             loss = outputs.loss
             loss.backward()
-            # Clip gradients before the optimizer step, whether GPT-2 is frozen or fully fine-tuned.
+            # Clip gradients before the optimizer step, whether the base LM is frozen or fully fine-tuned.
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
             optimizer.step()
             optimizer.zero_grad(set_to_none=True)
@@ -340,7 +384,7 @@ def main() -> None:
                         "val_loss": val_loss,
                     },
                 )
-                if val_loss < best_val_loss:
+                if args.save_best_checkpoint and val_loss < best_val_loss:
                     best_val_loss = val_loss
                     best_checkpoint = maybe_save_checkpoint(
                         model,
@@ -367,7 +411,7 @@ def main() -> None:
             },
         )
 
-        if val_loss < best_val_loss:
+        if args.save_best_checkpoint and val_loss < best_val_loss:
             # Keep the lowest-validation-loss checkpoint for final test evaluation.
             best_val_loss = val_loss
             best_checkpoint = maybe_save_checkpoint(
@@ -377,16 +421,21 @@ def main() -> None:
                 f"best-epoch-{epoch + 1}",
             )
 
-    if best_checkpoint is not None:
+    final_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
+
+    if args.save_best_checkpoint and best_checkpoint is not None:
         print(f"Loading best checkpoint from {best_checkpoint}")
         # Reload the best checkpoint before touching the held-out test set.
         model = StructuredCausalLM.from_checkpoint(best_checkpoint, freeze_base=args.freeze_base).to(device)
         model.base.config.pad_token_id = tokenizer.pad_token_id
     else:
-        best_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
+        best_checkpoint = final_checkpoint
 
     # Test evaluation is run once after model-selection decisions are finished.
     test_loss = evaluate_loss(model, test_loader, device)
+    test_sample_losses = collect_sample_losses(model, test_loader, device)
+    for sample_record in test_sample_losses:
+        append_jsonl(sample_losses_file, sample_record)
     print(f"Test loss: {test_loss:.4f}")
     print(f"Best checkpoint: {best_checkpoint}")
     append_jsonl(
@@ -394,6 +443,7 @@ def main() -> None:
         {
             "event": "test_end",
             "best_checkpoint": str(best_checkpoint),
+            "final_checkpoint": str(final_checkpoint),
             "best_val_loss": best_val_loss,
             "test_loss": test_loss,
         },
@@ -410,7 +460,9 @@ def main() -> None:
             f"Device: {device}",
             f"Output directory: {args.output_dir}",
             f"Metrics file: {metrics_file}",
+            f"Test sample losses file: {sample_losses_file}",
             f"Best checkpoint: {best_checkpoint}",
+            f"Final checkpoint: {final_checkpoint}",
             f"Total parameters: {total_params}",
             f"Trainable parameters: {trainable_params}",
             f"Frozen parameters: {total_params - trainable_params}",
@@ -429,11 +481,14 @@ def main() -> None:
             f"Best validation loss: {best_val_loss:.6f}",
             f"Last validation loss: {last_val_loss:.6f}",
             f"Test loss: {test_loss:.6f}",
+            f"Save best checkpoint: {args.save_best_checkpoint}",
             "Generation evaluation: skipped in v1 for inputs_embeds-based structured model.",
         ],
     )
     print(f"Metrics file: {metrics_file}")
     print(f"Summary file: {summary_file}")
+    print(f"Test sample losses file: {sample_losses_file}")
+    print(f"Final checkpoint: {final_checkpoint}")
 
 
 if __name__ == "__main__":

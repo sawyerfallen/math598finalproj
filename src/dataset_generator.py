@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import random
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from collections.abc import Callable
 
 import sympy as sp
 
@@ -169,19 +170,36 @@ def save_jsonl(path: Path, examples: list[Example]) -> None:
             f.write(json.dumps(ex.to_dict(), ensure_ascii=False) + "\n")
 
 
-def main() -> None:
-    out_dir = Path("data")
-    gen = AlgebraDatasetGenerator(seed=42)
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate train/val/test JSONL splits for symbolic algebra.")
+    parser.add_argument("--output-dir", type=Path, default=Path("data"))
+    parser.add_argument("--dataset-size", type=int, default=6000)
+    parser.add_argument("--train-frac", type=float, default=0.85)
+    parser.add_argument("--val-frac", type=float, default=0.08)
+    parser.add_argument("--seed", type=int, default=42)
+    return parser.parse_args()
 
-    examples = gen.generate(6000)
+
+def main() -> None:
+    args = parse_args()
+    out_dir = args.output_dir
+    gen = AlgebraDatasetGenerator(seed=args.seed)
+
+    examples = gen.generate(args.dataset_size)
     gen.rng.shuffle(examples)
 
-    train, val, test = train_val_test_split(examples)
+    train, val, test = train_val_test_split(
+        examples,
+        train_frac=args.train_frac,
+        val_frac=args.val_frac,
+    )
 
     save_jsonl(out_dir / "train.jsonl", train)
     save_jsonl(out_dir / "val.jsonl", val)
     save_jsonl(out_dir / "test.jsonl", test)
 
+    print(f"Dataset directory: {out_dir}")
+    print(f"Total examples: {len(examples)}")
     print(f"Saved {len(train)} train examples")
     print(f"Saved {len(val)} val examples")
     print(f"Saved {len(test)} test examples")

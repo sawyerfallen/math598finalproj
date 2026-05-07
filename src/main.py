@@ -10,18 +10,28 @@ from typing import Any
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src.algebra_generation import (
-    build_allowed_token_mask,
-    generate_baseline_predictions,
-    generate_structured_predictions,
-)
-from src.structured_model import StructuredCausalLM
-from src.train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
-from src.utils import ensure_padding_token
+try:
+    from .algebra_generation import (
+        build_allowed_token_mask,
+        generate_baseline_predictions,
+        generate_structured_predictions,
+    )
+    from .structured_model import StructuredCausalLM
+    from .train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
+    from .utils import ensure_padding_token
+except ImportError:
+    from algebra_generation import (
+        build_allowed_token_mask,
+        generate_baseline_predictions,
+        generate_structured_predictions,
+    )
+    from structured_model import StructuredCausalLM
+    from train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
+    from utils import ensure_padding_token
 
 
-DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/experiments/gpt2-small-baseline/best-epoch-1")
-DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/experiments/gpt2-small-structured-node-types/best-epoch-1")
+DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-baseline/final-model")
+DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-structured-node-types/final-model")
 DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.json")
 DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.txt")
 

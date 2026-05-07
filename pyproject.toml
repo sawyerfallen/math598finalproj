@@ -6,9 +6,24 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "accelerate>=1.10.0",
+    "matplotlib>=3.10.0",
     "pytest>=9.0.3",
     "sympy>=1.14.0",
     "torch>=2.8.0",
     "transformers>=4.57.1",
     "tqdm>=4.67.1",
 ]
+
+[project.scripts]
+compare-models = "src.main:main"
+generate-dataset = "src.dataset_generator:main"
+plot-test-losses = "src.plot_test_losses:main"
+train-baseline = "src.train_baseline:main"
+train-structured = "src.train_structured:main"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src"]
