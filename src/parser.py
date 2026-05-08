@@ -4,12 +4,7 @@ from __future__ import annotations
 
 
 TASK_WORDS = {
-    "simplify",
-    "expand",
-    "factor",
-    "substitute",
     "solve",
-    "into",
     "for",
 }
 VARIABLE_NAMES = {"x", "y", "z"}
@@ -102,7 +97,7 @@ def tokenize_prompt_with_node_types(prompt: str) -> tuple[list[str], list[str]]:
             continue
 
         if char == "=":
-            # Equality is its own node type because solve/substitute prompts use it semantically.
+            # Equality is its own node type because solve prompts use it semantically.
             tokens.append("=")
             node_types.append("EQUALITY")
             previous_token = char

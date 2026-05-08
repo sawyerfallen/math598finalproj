@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 MODEL_KEYS = ("baseline", "structured")
 MODEL_LABELS = {"baseline": "Baseline", "structured": "Structured"}
 MODEL_COLORS = {"baseline": "#2563eb", "structured": "#f97316"}
-TASK_ORDER = ("simplify", "expand", "factor", "solve", "substitute")
 DIFFICULTY_ORDER = ("easy", "hard")
 SOLVE_KIND_ORDER = (
     "linear_easy",
@@ -58,22 +57,9 @@ def load_records(path: Path) -> list[dict[str, Any]]:
     return records
 
 
-def task_name(prompt: str) -> str:
-    """Use the first prompt word as the algebra task bucket."""
-
-    return prompt.split(maxsplit=1)[0].strip().lower() or "unknown"
-
-
 def accuracy(records: list[dict[str, Any]], model_key: str, metric_key: str) -> float:
     correct = sum(1 for record in records if bool(record[model_key][metric_key]))
     return correct / len(records)
-
-
-def grouped_by_task(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
-    buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for record in records:
-        buckets[task_name(str(record["prompt"]))].append(record)
-    return dict(buckets)
 
 
 def grouped_by_difficulty(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
@@ -98,12 +84,6 @@ def grouped_by_solve_kind(records: list[dict[str, Any]]) -> dict[str, list[dict[
             solve_kind = record["metadata"].get("solve_kind")
         buckets[str(solve_kind or "unknown")].append(record)
     return dict(buckets)
-
-
-def sorted_tasks(task_records: dict[str, list[dict[str, Any]]]) -> list[str]:
-    known_tasks = [task for task in TASK_ORDER if task in task_records]
-    extra_tasks = sorted(task for task in task_records if task not in TASK_ORDER)
-    return known_tasks + extra_tasks
 
 
 def sorted_difficulties(difficulty_records: dict[str, list[dict[str, Any]]]) -> list[str]:
@@ -167,40 +147,6 @@ def plot_overall_accuracy(records: list[dict[str, Any]], output_path: Path) -> N
     ax.set_xticklabels(metric_labels)
     ax.set_ylabel("Accuracy")
     ax.set_title(f"Overall Test Accuracy (n={len(records)})")
-    style_axes(ax)
-    ax.legend(frameon=False, loc="upper right")
-    fig.tight_layout()
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_path, dpi=180)
-    plt.close(fig)
-
-
-def plot_symbolic_accuracy_by_task(records: list[dict[str, Any]], output_path: Path) -> None:
-    task_records = grouped_by_task(records)
-    tasks = sorted_tasks(task_records)
-    x_positions = range(len(tasks))
-    width = 0.36
-
-    fig, ax = plt.subplots(figsize=(11, 5.5))
-    for offset_index, model_key in enumerate(MODEL_KEYS):
-        values = [accuracy(task_records[task], model_key, "symbolic_match") for task in tasks]
-        offset = (offset_index - 0.5) * width
-        bars = ax.bar(
-            [x + offset for x in x_positions],
-            values,
-            width=width,
-            label=MODEL_LABELS[model_key],
-            color=MODEL_COLORS[model_key],
-            edgecolor="#111827",
-            linewidth=0.5,
-        )
-        label_bars(ax, bars)
-
-    labels = [f"{task}\n(n={len(task_records[task])})" for task in tasks]
-    ax.set_xticks(list(x_positions))
-    ax.set_xticklabels(labels)
-    ax.set_ylabel("Symbolic Accuracy")
-    ax.set_title("Symbolic Accuracy by Task")
     style_axes(ax)
     ax.legend(frameon=False, loc="upper right")
     fig.tight_layout()
@@ -430,7 +376,6 @@ def main() -> None:
     exact_path = output_dir / f"{args.prefix}-exact-accuracy.png"
     symbolic_path = output_dir / f"{args.prefix}-symbolic-accuracy.png"
     prefix_path = output_dir / f"{args.prefix}-prefix-before-junk-accuracy.png"
-    by_task_path = output_dir / f"{args.prefix}-symbolic-accuracy-by-task.png"
     exact_by_difficulty_path = output_dir / f"{args.prefix}-exact-accuracy-by-difficulty.png"
     symbolic_by_difficulty_path = output_dir / f"{args.prefix}-symbolic-accuracy-by-difficulty.png"
     exact_by_solve_kind_path = output_dir / f"{args.prefix}-exact-accuracy-by-solve-kind.png"
@@ -448,7 +393,6 @@ def main() -> None:
         "Share of Test Set",
         prefix_path,
     )
-    plot_symbolic_accuracy_by_task(records, by_task_path)
     plot_metric_by_difficulty(
         records,
         "exact_match",
@@ -484,7 +428,6 @@ def main() -> None:
     print(f"Saved exact-match accuracy plot to {exact_path}")
     print(f"Saved symbolic accuracy plot to {symbolic_path}")
     print(f"Saved correct-prefix plot to {prefix_path}")
-    print(f"Saved per-task symbolic accuracy plot to {by_task_path}")
     print(f"Saved easy/hard exact-match plot to {exact_by_difficulty_path}")
     print(f"Saved easy/hard symbolic plot to {symbolic_by_difficulty_path}")
     print(f"Saved solve-kind exact-match plot to {exact_by_solve_kind_path}")

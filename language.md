@@ -1,46 +1,46 @@
-Language Specification:
+# Solve-Only Language Specification
 
-- Variables:
-    - x, y, z
-- Numbers:
-    - Going to restrict to just a few integers for the purposes of this experiment, like -5 to 5.
-- Operators:
-    - +, -, *, /, ^
-    - Parentheses too
-- Equals sign
+The final experiment uses controlled symbolic equations over one variable, `x`.
 
+## Prompts
 
-Tasks for LLM:
-
-Here are some examples of basic algebra tasks for the LLM to solve, with the prompt and the correct output:
+Every prompt has this form:
 
 ```text
-Prompt: simplify x + x + 2
-Output: 2*x + 2
+solve <equation> for x =>
+```
 
-Prompt: expand 2*(x + 3)
-Output: 2*x + 6
+Examples:
 
-Prompt: expand (x + 1)*(x + 2)
-Output: x^2 + 3*x + 2
+```text
+solve 2*x + 3 = 7 for x =>
+solve 3*(x - 1) - 5 = -17 for x =>
+solve -x - 6 = x - 8 for x =>
+solve x**2 - 2*x - 3 = 0 for x =>
+```
 
-Prompt: factor x^2 - 1
-Output: (x - 1)*(x + 1)
+## Outputs
 
-Prompt: factor x^2 + 3*x + 2
-Output: (x + 1)*(x + 2)
+Linear equations use one canonical integer solution:
 
-Prompt: substitute x = 3 into x^2 + 1
-Output: 10
+```text
+x = 2
+```
 
-Prompt: substitute x = 4 into 2*x + 5
-Output: 13
+Quadratics with two real integer roots use sorted roots:
 
-Prompt: solve 2*x + 3 = 7 for x
-Output: x = 2
+```text
+x = -1 or x = 3
+```
 
-Prompt: solve x - 4 = 1 for x
-Output: x = 5
+## Node Types
 
-Prompt: solve 3*x = 12 for x
-Output: x = 4
+The structured model labels prompt tokens with coarse symbolic types:
+
+- `TASK` for words such as `solve` and `for`
+- `VARIABLE` for `x`
+- `CONSTANT` for integer literals
+- `ADD`, `MUL`, and `POW` for operators
+- `EQUALITY` for `=`
+- `PUNCT` for parentheses and `=>`
+- `OTHER` for tokenizer pieces that do not align cleanly to one symbolic token

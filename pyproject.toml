@@ -1,13 +1,11 @@
 [project]
 name = "decodinggptfinalproj"
 version = "0.1.0"
-description = "Add your description here"
+description = "GPT-2 symbolic algebra experiment comparing text-only and node-type structured fine-tuning."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "accelerate>=1.10.0",
     "matplotlib>=3.10.0",
-    "pytest>=9.0.3",
     "sympy>=1.14.0",
     "torch>=2.8.0",
     "transformers>=4.57.1",

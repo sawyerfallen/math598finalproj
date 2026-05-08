@@ -7,14 +7,9 @@ from typing import Any
 
 import torch
 
-try:
-    from .node_types import NODE_TYPE_TO_ID
-    from .structured_dataset import align_prompt_node_type_ids
-    from .structured_model import StructuredCausalLM
-except ImportError:
-    from node_types import NODE_TYPE_TO_ID
-    from structured_dataset import align_prompt_node_type_ids
-    from structured_model import StructuredCausalLM
+from .node_types import NODE_TYPE_TO_ID
+from .structured_dataset import align_prompt_node_type_ids
+from .structured_model import StructuredCausalLM
 
 
 OTHER_NODE_TYPE_ID = NODE_TYPE_TO_ID["OTHER"]
@@ -23,7 +18,6 @@ SOLVE_ANSWER_RE = re.compile(r"\b([xyzXYZ])\s*=\s*([+-]?\d+)\b")
 SOLVE_TWO_ROOTS_RE = re.compile(
     r"\b([xyzXYZ])\s*=\s*([+-]?\d+)\s+or\s+\1\s*=\s*([+-]?\d+)\b"
 )
-SUBSTITUTE_ANSWER_RE = re.compile(r"(?<![\w.])([+-]?\d+)(?![\w.])")
 
 
 def _decoded_token_text(tokenizer: Any, token_id: int) -> str:
@@ -86,26 +80,20 @@ def extract_first_answer_span(prompt: str, text: str) -> str:
     cleaned = postprocess_prediction(text)
     task = task_name_from_prompt(prompt)
 
-    if task == "solve":
-        two_root_match = SOLVE_TWO_ROOTS_RE.search(cleaned)
-        if two_root_match:
-            variable = two_root_match.group(1).lower()
-            roots = sorted({int(two_root_match.group(2)), int(two_root_match.group(3))})
-            return " or ".join(f"{variable} = {root}" for root in roots)
-
-        match = SOLVE_ANSWER_RE.search(cleaned)
-        if match:
-            variable = match.group(1).lower()
-            value = int(match.group(2))
-            return f"{variable} = {value}"
+    if task != "solve":
         return cleaned
 
-    if task == "substitute":
-        match = SUBSTITUTE_ANSWER_RE.search(cleaned)
-        if match:
-            return str(int(match.group(1)))
-        return cleaned
+    two_root_match = SOLVE_TWO_ROOTS_RE.search(cleaned)
+    if two_root_match:
+        variable = two_root_match.group(1).lower()
+        roots = sorted({int(two_root_match.group(2)), int(two_root_match.group(3))})
+        return " or ".join(f"{variable} = {root}" for root in roots)
 
+    match = SOLVE_ANSWER_RE.search(cleaned)
+    if match:
+        variable = match.group(1).lower()
+        value = int(match.group(2))
+        return f"{variable} = {value}"
     return cleaned
 
 
@@ -113,13 +101,11 @@ def has_complete_answer_span(prompt: str, text: str) -> bool:
     """Tell the decoder when a task-specific complete answer has appeared."""
 
     task = task_name_from_prompt(prompt)
-    if task == "solve":
-        if prompt_looks_quadratic(prompt):
-            return SOLVE_TWO_ROOTS_RE.search(text) is not None
-        return SOLVE_ANSWER_RE.search(text) is not None
-    if task == "substitute":
-        return SUBSTITUTE_ANSWER_RE.search(text) is not None
-    return False
+    if task != "solve":
+        return False
+    if prompt_looks_quadratic(prompt):
+        return SOLVE_TWO_ROOTS_RE.search(text) is not None
+    return SOLVE_ANSWER_RE.search(text) is not None
 
 
 def _prompt_position_ids(attention_mask: torch.Tensor) -> torch.Tensor:

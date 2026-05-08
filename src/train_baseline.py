@@ -10,37 +10,25 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import sympy as sp
 import torch
 from torch.optim import AdamW
 from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-try:
-    from .utils import (
-        append_jsonl,
-        causal_lm_sample_losses,
-        count_parameters,
-        ensure_padding_token,
-        move_batch_to_device,
-        write_summary,
-    )
-except ImportError:
-    from utils import (
-        append_jsonl,
-        causal_lm_sample_losses,
-        count_parameters,
-        ensure_padding_token,
-        move_batch_to_device,
-        write_summary,
-    )
+from .utils import (
+    append_jsonl,
+    causal_lm_sample_losses,
+    count_parameters,
+    ensure_padding_token,
+    move_batch_to_device,
+    write_summary,
+)
 
 
 DEFAULT_MODEL_NAME = "gpt2"
 DEFAULT_EXPERIMENT_NAME = "gpt2-small-baseline"
 DEFAULT_ARTIFACTS_ROOT = Path("artifacts") / "models_training_info"
-SYMPY_LOCALS = {name: sp.Symbol(name) for name in ("x", "y", "z")}
 SOLUTION_PART_RE = re.compile(r"^\s*([xyzXYZ])\s*=\s*([+-]?\d+)\s*$")
 
 
@@ -289,24 +277,6 @@ def summarize_named_parameters(model: torch.nn.Module, max_names: int = 20) -> d
     }
 
 
-def parse_symbolic_answer(text: str) -> sp.Basic | sp.Equality | None:
-    """Parse a generated algebra answer into a SymPy expression/equality when possible."""
-
-    cleaned = text.strip()
-    if not cleaned:
-        return None
-
-    try:
-        if "=" in cleaned:
-            left_text, right_text = cleaned.split("=", maxsplit=1)
-            left_expr = sp.sympify(left_text.strip(), locals=SYMPY_LOCALS)
-            right_expr = sp.sympify(right_text.strip(), locals=SYMPY_LOCALS)
-            return sp.Eq(left_expr, right_expr, evaluate=False)
-        return sp.sympify(cleaned, locals=SYMPY_LOCALS)
-    except (sp.SympifyError, TypeError, ValueError, SyntaxError):
-        return None
-
-
 def parse_solution_set(text: str) -> tuple[str, frozenset[int]] | None:
     """Parse canonical solve outputs like `x = 2` or `x = -1 or x = 3`."""
 
@@ -333,39 +303,11 @@ def parse_solution_set(text: str) -> tuple[str, frozenset[int]] | None:
 
 
 def is_symbolically_equivalent(prediction: str, target: str) -> bool:
-    """Compare answers by symbolic meaning, allowing algebraically equivalent text."""
+    """Compare solve answers as unordered integer solution sets."""
 
     prediction_solutions = parse_solution_set(prediction)
     target_solutions = parse_solution_set(target)
-    if prediction_solutions is not None or target_solutions is not None:
-        return prediction_solutions == target_solutions
-
-    parsed_prediction = parse_symbolic_answer(prediction)
-    parsed_target = parse_symbolic_answer(target)
-
-    if parsed_prediction is None or parsed_target is None:
-        return False
-
-    valid_prediction = isinstance(parsed_prediction, (sp.Basic, sp.Equality))
-    valid_target = isinstance(parsed_target, (sp.Basic, sp.Equality))
-    if not valid_prediction or not valid_target:
-        return False
-
-    if isinstance(parsed_prediction, sp.Equality) and isinstance(parsed_target, sp.Equality):
-        prediction_residual = sp.simplify(parsed_prediction.lhs - parsed_prediction.rhs)
-        target_residual = sp.simplify(parsed_target.lhs - parsed_target.rhs)
-        return bool(
-            sp.simplify(prediction_residual - target_residual) == 0
-            or sp.simplify(prediction_residual + target_residual) == 0
-        )
-
-    if isinstance(parsed_prediction, sp.Equality) or isinstance(parsed_target, sp.Equality):
-        return False
-
-    try:
-        return bool(sp.simplify(parsed_prediction - parsed_target) == 0)
-    except TypeError:
-        return False
+    return prediction_solutions is not None and prediction_solutions == target_solutions
 
 
 def parse_args() -> argparse.Namespace:

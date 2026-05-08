@@ -10,12 +10,8 @@ from typing import Any
 import torch
 from torch.utils.data import Dataset
 
-try:
-    from .node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
-    from .parser import tokenize_prompt_with_node_types
-except ImportError:
-    from node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
-    from parser import tokenize_prompt_with_node_types
+from .node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
+from .parser import tokenize_prompt_with_node_types
 
 
 OTHER_NODE_TYPE_ID = NODE_TYPE_TO_ID["OTHER"]

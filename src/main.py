@@ -10,42 +10,38 @@ from typing import Any
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-try:
-    from .algebra_generation import (
-        build_allowed_token_mask,
-        extract_first_answer_span,
-        generate_baseline_predictions,
-        generate_structured_predictions,
-        postprocess_prediction,
-    )
-    from .structured_model import StructuredCausalLM
-    from .train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
-    from .utils import ensure_padding_token
-except ImportError:
-    from algebra_generation import (
-        build_allowed_token_mask,
-        extract_first_answer_span,
-        generate_baseline_predictions,
-        generate_structured_predictions,
-        postprocess_prediction,
-    )
-    from structured_model import StructuredCausalLM
-    from train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
-    from utils import ensure_padding_token
+from .algebra_generation import (
+    build_allowed_token_mask,
+    extract_first_answer_span,
+    generate_baseline_predictions,
+    generate_structured_predictions,
+    postprocess_prediction,
+)
+from .structured_model import StructuredCausalLM
+from .train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
+from .utils import ensure_padding_token
 
 
-DEFAULT_BASELINE_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-baseline/final-model")
-DEFAULT_STRUCTURED_CHECKPOINT = Path("artifacts/models_training_info/gpt2-small-structured-node-types/final-model")
-DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.json")
-DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured.txt")
-DEFAULT_PER_SAMPLE_OUTPUT_PATH = Path("artifacts/comparisons/gpt2_small_baseline_vs_structured_per_sample.jsonl")
+DEFAULT_BASELINE_CHECKPOINT = Path(
+    "artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/best-epoch-1"
+)
+DEFAULT_STRUCTURED_CHECKPOINT = Path(
+    "artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/best-epoch-1"
+)
+DEFAULT_TEST_PATH = Path("data/solve_mixed_10000_dedup/test.jsonl")
+DEFAULT_METADATA_PATH = Path("data/solve_mixed_10000_dedup/test_metadata.jsonl")
+DEFAULT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.json")
+DEFAULT_TEXT_OUTPUT_PATH = Path("artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.txt")
+DEFAULT_PER_SAMPLE_OUTPUT_PATH = Path(
+    "artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl"
+)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compare saved baseline and structured GPT-2 small checkpoints.")
     parser.add_argument("--baseline-checkpoint", type=Path, default=DEFAULT_BASELINE_CHECKPOINT)
     parser.add_argument("--structured-checkpoint", type=Path, default=DEFAULT_STRUCTURED_CHECKPOINT)
-    parser.add_argument("--test-path", type=Path, default=Path("data/test.jsonl"))
+    parser.add_argument("--test-path", type=Path, default=DEFAULT_TEST_PATH)
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--max-new-tokens", type=int, default=32)
@@ -55,7 +51,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--metadata-path",
         type=Path,
-        default=None,
+        default=DEFAULT_METADATA_PATH,
         help="Optional split metadata JSONL with difficulty/solve_kind fields for grouped evaluation.",
     )
     parser.add_argument(

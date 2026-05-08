@@ -8,10 +8,7 @@ import torch
 from torch import nn
 from transformers import AutoModelForCausalLM
 
-try:
-    from .node_types import NUM_NODE_TYPES
-except ImportError:
-    from node_types import NUM_NODE_TYPES
+from .node_types import NUM_NODE_TYPES
 
 
 class StructuredCausalLM(nn.Module):
@@ -88,7 +85,3 @@ class StructuredCausalLM(nn.Module):
             state = torch.load(state_path, map_location="cpu")
             model.node_type_embedding.load_state_dict(state["node_type_embedding"])
         return model
-
-
-# Backwards-compatible name for older scripts/checkpoints in this project.
-StructuredPythia = StructuredCausalLM

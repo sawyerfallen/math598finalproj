@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 NODE_TYPE_TO_ID = {
-    # Task words such as "simplify" or "solve".
+    # Task words such as "solve" and "for".
     "TASK": 0,
     # Symbolic variables like x, y, or z.
     "VARIABLE": 1,

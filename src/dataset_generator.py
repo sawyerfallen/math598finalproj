@@ -1,4 +1,4 @@
-"""Generate synthetic algebra datasets for baseline and structured training."""
+"""Generate synthetic solve-for-x datasets for baseline and structured training."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import sympy as sp
 
 
 x = sp.Symbol("x")
-TASKS = ("simplify", "expand", "factor", "substitute", "solve")
+TASKS = ("solve",)
 SOLVE_DIFFICULTIES = ("easy", "hard", "mixed")
 
 
@@ -48,7 +48,7 @@ class Example:
 
 
 class AlgebraDatasetGenerator:
-    """Create synthetic algebra prompt/output pairs with SymPy-checked targets."""
+    """Create synthetic solve prompt/output pairs with controlled difficulty metadata."""
 
     def __init__(self, seed: int = 0, solve_difficulty: str = "easy"):
         self.rng = random.Random(seed)
@@ -62,70 +62,6 @@ class AlgebraDatasetGenerator:
             if exclude_zero and n == 0:
                 continue
             return n
-
-    def rand_linear_expr(self):
-        a = self.rand_int(-5, 5, exclude_zero=True)
-        b = self.rand_int(-5, 5)
-        return sp.Integer(a) * x + sp.Integer(b)
-
-    def rand_binomial(self):
-        a = self.rand_int(1, 5)
-        b = self.rand_int(-5, 5)
-        return sp.Integer(a) * (x + sp.Integer(b))
-
-    def rand_product_of_binomials(self):
-        a = self.rand_int(-5, 5, exclude_zero=True)
-        b = self.rand_int(-5, 5)
-        c = self.rand_int(-5, 5)
-        return (x + sp.Integer(b)) * (sp.Integer(a) * x + sp.Integer(c))
-
-    def rand_factorable_quadratic(self):
-        r1 = self.rand_int(-5, 5)
-        r2 = self.rand_int(-5, 5)
-        return sp.expand((x - sp.Integer(r1)) * (x - sp.Integer(r2)))
-
-    def rand_repeated_like_terms(self):
-        a = self.rand_int(1, 5)
-        b = self.rand_int(1, 5)
-        c = self.rand_int(-5, 5)
-        return sp.Integer(a) * x + sp.Integer(b) * x + sp.Integer(c)
-
-    def make_simplify_example(self) -> Example:
-        expr = self.rand_repeated_like_terms()
-        target = sp.simplify(expr)
-        return Example(
-            prompt=f"simplify {sp.sstr(expr)} =>",
-            output=sp.sstr(target),
-            task="simplify",
-        )
-
-    def make_expand_example(self) -> Example:
-        expr = self.rand_binomial() if self.rng.random() < 0.5 else self.rand_product_of_binomials()
-        target = sp.expand(expr)
-        return Example(
-            prompt=f"expand {sp.sstr(expr)} =>",
-            output=sp.sstr(target),
-            task="expand",
-        )
-
-    def make_factor_example(self) -> Example:
-        expr = self.rand_factorable_quadratic()
-        target = sp.factor(expr)
-        return Example(
-            prompt=f"factor {sp.sstr(expr)} =>",
-            output=sp.sstr(target),
-            task="factor",
-        )
-
-    def make_substitute_example(self) -> Example:
-        expr = self.rand_product_of_binomials() if self.rng.random() < 0.5 else self.rand_linear_expr()
-        value = self.rand_int(-3, 3)
-        target = sp.simplify(expr.subs(x, sp.Integer(value)))
-        return Example(
-            prompt=f"substitute x = {value} into {sp.sstr(expr)} =>",
-            output=sp.sstr(target),
-            task="substitute",
-        )
 
     @staticmethod
     def format_solutions(solutions: list[int]) -> str:
@@ -313,10 +249,6 @@ class AlgebraDatasetGenerator:
         """Return the available task-specific example builders."""
 
         return {
-            "simplify": self.make_simplify_example,
-            "expand": self.make_expand_example,
-            "factor": self.make_factor_example,
-            "substitute": self.make_substitute_example,
             "solve": self.make_solve_example,
         }
 
@@ -334,7 +266,7 @@ class AlgebraDatasetGenerator:
         tasks: list[str] | None = None,
         task_weights: dict[str, float] | None = None,
     ) -> list[Example]:
-        """Sample task examples, optionally limiting generation to a task subset."""
+        """Sample solve examples, optionally validating the requested task subset."""
 
         available_builders = self.builders()
         selected_tasks = tasks or list(TASKS)
@@ -528,7 +460,7 @@ def write_generation_summary_text(path: Path, summary: dict) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate train/val/test JSONL splits for symbolic algebra.")
+    parser = argparse.ArgumentParser(description="Generate train/val/test JSONL splits for solve-for-x algebra.")
     parser.add_argument("--output-dir", type=Path, default=Path("data"))
     parser.add_argument("--dataset-size", type=int, default=6000)
     parser.add_argument("--train-size", type=int, default=None)

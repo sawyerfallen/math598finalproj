@@ -1,163 +1,167 @@
-Map of code:
+# Structured GPT-2 Algebra Experiment
 
-1. `src/main.py` runs both models on the same testing set, computes the accuracy, and writes it to a json and txt
+This project tests whether giving a language model explicit symbolic structure helps it solve algebra problems more reliably. The research question is: **does adding coarse node-type information for algebraic symbols improve a causal language model beyond ordinary text-only fine-tuning?**
 
-2. `src/train_baseline.py` fine-tunes the normal GPT-2 small model, without my additional labelings
+The experiment compares two GPT-2 small fine-tuning setups on the same synthetic data:
 
-3. `src/train_structured.py` fine-tunes GPT-2 small on the same dataset with my additional labelings
+- **Baseline:** GPT-2 small fine-tuned on plain `prompt` / `output` text.
+- **Structured:** the same GPT-2 small model, but prompt tokens also receive learned node-type embeddings such as `TASK`, `VARIABLE`, `CONSTANT`, `ADD`, `MUL`, `POW`, `EQUALITY`, and `PUNCT`.
 
-4. `src/structured_model.py` adds the learned embedding to the GPT-2 small model
+The final experiment is solve-only symbolic algebra. Every prompt asks the model to solve for `x`:
 
-5. `src/structured_dataset.py` loads the dataset and builds the training text from the dataset, and also tokenizes it and adds the labels as another vector.
+```text
+solve 2*x + 3 = 7 for x =>
+```
 
-6. `src/parser.py` creates the labels from the prompt:
-   - task words become `TASK`
-   - `x`, `y`, `z` become `VARIABLE`
-   - integers become `CONSTANT`
-   - `+` and `-` in additive position become `ADD`
-   - `*` becomes `MUL`
-   - `^` or `**` become `POW`
-   - `=` becomes `EQUALITY`
-   - parentheses and `=>` become `PUNCT`
-   - everything else falls back to `OTHER`
+The target output is a canonical answer such as:
 
-7. `src/algebra_generation.py` is the constrained decoder. It handles GPT-2 position ids for left-padded batches and can stop once a complete task answer appears.
+```text
+x = 2
+```
 
-8. `src/utils.py` has shared helper code for logging, summaries, parameter counts, tokenizer padding, and moving batches to a device.
+For quadratics with two real integer roots, the output uses sorted roots:
 
-Overall the structured model goes from `parser`, which turns the prompt text into the tokens and the labels, to `node_types` which maps these to ints, to `structured_dataset` which tokenizes it, to `structured_model` which adds the typed embeddings to the standard embeddings, to `train_structured` which fine-tunes GPT-2 small and the typed embeddings together. `train_structured` also has `--freeze-base` if I want an ablation where only the added typed embeddings train.
+```text
+x = -1 or x = 3
+```
 
-9. `src/dataset_generator.py` just makes a dataset using sympy to ensure it's correct.
+The dataset mixes easy linear equations with harder equations that require parentheses handling, distribution, collecting like terms, moving `x` terms across both sides, and solving simple factorable quadratics. Evaluation reports exact match against the canonical extracted answer and symbolic accuracy, which parses solve outputs as solution sets so equivalent root sets can be counted correctly.
 
-10. `data` folder contains the train/test/validation splits from the generator.
+## Final Results
 
-11. `artifacts` has the training runs and experiment results.
+Latest run:
 
-12. Writeup is in `WRITEUP.md` It isn't the formal writeup yet.
+- Dataset: `data/solve_mixed_10000_dedup`
+- Baseline run: `artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup`
+- Structured run: `artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup`
+- Comparison: `artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.*`
+- Plots: `artifacts/plots/solve_mixed_10000_dedup_bundle`
 
-13. 'language.md' currently just has a few examples with prompts to show what I am trying to do.
+Dataset summary:
 
-Questions:
+- Raw generated examples: `20,968`
+- Unique prompt/output pairs after deduplication: `12,000`
+- Final split sizes: `10,000` train, `1,000` validation, `1,000` test
+- Cross-split duplicate count: `0`
 
-What are some tips with prompting coding agents?
+Held-out test accuracy:
 
-Pipeline commands:
+| Metric | Baseline | Structured |
+| --- | ---: | ---: |
+| Overall exact match | 0.1830 | 0.1830 |
+| Overall symbolic accuracy | 0.1830 | 0.1830 |
+| Easy symbolic accuracy | 0.2826 | 0.3370 |
+| Hard symbolic accuracy | 0.1729 | 0.1674 |
 
-Generate the default 6000-example dataset split:
-`uv run generate-dataset`
+## How The Pipeline Fits Together
 
-Generate a custom dataset split:
-`uv run generate-dataset --dataset-size 12000 --output-dir data`
+1. **Dataset generation:** `src/dataset_generator.py` creates synthetic solve-for-`x` prompt/output pairs. It can generate mixed easy/hard examples, deduplicate by visible `prompt` and `output`, split into train/validation/test JSONL files, and write metadata sidecars with `difficulty` and `solve_kind`.
 
-Train the baseline model and save `final-model`, metrics, per-sample test losses, and a summary:
-`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline --output-dir artifacts/models_training_info/gpt2-small-baseline --epochs 1`
+2. **Prompt parsing:** `src/parser.py` reads the prompt text and emits symbolic prompt tokens plus node-type labels. For example, `solve`, `for`, `x`, integer constants, operators, equality, parentheses, and the `=>` marker receive coarse labels from `src/node_types.py`.
 
-Train the structured model with full fine-tuning and save `final-model`, metrics, per-sample test losses, and a summary:
-`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-node-types --output-dir artifacts/models_training_info/gpt2-small-structured-node-types --epochs 1`
+3. **Tokenizer alignment:** `src/structured_dataset.py` maps parser-level symbolic tokens onto GPT-2 tokenizer pieces using tokenizer offset mappings. If a GPT-2 token cleanly overlaps one symbolic token, it receives that symbolic node type. If a tokenizer piece merges multiple symbolic types, it is labeled `OTHER`.
 
-Compare a saved baseline checkpoint against a saved structured checkpoint without retraining:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline/final-model --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-node-types/final-model --test-path data/test.jsonl --output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-baseline-vs-structured-per-sample.jsonl`
+4. **Structured dataset creation:** `StructuredJsonlDataset` builds the full training text as `prompt + output + EOS`. It creates normal `input_ids`, `attention_mask`, and `labels`, then adds a parallel `node_type_ids` tensor. Prompt tokens receive aligned node-type ids; answer tokens and padding use `OTHER`. The prompt region is still masked with `-100`, so training loss is applied only to answer tokens.
 
-Plot the saved per-sample test losses:
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline/test_sample_losses.jsonl`
+5. **Baseline training:** `src/train_baseline.py` loads the same JSONL files, tokenizes prompt/output text, masks prompt labels, and fine-tunes GPT-2 small without node-type inputs.
 
-Plot training loss over batches for both one-epoch runs:
-`uv run plot-batch-losses artifacts/models_training_info/gpt2-small-baseline/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-node-types/metrics.jsonl --labels baseline structured --output-path artifacts/plots/gpt2-small-batch-losses.png`
+6. **Structured training:** `src/train_structured.py` uses `StructuredJsonlDataset` and `StructuredCollator`. It fine-tunes GPT-2 small together with the added node-type embedding table and saves both the base model files and `structured_state.pt`.
 
-Plot comparison accuracies from the saved per-sample JSONL:
-`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-baseline-vs-structured-per-sample.jsonl --prefix gpt2-small-baseline-vs-structured`
+7. **Structured model:** `src/structured_model.py` wraps `AutoModelForCausalLM`. On each forward pass, it looks up GPT-2 token embeddings and node-type embeddings, sums them position-wise, and passes the result into the base causal LM through `inputs_embeds`.
 
-Solve-only narrow-task pipeline:
+8. **Generation helpers:** `src/algebra_generation.py` performs constrained greedy decoding. It limits generated tokens to algebra-relevant characters, handles GPT-2 left-padding position IDs, stops once a complete solve answer appears, and extracts the first valid answer span for scoring.
 
-Generate solve-only train/validation/test splits:
-`uv run generate-dataset --dataset-size 1200 --tasks solve --output-dir data/solve_only --seed 42`
+9. **Comparison:** `src/main.py` loads saved baseline and structured checkpoints, runs both on the same test set, scores exact match and symbolic accuracy, verifies the structured checkpoint contains node-type weights, and writes JSON, TXT, and per-sample JSONL outputs.
 
-Train the solve-only baseline and save best/final checkpoints:
-`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-only --train-path data/solve_only/train.jsonl --val-path data/solve_only/val.jsonl --test-path data/solve_only/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-only --epochs 3 --batch-size 16 --eval-batch-size 16 --lr 1e-4 --save-best-checkpoint`
+10. **Plotting:** `src/plot_training_curves.py`, `src/plot_batch_losses.py`, `src/plot_test_losses.py`, and `src/plot_comparison_accuracy.py` turn saved metrics and predictions into loss, accuracy, difficulty, solve-kind, and generation-breakdown plots.
 
-Train the solve-only structured model with the same setup:
-`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-only --train-path data/solve_only/train.jsonl --val-path data/solve_only/val.jsonl --test-path data/solve_only/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-only --epochs 3 --batch-size 16 --eval-batch-size 16 --lr 1e-4 --save-best-checkpoint`
+## Structured Dataset Construction
 
-Compare saved solve-only checkpoints without retraining:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-only/best-epoch-3 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-only/best-epoch-3 --test-path data/solve_only/test.jsonl --batch-size 32 --max-new-tokens 8 --output-path artifacts/comparisons/gpt2-small-solve-only-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-only-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-only-baseline-vs-structured-per-sample.jsonl`
+The structured model does not see different text from the baseline. Both models train on the same JSONL prompt/output pairs. The difference is that the structured path adds one extra tensor:
 
-Plot solve-only train/validation loss:
-`uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-only/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-only/metrics.jsonl --labels baseline structured --output-path artifacts/plots/gpt2-small-solve-only-training-curves.png --title "Solve-Only Train and Validation Loss"`
+- The dataset generator writes examples like `{"prompt": "solve 2*x + 3 = 7 for x =>", "output": "x = 2"}`.
+- The parser labels prompt-level symbolic pieces, for example `solve -> TASK`, `2 -> CONSTANT`, `* -> MUL`, `x -> VARIABLE`, `= -> EQUALITY`.
+- `structured_dataset.py` aligns those symbolic labels to GPT-2 tokenizer pieces.
+- The resulting training item contains `input_ids`, `attention_mask`, prompt-masked `labels`, and aligned `node_type_ids`.
+- `structured_model.py` consumes both `input_ids` and `node_type_ids`; it adds the learned node-type embedding to the normal token embedding before calling GPT-2.
+- The answer tokens are still the only tokens that contribute to the causal LM loss, matching the baseline prompt-masking setup.
 
-Plot solve-only comparison accuracies and generation breakdown:
-`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-only-baseline-vs-structured-per-sample.jsonl --prefix gpt2-small-solve-only-baseline-vs-structured`
+## `src/` Codebase Map
 
-Harder solve-only pipeline:
+- `src/__init__.py` marks the source directory as the importable package used by the CLI scripts.
+- `src/dataset_generator.py` generates the final solve-only dataset, metadata sidecars, deduplication summaries, and train/validation/test splits.
+- `src/node_types.py` defines the node-type vocabulary shared by the parser, dataset, and model.
+- `src/parser.py` tokenizes solve prompts into symbolic tokens and node-type names.
+- `src/structured_dataset.py` aligns node types to tokenizer pieces and builds structured training batches.
+- `src/structured_model.py` defines the GPT-2 wrapper with learned node-type embeddings.
+- `src/train_baseline.py` trains the text-only GPT-2 baseline and provides solve-answer symbolic scoring helpers.
+- `src/train_structured.py` trains the structured GPT-2 model and logs node-type / trainable-parameter verification.
+- `src/algebra_generation.py` contains constrained decoding, answer extraction, and structured generation helpers.
+- `src/main.py` is the saved-checkpoint comparison script.
+- `src/plot_training_curves.py` plots train/validation loss curves.
+- `src/plot_batch_losses.py` plots per-batch training loss.
+- `src/plot_test_losses.py` plots per-sample test loss.
+- `src/plot_comparison_accuracy.py` plots overall, easy/hard, solve-kind, and generation-breakdown comparison results.
+- `src/utils.py` contains shared logging, padding, parameter-counting, device-transfer, and loss helpers.
 
-Generate harder solve-only train/validation/test splits. This keeps the JSONL format as `prompt` and `output`, solves only for `x`, and includes parenthesized linear equations, collecting like terms, `x` on both sides, distribution, and simple quadratics with two real integer roots:
-`uv run generate-dataset --tasks solve --solve-difficulty hard --train-size 5000 --val-size 500 --test-size 500 --output-dir data/solve_hard --seed 42`
+## Dataset Format
 
-Train the harder solve-only baseline and save best/final checkpoints:
-`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-hard --train-path data/solve_hard/train.jsonl --val-path data/solve_hard/val.jsonl --test-path data/solve_hard/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-hard --epochs 2 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+Training, validation, and test JSONL files contain only model-visible fields:
 
-Train the harder solve-only structured model on the same splits:
-`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-hard --train-path data/solve_hard/train.jsonl --val-path data/solve_hard/val.jsonl --test-path data/solve_hard/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-hard --epochs 2 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+```json
+{"prompt": "solve 2*x + 3 = 7 for x =>", "output": "x = 2"}
+```
 
-Compare saved harder solve-only checkpoints without retraining:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-hard/best-epoch-2 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-hard/best-epoch-2 --test-path data/solve_hard/test.jsonl --batch-size 32 --max-new-tokens 20 --output-path artifacts/comparisons/gpt2-small-solve-hard-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-hard-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-hard-baseline-vs-structured-per-sample.jsonl`
+Metadata files such as `test_metadata.jsonl` are sidecars used only for grouped evaluation and plotting. They store fields like `difficulty` and `solve_kind`; they are not included in the training examples.
 
-Plot harder solve-only train/validation loss:
-`uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-hard/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-hard/metrics.jsonl --labels baseline structured --output-path artifacts/plots/gpt2-small-solve-hard-training-curves.png --title "Hard Solve-Only Train and Validation Loss"`
+## Commands
 
-Plot harder solve-only comparison accuracies and generation breakdown:
-`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-hard-baseline-vs-structured-per-sample.jsonl --prefix gpt2-small-solve-hard-baseline-vs-structured`
+Install dependencies:
 
-Plot harder solve-only per-sample test losses:
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline-solve-hard/test_sample_losses.jsonl --output-path artifacts/plots/gpt2-small-solve-hard-baseline-test-losses.png --title "Baseline Hard Solve Per-Sample Test Loss"`
+```powershell
+uv sync
+```
 
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-structured-solve-hard/test_sample_losses.jsonl --output-path artifacts/plots/gpt2-small-solve-hard-structured-test-losses.png --title "Structured Hard Solve Per-Sample Test Loss"`
+Generate the final deduplicated dataset:
 
-Mixed easy/hard solve-only pipeline:
+```powershell
+uv run generate-dataset --tasks solve --solve-difficulty mixed --train-size 10000 --val-size 1000 --test-size 1000 --deduplicate-before-split --max-raw-examples 100000 --dedup-batch-size 5000 --output-dir data/solve_mixed_10000_dedup --seed 45
+```
 
-Generate mixed solve-only splits with 10000 train, 1000 validation, and 1000 test examples. Training JSONL files stay clean with only `prompt` and `output`; the generator also writes `*_metadata.jsonl` sidecars with `difficulty` and `solve_kind` for grouped evaluation:
-`uv run generate-dataset --tasks solve --solve-difficulty mixed --train-size 10000 --val-size 1000 --test-size 1000 --output-dir data/solve_mixed_10000 --seed 43`
+Train the baseline:
 
-Train the mixed solve-only baseline and save best/final checkpoints plus trainable-parameter verification:
-`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-mixed-10000 --train-path data/solve_mixed_10000/train.jsonl --val-path data/solve_mixed_10000/val.jsonl --test-path data/solve_mixed_10000/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000 --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+```powershell
+uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint
+```
 
-Train the mixed solve-only structured model on the same splits. The summary records trainable parameters, node-type label usage, and structured checkpoint checks:
-`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-mixed-10000 --train-path data/solve_mixed_10000/train.jsonl --val-path data/solve_mixed_10000/val.jsonl --test-path data/solve_mixed_10000/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000 --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+Train the structured model:
 
-Compare saved mixed solve-only checkpoints without retraining, including easy vs hard breakdown:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000/best-epoch-1 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000/best-epoch-1 --test-path data/solve_mixed_10000/test.jsonl --metadata-path data/solve_mixed_10000/test_metadata.jsonl --batch-size 32 --max-new-tokens 20 --output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-baseline-vs-structured-per-sample.jsonl`
+```powershell
+uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint
+```
 
-Plot mixed solve-only train/validation loss:
-`uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000/metrics.jsonl --labels baseline structured --output-path artifacts/plots/gpt2-small-solve-mixed-10000-training-curves.png --title "Mixed Solve-Only Train and Validation Loss"`
+Compare saved checkpoints:
 
-Plot mixed solve-only overall accuracy, easy/hard accuracy, and generation breakdown:
-`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-mixed-10000-baseline-vs-structured-per-sample.jsonl --prefix gpt2-small-solve-mixed-10000-baseline-vs-structured`
+```powershell
+uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/best-epoch-1 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/best-epoch-1 --test-path data/solve_mixed_10000_dedup/test.jsonl --metadata-path data/solve_mixed_10000_dedup/test_metadata.jsonl --batch-size 32 --max-new-tokens 20 --output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl
+```
 
-Plot mixed solve-only per-sample test losses:
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000/test_sample_losses.jsonl --output-path artifacts/plots/gpt2-small-solve-mixed-10000-baseline-test-losses.png --title "Baseline Mixed Solve Per-Sample Test Loss"`
+Generate the final plot bundle:
 
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000/test_sample_losses.jsonl --output-path artifacts/plots/gpt2-small-solve-mixed-10000-structured-test-losses.png --title "Structured Mixed Solve Per-Sample Test Loss"`
+```powershell
+uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/training-curves.png --title "Deduplicated Mixed Solve-Only Train and Validation Loss"
 
-Deduplicated mixed easy/hard solve-only pipeline:
+uv run plot-batch-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/batch-losses.png --title "Deduplicated Mixed Solve-Only Training Loss by Batch"
 
-Generate mixed solve-only splits after deduplicating by `prompt` and `output` before train/validation/test splitting. The generator writes clean training JSONL files plus `*_metadata.jsonl` sidecars and `generation_summary.json` / `generation_summary.txt` with raw, unique, duplicate-removed, split-size, and cross-split duplicate counts:
-`uv run generate-dataset --tasks solve --solve-difficulty mixed --train-size 10000 --val-size 1000 --test-size 1000 --deduplicate-before-split --max-raw-examples 100000 --dedup-batch-size 5000 --output-dir data/solve_mixed_10000_dedup --seed 45`
+uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl --output-dir artifacts/plots/solve_mixed_10000_dedup_bundle --prefix accuracy
 
-Train the deduplicated mixed solve-only baseline and save best/final checkpoints plus trainable-parameter verification:
-`uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/baseline-test-losses.png --title "Baseline Deduplicated Mixed Solve Per-Sample Test Loss"
 
-Train the deduplicated mixed solve-only structured model on the same splits. The summary records trainable parameters, nontrivial node-type label usage, and structured checkpoint checks:
-`uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint`
+uv run plot-test-losses artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/structured-test-losses.png --title "Structured Deduplicated Mixed Solve Per-Sample Test Loss"
+```
 
-Compare saved deduplicated checkpoints without retraining, including overall and easy/hard metrics:
-`uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/best-epoch-1 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/best-epoch-1 --test-path data/solve_mixed_10000_dedup/test.jsonl --metadata-path data/solve_mixed_10000_dedup/test_metadata.jsonl --batch-size 32 --max-new-tokens 20 --output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl`
+## Evaluation Notes
 
-Create the dedicated deduplicated plot bundle:
-`uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/training-curves.png --title "Deduplicated Mixed Solve-Only Train and Validation Loss"`
+Comparison always loads saved checkpoints; it does not retrain. Generation uses constrained greedy decoding, GPT-2-compatible left-padding position IDs, and first-answer-span extraction so a correct answer is not unfairly marked wrong only because extra text follows it.
 
-`uv run plot-batch-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/batch-losses.png --title "Deduplicated Mixed Solve-Only Training Loss by Batch"`
-
-`uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl --output-dir artifacts/plots/solve_mixed_10000_dedup_bundle --prefix accuracy`
-
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/baseline-test-losses.png --title "Baseline Deduplicated Mixed Solve Per-Sample Test Loss"`
-
-`uv run plot-test-losses artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/structured-test-losses.png --title "Structured Deduplicated Mixed Solve Per-Sample Test Loss"`
+The structured training summary records trainable parameter counts, node-type label usage, and checkpoint verification. The comparison summary also checks that `structured_state.pt` contains a nonzero `node_type_embedding`.

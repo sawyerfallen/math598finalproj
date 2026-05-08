@@ -14,30 +14,17 @@ from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 from transformers import AutoTokenizer
 
-try:
-    from .node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
-    from .structured_dataset import StructuredCollator, StructuredJsonlDataset
-    from .structured_model import StructuredCausalLM
-    from .utils import (
-        append_jsonl,
-        causal_lm_sample_losses,
-        count_parameters,
-        ensure_padding_token,
-        move_batch_to_device,
-        write_summary,
-    )
-except ImportError:
-    from node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
-    from structured_dataset import StructuredCollator, StructuredJsonlDataset
-    from structured_model import StructuredCausalLM
-    from utils import (
-        append_jsonl,
-        causal_lm_sample_losses,
-        count_parameters,
-        ensure_padding_token,
-        move_batch_to_device,
-        write_summary,
-    )
+from .node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
+from .structured_dataset import StructuredCollator, StructuredJsonlDataset
+from .structured_model import StructuredCausalLM
+from .utils import (
+    append_jsonl,
+    causal_lm_sample_losses,
+    count_parameters,
+    ensure_padding_token,
+    move_batch_to_device,
+    write_summary,
+)
 
 
 DEFAULT_MODEL_NAME = "gpt2"
@@ -559,9 +546,6 @@ def main() -> None:
         },
     )
 
-    # Generation-based evaluation is intentionally skipped in v1 because
-    # inputs_embeds-based generation needs extra generation plumbing to keep
-    # node_type_ids aligned across decoding steps.
     write_summary(
         summary_file,
         [
@@ -608,7 +592,7 @@ def main() -> None:
             f"Final checkpoint structured_state.pt exists: {final_checkpoint_verification['structured_state_exists']}",
             f"Final checkpoint node_type_embedding nonzero: {final_checkpoint_verification['node_type_embedding_nonzero']}",
             f"Save best checkpoint: {args.save_best_checkpoint}",
-            "Generation evaluation: skipped in v1 for inputs_embeds-based structured model.",
+            "Generation evaluation: run separately with compare-models on saved checkpoints.",
         ],
     )
     print(f"Metrics file: {metrics_file}")
