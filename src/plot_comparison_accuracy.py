@@ -1,4 +1,4 @@
-"""Plot exact-match accuracy from comparison JSONL records."""
+"""Plot accuracy from comparison JSONL records."""
 
 from __future__ import annotations
 
@@ -123,7 +123,7 @@ def label_bars(ax: plt.Axes, bars: Any) -> None:
 
 
 def plot_overall_accuracy(records: list[dict[str, Any]], output_path: Path) -> None:
-    """Plot the primary comparison metric: extracted-answer exact match."""
+    """Plot the primary comparison metric."""
 
     fig, ax = plt.subplots(figsize=(6.5, 4.5))
     values = [accuracy(records, model_key, "exact_match") for model_key in MODEL_KEYS]
@@ -135,8 +135,8 @@ def plot_overall_accuracy(records: list[dict[str, Any]], output_path: Path) -> N
         linewidth=0.5,
     )
     label_bars(ax, bars)
-    ax.set_ylabel("Exact-Match Accuracy")
-    ax.set_title(f"Overall Exact-Match Accuracy (n={len(records)})")
+    ax.set_ylabel("Accuracy")
+    ax.set_title(f"Overall Accuracy (n={len(records)})")
     style_axes(ax)
     fig.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -241,7 +241,7 @@ def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> 
         list(x_positions),
         correct_values,
         color="#16a34a",
-        label="Exact Match",
+        label="Correct",
         edgecolor="#111827",
         linewidth=0.5,
     )
@@ -250,7 +250,7 @@ def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> 
         incorrect_values,
         bottom=correct_values,
         color="#d1d5db",
-        label="Not Exact",
+        label="Incorrect",
         edgecolor="#111827",
         linewidth=0.5,
     )
@@ -259,7 +259,7 @@ def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> 
     ax.set_xticks(list(x_positions))
     ax.set_xticklabels([MODEL_LABELS[model_key] for model_key in MODEL_KEYS])
     ax.set_ylabel("Share of Test Set")
-    ax.set_title(f"Exact-Match Split (n={len(records)})")
+    ax.set_title(f"Accuracy Split (n={len(records)})")
     style_axes(ax)
     ax.legend(frameon=False, loc="upper right")
     fig.tight_layout()
@@ -296,109 +296,46 @@ def plot_metric_comparison(
     plt.close(fig)
 
 
-def plot_generation_breakdown(records: list[dict[str, Any]], output_path: Path) -> None:
-    """Show how often outputs were clean, salvaged from a prefix, or still wrong."""
-
-    fig, ax = plt.subplots(figsize=(8, 5))
-    x_positions = range(len(MODEL_KEYS))
-    clean_correct = []
-    prefix_correct = []
-    incorrect = []
-
-    for model_key in MODEL_KEYS:
-        clean = sum(
-            1
-            for record in records
-            if record[model_key]["exact_match"] and record[model_key]["stopped_cleanly"]
-        ) / len(records)
-        prefix = sum(1 for record in records if record[model_key]["prefix_exact_match"]) / len(records)
-        clean_correct.append(clean)
-        prefix_correct.append(prefix)
-        incorrect.append(max(0.0, 1.0 - clean - prefix))
-
-    ax.bar(
-        list(x_positions),
-        clean_correct,
-        color="#16a34a",
-        label="Clean Correct",
-        edgecolor="#111827",
-        linewidth=0.5,
-    )
-    ax.bar(
-        list(x_positions),
-        prefix_correct,
-        bottom=clean_correct,
-        color="#22c55e",
-        label="Correct Prefix Before Junk",
-        edgecolor="#111827",
-        linewidth=0.5,
-    )
-    bottoms = [clean + prefix for clean, prefix in zip(clean_correct, prefix_correct)]
-    ax.bar(
-        list(x_positions),
-        incorrect,
-        bottom=bottoms,
-        color="#d1d5db",
-        label="Incorrect",
-        edgecolor="#111827",
-        linewidth=0.5,
-    )
-
-    ax.set_xticks(list(x_positions))
-    ax.set_xticklabels([MODEL_LABELS[model_key] for model_key in MODEL_KEYS])
-    ax.set_ylabel("Share of Test Set")
-    ax.set_title(f"Generation Outcome Breakdown (n={len(records)})")
-    style_axes(ax)
-    ax.legend(frameon=False, loc="upper right")
-    fig.tight_layout()
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_path, dpi=180)
-    plt.close(fig)
-
-
 def main() -> None:
     args = parse_args()
     records = load_records(args.comparison_file)
     output_dir = args.output_dir
 
-    overall_path = output_dir / f"{args.prefix}-overall-accuracy.png"
-    prefix_path = output_dir / f"{args.prefix}-prefix-before-junk-accuracy.png"
-    exact_by_difficulty_path = output_dir / f"{args.prefix}-exact-accuracy-by-difficulty.png"
-    exact_by_solve_kind_path = output_dir / f"{args.prefix}-exact-accuracy-by-solve-kind.png"
-    stack_path = output_dir / f"{args.prefix}-exact-correctness-stack.png"
-    breakdown_path = output_dir / f"{args.prefix}-generation-breakdown.png"
+    overall_path = output_dir / f"{args.prefix}-overall.png"
+    prefix_path = output_dir / f"{args.prefix}-prefix-before-junk.png"
+    by_difficulty_path = output_dir / f"{args.prefix}-by-difficulty.png"
+    by_solve_kind_path = output_dir / f"{args.prefix}-by-solve-kind.png"
+    split_path = output_dir / f"{args.prefix}-split.png"
 
     plot_overall_accuracy(records, overall_path)
     plot_metric_comparison(
         records,
         "prefix_exact_match",
-        "Exact Prefix Before Junk",
-        "Share of Test Set",
+        "Prefix-Before-Junk Accuracy",
+        "Accuracy",
         prefix_path,
     )
     plot_metric_by_difficulty(
         records,
         "exact_match",
-        "Exact-Match Accuracy by Difficulty",
-        "Exact-Match Accuracy",
-        exact_by_difficulty_path,
+        "Accuracy by Difficulty",
+        "Accuracy",
+        by_difficulty_path,
     )
     plot_metric_by_solve_kind(
         records,
         "exact_match",
-        "Exact-Match Accuracy by Solve Type",
-        "Exact-Match Accuracy",
-        exact_by_solve_kind_path,
+        "Accuracy by Solve Type",
+        "Accuracy",
+        by_solve_kind_path,
     )
-    plot_correctness_stack(records, stack_path)
-    plot_generation_breakdown(records, breakdown_path)
+    plot_correctness_stack(records, split_path)
 
-    print(f"Saved overall exact-match plot to {overall_path}")
-    print(f"Saved exact-prefix plot to {prefix_path}")
-    print(f"Saved easy/hard exact-match plot to {exact_by_difficulty_path}")
-    print(f"Saved solve-kind exact-match plot to {exact_by_solve_kind_path}")
-    print(f"Saved exact-match correctness stack plot to {stack_path}")
-    print(f"Saved generation breakdown plot to {breakdown_path}")
+    print(f"Saved overall accuracy plot to {overall_path}")
+    print(f"Saved prefix-before-junk accuracy plot to {prefix_path}")
+    print(f"Saved easy/hard accuracy plot to {by_difficulty_path}")
+    print(f"Saved solve-kind accuracy plot to {by_solve_kind_path}")
+    print(f"Saved accuracy split plot to {split_path}")
 
 
 if __name__ == "__main__":

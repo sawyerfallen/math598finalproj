@@ -172,7 +172,7 @@ def evaluate_prediction(prompt: str, raw_prediction: str, target: str) -> dict[s
 
 
 def compute_accuracy_metrics(records: list[dict[str, Any]], model_key: str) -> dict[str, Any]:
-    """Compute exact-match metrics from saved per-sample records."""
+    """Compute accuracy metrics from saved per-sample records."""
 
     total = max(len(records), 1)
     exact_matches = sum(1 for record in records if record[model_key]["exact_match"])
@@ -285,9 +285,9 @@ def write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
 def print_metrics(label: str, metrics: dict[str, Any]) -> None:
     print(label)
     print(f"  examples: {metrics['num_examples']}")
-    print(f"  exact match accuracy: {metrics['exact_match_accuracy']:.4f}")
-    print(f"  raw exact match accuracy: {metrics['raw_exact_match_accuracy']:.4f}")
-    print(f"  prefix-before-junk exact match accuracy: {metrics['prefix_exact_match_accuracy']:.4f}")
+    print(f"  accuracy: {metrics['exact_match_accuracy']:.4f}")
+    print(f"  raw accuracy: {metrics['raw_exact_match_accuracy']:.4f}")
+    print(f"  prefix-before-junk accuracy: {metrics['prefix_exact_match_accuracy']:.4f}")
 
 
 def build_comparison_table(
@@ -302,19 +302,19 @@ def build_comparison_table(
             "Delta",
         ),
         (
-            "Exact Match Accuracy",
+            "Accuracy",
             f"{baseline_metrics['exact_match_accuracy']:.4f}",
             f"{structured_metrics['exact_match_accuracy']:.4f}",
             f"{structured_metrics['exact_match_accuracy'] - baseline_metrics['exact_match_accuracy']:+.4f}",
         ),
         (
-            "Raw Exact Match Accuracy",
+            "Raw Accuracy",
             f"{baseline_metrics['raw_exact_match_accuracy']:.4f}",
             f"{structured_metrics['raw_exact_match_accuracy']:.4f}",
             f"{structured_metrics['raw_exact_match_accuracy'] - baseline_metrics['raw_exact_match_accuracy']:+.4f}",
         ),
         (
-            "Prefix Exact Match Accuracy",
+            "Prefix Accuracy",
             f"{baseline_metrics['prefix_exact_match_accuracy']:.4f}",
             f"{structured_metrics['prefix_exact_match_accuracy']:.4f}",
             f"{structured_metrics['prefix_exact_match_accuracy'] - baseline_metrics['prefix_exact_match_accuracy']:+.4f}",
@@ -334,10 +334,10 @@ def build_difficulty_table(
     baseline_by_difficulty: dict[str, Any],
     structured_by_difficulty: dict[str, Any],
 ) -> str:
-    """Format easy/hard grouped exact-match accuracies."""
+    """Format easy/hard grouped accuracies."""
 
     difficulties = sorted(set(baseline_by_difficulty) | set(structured_by_difficulty))
-    rows = [("Difficulty", "Examples", "Baseline Exact", "Structured Exact")]
+    rows = [("Difficulty", "Examples", "Baseline Accuracy", "Structured Accuracy")]
     for difficulty in difficulties:
         baseline_metrics = baseline_by_difficulty.get(difficulty, {})
         structured_metrics = structured_by_difficulty.get(difficulty, {})
@@ -416,7 +416,7 @@ def build_text_summary(
                     f"  Target: {item['target']}",
                     f"  Raw prediction: {item['raw_prediction']}",
                     f"  Prediction: {item['prediction']}",
-                    f"  Exact match: {item['exact_match']}",
+                    f"  Correct: {item['exact_match']}",
                 ]
             )
     else:
@@ -432,7 +432,7 @@ def build_text_summary(
                     f"  Target: {item['target']}",
                     f"  Raw prediction: {item['raw_prediction']}",
                     f"  Prediction: {item['prediction']}",
-                    f"  Exact match: {item['exact_match']}",
+                    f"  Correct: {item['exact_match']}",
                 ]
             )
     else:

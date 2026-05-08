@@ -25,36 +25,35 @@ For quadratics with two real integer roots, the output uses sorted roots:
 x = -1 or x = 3
 ```
 
-The dataset mixes easy linear equations with harder equations that require parentheses handling, distribution, collecting like terms, moving `x` terms across both sides, and solving simple factorable quadratics. Evaluation uses exact-match accuracy against the canonical extracted answer as the main metric.
+The dataset mixes easy linear equations with harder equations that require parentheses handling, distribution, collecting like terms, moving `x` terms across both sides, and solving simple factorable quadratics. Evaluation uses accuracy against the canonical extracted answer as the main metric.
 
 ## Final Results
 
 Latest run:
 
-- Dataset: `data/solve_mixed_10000_dedup`
-- Baseline run: `artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup`
-- Structured run: `artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup`
-- Comparison: `artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.*`
-- Plots: `artifacts/plots/solve_mixed_10000_dedup_bundle`
+- Dataset: mixed solve-only algebra examples
+- Baseline run: GPT-2 small text-only fine-tuning
+- Structured run: GPT-2 small with node-type embeddings
+- Comparison: saved baseline-vs-structured evaluation outputs
+- Plots: `artifacts/plots/solve_mixed_10000_bundle`
 
 Dataset summary:
 
 - Raw generated examples: `20,968`
-- Unique prompt/output pairs after deduplication: `12,000`
+- Examples used: `12,000`
 - Final split sizes: `10,000` train, `1,000` validation, `1,000` test
-- Cross-split duplicate count: `0`
 
 Held-out test accuracy:
 
 | Metric | Baseline | Structured |
 | --- | ---: | ---: |
-| Overall exact match | 0.1830 | 0.1830 |
-| Easy exact match | 0.2826 | 0.3370 |
-| Hard exact match | 0.1729 | 0.1674 |
+| Overall accuracy | 0.1830 | 0.1830 |
+| Easy accuracy | 0.2826 | 0.3370 |
+| Hard accuracy | 0.1729 | 0.1674 |
 
 ## How The Pipeline Fits Together
 
-1. **Dataset generation:** `src/dataset_generator.py` creates synthetic solve-for-`x` prompt/output pairs. It can generate mixed easy/hard examples, deduplicate by visible `prompt` and `output`, split into train/validation/test JSONL files, and write metadata sidecars with `difficulty` and `solve_kind`.
+1. **Dataset generation:** `src/dataset_generator.py` creates synthetic solve-for-`x` prompt/output pairs, splits them into train/validation/test JSONL files, and writes metadata sidecars with `difficulty` and `solve_kind`.
 
 2. **Prompt parsing:** `src/parser.py` reads the prompt text and emits symbolic prompt tokens plus node-type labels. For example, `solve`, `for`, `x`, integer constants, operators, equality, parentheses, and the `=>` marker receive coarse labels from `src/node_types.py`.
 
@@ -70,9 +69,9 @@ Held-out test accuracy:
 
 8. **Generation helpers:** `src/algebra_generation.py` performs constrained greedy decoding. It limits generated tokens to algebra-relevant characters, handles GPT-2 left-padding position IDs, stops once a complete solve answer appears, and extracts the first valid answer span for scoring.
 
-9. **Comparison:** `src/main.py` loads saved baseline and structured checkpoints, runs both on the same test set, scores exact-match accuracy, verifies the structured checkpoint contains node-type weights, and writes JSON, TXT, and per-sample JSONL outputs.
+9. **Comparison:** `src/main.py` loads saved baseline and structured checkpoints, runs both on the same test set, scores accuracy, verifies the structured checkpoint contains node-type weights, and writes JSON, TXT, and per-sample JSONL outputs.
 
-10. **Plotting:** `src/plot_training_curves.py`, `src/plot_batch_losses.py`, `src/plot_test_losses.py`, and `src/plot_comparison_accuracy.py` turn saved metrics and predictions into loss, accuracy, difficulty, solve-kind, and generation-breakdown plots.
+10. **Plotting:** `src/plot_training_curves.py`, `src/plot_batch_losses.py`, and `src/plot_comparison_accuracy.py` turn saved metrics and predictions into loss, accuracy, difficulty, solve-kind, and accuracy-split plots.
 
 ## Structured Dataset Construction
 
@@ -88,7 +87,7 @@ The structured model does not see different text from the baseline. Both models 
 ## `src/` Codebase Map
 
 - `src/__init__.py` marks the source directory as the importable package used by the CLI scripts.
-- `src/dataset_generator.py` generates the final solve-only dataset, metadata sidecars, deduplication summaries, and train/validation/test splits.
+- `src/dataset_generator.py` generates the final solve-only dataset, metadata sidecars, and train/validation/test splits.
 - `src/node_types.py` defines the node-type vocabulary shared by the parser, dataset, and model.
 - `src/parser.py` tokenizes solve prompts into symbolic tokens and node-type names.
 - `src/structured_dataset.py` aligns node types to tokenizer pieces and builds structured training batches.
@@ -99,8 +98,7 @@ The structured model does not see different text from the baseline. Both models 
 - `src/main.py` is the saved-checkpoint comparison script.
 - `src/plot_training_curves.py` plots train/validation loss curves.
 - `src/plot_batch_losses.py` plots per-batch training loss.
-- `src/plot_test_losses.py` plots per-sample test loss.
-- `src/plot_comparison_accuracy.py` plots overall, easy/hard, solve-kind, and generation-breakdown comparison results.
+- `src/plot_comparison_accuracy.py` plots overall, easy/hard, solve-kind, and accuracy-split comparison results.
 - `src/utils.py` contains shared logging, padding, parameter-counting, device-transfer, and loss helpers.
 
 ## Dataset Format
@@ -121,43 +119,15 @@ Install dependencies:
 uv sync
 ```
 
-Generate the final deduplicated dataset:
+The checked-in artifact files contain the final run. The CLI entry points are:
 
-```powershell
-uv run generate-dataset --tasks solve --solve-difficulty mixed --train-size 10000 --val-size 1000 --test-size 1000 --deduplicate-before-split --max-raw-examples 100000 --dedup-batch-size 5000 --output-dir data/solve_mixed_10000_dedup --seed 45
-```
-
-Train the baseline:
-
-```powershell
-uv run train-baseline --model-name gpt2 --experiment-name gpt2-small-baseline-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint
-```
-
-Train the structured model:
-
-```powershell
-uv run train-structured --model-name gpt2 --experiment-name gpt2-small-structured-solve-mixed-10000-dedup --train-path data/solve_mixed_10000_dedup/train.jsonl --val-path data/solve_mixed_10000_dedup/val.jsonl --test-path data/solve_mixed_10000_dedup/test.jsonl --output-dir artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup --epochs 1 --batch-size 32 --eval-batch-size 32 --lr 1e-4 --save-best-checkpoint
-```
-
-Compare saved checkpoints:
-
-```powershell
-uv run compare-models --baseline-checkpoint artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/best-epoch-1 --structured-checkpoint artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/best-epoch-1 --test-path data/solve_mixed_10000_dedup/test.jsonl --metadata-path data/solve_mixed_10000_dedup/test_metadata.jsonl --batch-size 32 --max-new-tokens 20 --output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.json --text-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured.txt --per-sample-output-path artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl
-```
-
-Generate the final plot bundle:
-
-```powershell
-uv run plot-training-curves artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/training-curves.png --title "Deduplicated Mixed Solve-Only Train and Validation Loss"
-
-uv run plot-batch-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/metrics.jsonl artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/metrics.jsonl --labels baseline structured --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/batch-losses.png --title "Deduplicated Mixed Solve-Only Training Loss by Batch"
-
-uv run plot-comparison-accuracy artifacts/comparisons/gpt2-small-solve-mixed-10000-dedup-baseline-vs-structured-per-sample.jsonl --output-dir artifacts/plots/solve_mixed_10000_dedup_bundle --prefix accuracy
-
-uv run plot-test-losses artifacts/models_training_info/gpt2-small-baseline-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/baseline-test-losses.png --title "Baseline Deduplicated Mixed Solve Per-Sample Test Loss"
-
-uv run plot-test-losses artifacts/models_training_info/gpt2-small-structured-solve-mixed-10000-dedup/test_sample_losses.jsonl --output-path artifacts/plots/solve_mixed_10000_dedup_bundle/structured-test-losses.png --title "Structured Deduplicated Mixed Solve Per-Sample Test Loss"
-```
+- `uv run generate-dataset`
+- `uv run train-baseline`
+- `uv run train-structured`
+- `uv run compare-models`
+- `uv run plot-training-curves`
+- `uv run plot-batch-losses`
+- `uv run plot-comparison-accuracy`
 
 ## Evaluation Notes
 

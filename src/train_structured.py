@@ -19,7 +19,6 @@ from .structured_dataset import StructuredCollator, StructuredJsonlDataset
 from .structured_model import StructuredCausalLM
 from .utils import (
     append_jsonl,
-    causal_lm_sample_losses,
     count_parameters,
     ensure_padding_token,
     move_batch_to_device,
@@ -68,38 +67,6 @@ def evaluate_loss(model: StructuredCausalLM, dataloader: DataLoader, device: tor
         total_examples += batch_size
 
     return total_loss / max(total_examples, 1)
-
-
-@torch.no_grad()
-def collect_sample_losses(model: StructuredCausalLM, dataloader: DataLoader, device: torch.device) -> list[dict[str, Any]]:
-    """Collect one masked next-token loss per evaluation example."""
-
-    model.eval()
-    sample_records: list[dict[str, Any]] = []
-    sample_index = 0
-
-    for batch in dataloader:
-        batch = move_batch_to_device(batch, device)
-        outputs = model(
-            input_ids=batch["input_ids"],
-            node_type_ids=batch["node_type_ids"],
-            attention_mask=batch["attention_mask"],
-            labels=batch["labels"],
-        )
-        sample_losses = causal_lm_sample_losses(outputs.logits, batch["labels"]).detach().cpu().tolist()
-
-        for loss_value, prompt, output_text in zip(sample_losses, batch["prompts"], batch["outputs"]):
-            sample_records.append(
-                {
-                    "sample_index": sample_index,
-                    "prompt": prompt,
-                    "output": output_text,
-                    "loss": float(loss_value),
-                }
-            )
-            sample_index += 1
-
-    return sample_records
 
 
 def maybe_save_checkpoint(
@@ -379,11 +346,8 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metrics_file = args.metrics_file or (args.output_dir / "metrics.jsonl")
     summary_file = args.output_dir / "summary.txt"
-    sample_losses_file = args.output_dir / "test_sample_losses.jsonl"
     if metrics_file.exists():
         metrics_file.unlink()
-    if sample_losses_file.exists():
-        sample_losses_file.unlink()
 
     best_val_loss = math.inf
     best_checkpoint: Path | None = None
@@ -528,9 +492,6 @@ def main() -> None:
 
     # Test evaluation is run once after model-selection decisions are finished.
     test_loss = evaluate_loss(model, test_loader, device)
-    test_sample_losses = collect_sample_losses(model, test_loader, device)
-    for sample_record in test_sample_losses:
-        append_jsonl(sample_losses_file, sample_record)
     print(f"Test loss: {test_loss:.4f}")
     print(f"Best checkpoint: {best_checkpoint}")
     append_jsonl(
@@ -554,7 +515,6 @@ def main() -> None:
             f"Device: {device}",
             f"Output directory: {args.output_dir}",
             f"Metrics file: {metrics_file}",
-            f"Test sample losses file: {sample_losses_file}",
             f"Best checkpoint: {best_checkpoint}",
             f"Final checkpoint: {final_checkpoint}",
             f"Total parameters: {total_params}",
@@ -597,7 +557,6 @@ def main() -> None:
     )
     print(f"Metrics file: {metrics_file}")
     print(f"Summary file: {summary_file}")
-    print(f"Test sample losses file: {sample_losses_file}")
     print(f"Final checkpoint: {final_checkpoint}")
 
 

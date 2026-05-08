@@ -3,7 +3,6 @@ Model: gpt2
 Device: cpu
 Output directory: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup
 Metrics file: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\metrics.jsonl
-Test sample losses file: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\test_sample_losses.jsonl
 Best checkpoint: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\best-epoch-1
 Final checkpoint: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\final-model
 Total parameters: 124439808

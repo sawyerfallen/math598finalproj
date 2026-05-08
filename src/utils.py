@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-import torch.nn.functional as F
 import torch
 
 
@@ -54,22 +53,3 @@ def move_batch_to_device(batch: dict[str, Any], device: torch.device) -> dict[st
         key: value.to(device) if torch.is_tensor(value) else value
         for key, value in batch.items()
     }
-
-
-def causal_lm_sample_losses(logits: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
-    """Compute one masked next-token loss per sample from causal-LM logits and labels."""
-
-    shift_logits = logits[..., :-1, :].contiguous()
-    shift_labels = labels[..., 1:].contiguous()
-
-    token_losses = F.cross_entropy(
-        shift_logits.view(-1, shift_logits.size(-1)),
-        shift_labels.view(-1),
-        reduction="none",
-        ignore_index=-100,
-    ).view(shift_labels.shape)
-
-    valid_mask = (shift_labels != -100).to(token_losses.dtype)
-    loss_sums = (token_losses * valid_mask).sum(dim=1)
-    token_counts = valid_mask.sum(dim=1).clamp_min(1.0)
-    return loss_sums / token_counts
