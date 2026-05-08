@@ -1,4 +1,4 @@
-"""Plot exact-match and symbolic accuracy from comparison JSONL records."""
+"""Plot exact-match accuracy from comparison JSONL records."""
 
 from __future__ import annotations
 
@@ -123,32 +123,21 @@ def label_bars(ax: plt.Axes, bars: Any) -> None:
 
 
 def plot_overall_accuracy(records: list[dict[str, Any]], output_path: Path) -> None:
-    metric_labels = ("Exact Match", "Symbolic")
-    metric_keys = ("exact_match", "symbolic_match")
-    x_positions = range(len(metric_keys))
-    width = 0.34
+    """Plot the primary comparison metric: extracted-answer exact match."""
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    for offset_index, model_key in enumerate(MODEL_KEYS):
-        values = [accuracy(records, model_key, metric_key) for metric_key in metric_keys]
-        offset = (offset_index - 0.5) * width
-        bars = ax.bar(
-            [x + offset for x in x_positions],
-            values,
-            width=width,
-            label=MODEL_LABELS[model_key],
-            color=MODEL_COLORS[model_key],
-            edgecolor="#111827",
-            linewidth=0.5,
-        )
-        label_bars(ax, bars)
-
-    ax.set_xticks(list(x_positions))
-    ax.set_xticklabels(metric_labels)
-    ax.set_ylabel("Accuracy")
-    ax.set_title(f"Overall Test Accuracy (n={len(records)})")
+    fig, ax = plt.subplots(figsize=(6.5, 4.5))
+    values = [accuracy(records, model_key, "exact_match") for model_key in MODEL_KEYS]
+    bars = ax.bar(
+        [MODEL_LABELS[model_key] for model_key in MODEL_KEYS],
+        values,
+        color=[MODEL_COLORS[model_key] for model_key in MODEL_KEYS],
+        edgecolor="#111827",
+        linewidth=0.5,
+    )
+    label_bars(ax, bars)
+    ax.set_ylabel("Exact-Match Accuracy")
+    ax.set_title(f"Overall Exact-Match Accuracy (n={len(records)})")
     style_axes(ax)
-    ax.legend(frameon=False, loc="upper right")
     fig.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=180)
@@ -245,14 +234,14 @@ def plot_metric_by_solve_kind(
 def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> None:
     fig, ax = plt.subplots(figsize=(7.5, 5))
     x_positions = range(len(MODEL_KEYS))
-    correct_values = [accuracy(records, model_key, "symbolic_match") for model_key in MODEL_KEYS]
+    correct_values = [accuracy(records, model_key, "exact_match") for model_key in MODEL_KEYS]
     incorrect_values = [1.0 - value for value in correct_values]
 
     correct_bars = ax.bar(
         list(x_positions),
         correct_values,
         color="#16a34a",
-        label="Symbolically Correct",
+        label="Exact Match",
         edgecolor="#111827",
         linewidth=0.5,
     )
@@ -261,7 +250,7 @@ def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> 
         incorrect_values,
         bottom=correct_values,
         color="#d1d5db",
-        label="Symbolically Incorrect",
+        label="Not Exact",
         edgecolor="#111827",
         linewidth=0.5,
     )
@@ -270,7 +259,7 @@ def plot_correctness_stack(records: list[dict[str, Any]], output_path: Path) -> 
     ax.set_xticks(list(x_positions))
     ax.set_xticklabels([MODEL_LABELS[model_key] for model_key in MODEL_KEYS])
     ax.set_ylabel("Share of Test Set")
-    ax.set_title(f"Symbolic Correctness Split (n={len(records)})")
+    ax.set_title(f"Exact-Match Split (n={len(records)})")
     style_axes(ax)
     ax.legend(frameon=False, loc="upper right")
     fig.tight_layout()
@@ -320,9 +309,9 @@ def plot_generation_breakdown(records: list[dict[str, Any]], output_path: Path) 
         clean = sum(
             1
             for record in records
-            if record[model_key]["symbolic_match"] and record[model_key]["stopped_cleanly"]
+            if record[model_key]["exact_match"] and record[model_key]["stopped_cleanly"]
         ) / len(records)
-        prefix = sum(1 for record in records if record[model_key]["prefix_symbolic_match"]) / len(records)
+        prefix = sum(1 for record in records if record[model_key]["prefix_exact_match"]) / len(records)
         clean_correct.append(clean)
         prefix_correct.append(prefix)
         incorrect.append(max(0.0, 1.0 - clean - prefix))
@@ -373,23 +362,17 @@ def main() -> None:
     output_dir = args.output_dir
 
     overall_path = output_dir / f"{args.prefix}-overall-accuracy.png"
-    exact_path = output_dir / f"{args.prefix}-exact-accuracy.png"
-    symbolic_path = output_dir / f"{args.prefix}-symbolic-accuracy.png"
     prefix_path = output_dir / f"{args.prefix}-prefix-before-junk-accuracy.png"
     exact_by_difficulty_path = output_dir / f"{args.prefix}-exact-accuracy-by-difficulty.png"
-    symbolic_by_difficulty_path = output_dir / f"{args.prefix}-symbolic-accuracy-by-difficulty.png"
     exact_by_solve_kind_path = output_dir / f"{args.prefix}-exact-accuracy-by-solve-kind.png"
-    symbolic_by_solve_kind_path = output_dir / f"{args.prefix}-symbolic-accuracy-by-solve-kind.png"
-    stack_path = output_dir / f"{args.prefix}-symbolic-correctness-stack.png"
+    stack_path = output_dir / f"{args.prefix}-exact-correctness-stack.png"
     breakdown_path = output_dir / f"{args.prefix}-generation-breakdown.png"
 
     plot_overall_accuracy(records, overall_path)
-    plot_metric_comparison(records, "exact_match", "Exact-Match Accuracy", "Exact-Match Accuracy", exact_path)
-    plot_metric_comparison(records, "symbolic_match", "Symbolic Accuracy", "Symbolic Accuracy", symbolic_path)
     plot_metric_comparison(
         records,
-        "prefix_symbolic_match",
-        "Correct Prefix Before Junk",
+        "prefix_exact_match",
+        "Exact Prefix Before Junk",
         "Share of Test Set",
         prefix_path,
     )
@@ -400,13 +383,6 @@ def main() -> None:
         "Exact-Match Accuracy",
         exact_by_difficulty_path,
     )
-    plot_metric_by_difficulty(
-        records,
-        "symbolic_match",
-        "Symbolic Accuracy by Difficulty",
-        "Symbolic Accuracy",
-        symbolic_by_difficulty_path,
-    )
     plot_metric_by_solve_kind(
         records,
         "exact_match",
@@ -414,25 +390,14 @@ def main() -> None:
         "Exact-Match Accuracy",
         exact_by_solve_kind_path,
     )
-    plot_metric_by_solve_kind(
-        records,
-        "symbolic_match",
-        "Symbolic Accuracy by Solve Type",
-        "Symbolic Accuracy",
-        symbolic_by_solve_kind_path,
-    )
     plot_correctness_stack(records, stack_path)
     plot_generation_breakdown(records, breakdown_path)
 
-    print(f"Saved overall accuracy plot to {overall_path}")
-    print(f"Saved exact-match accuracy plot to {exact_path}")
-    print(f"Saved symbolic accuracy plot to {symbolic_path}")
-    print(f"Saved correct-prefix plot to {prefix_path}")
+    print(f"Saved overall exact-match plot to {overall_path}")
+    print(f"Saved exact-prefix plot to {prefix_path}")
     print(f"Saved easy/hard exact-match plot to {exact_by_difficulty_path}")
-    print(f"Saved easy/hard symbolic plot to {symbolic_by_difficulty_path}")
     print(f"Saved solve-kind exact-match plot to {exact_by_solve_kind_path}")
-    print(f"Saved solve-kind symbolic plot to {symbolic_by_solve_kind_path}")
-    print(f"Saved symbolic correctness stack plot to {stack_path}")
+    print(f"Saved exact-match correctness stack plot to {stack_path}")
     print(f"Saved generation breakdown plot to {breakdown_path}")
 
 

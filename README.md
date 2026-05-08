@@ -25,7 +25,7 @@ For quadratics with two real integer roots, the output uses sorted roots:
 x = -1 or x = 3
 ```
 
-The dataset mixes easy linear equations with harder equations that require parentheses handling, distribution, collecting like terms, moving `x` terms across both sides, and solving simple factorable quadratics. Evaluation reports exact match against the canonical extracted answer and symbolic accuracy, which parses solve outputs as solution sets so equivalent root sets can be counted correctly.
+The dataset mixes easy linear equations with harder equations that require parentheses handling, distribution, collecting like terms, moving `x` terms across both sides, and solving simple factorable quadratics. Evaluation uses exact-match accuracy against the canonical extracted answer as the main metric.
 
 ## Final Results
 
@@ -49,9 +49,8 @@ Held-out test accuracy:
 | Metric | Baseline | Structured |
 | --- | ---: | ---: |
 | Overall exact match | 0.1830 | 0.1830 |
-| Overall symbolic accuracy | 0.1830 | 0.1830 |
-| Easy symbolic accuracy | 0.2826 | 0.3370 |
-| Hard symbolic accuracy | 0.1729 | 0.1674 |
+| Easy exact match | 0.2826 | 0.3370 |
+| Hard exact match | 0.1729 | 0.1674 |
 
 ## How The Pipeline Fits Together
 
@@ -71,7 +70,7 @@ Held-out test accuracy:
 
 8. **Generation helpers:** `src/algebra_generation.py` performs constrained greedy decoding. It limits generated tokens to algebra-relevant characters, handles GPT-2 left-padding position IDs, stops once a complete solve answer appears, and extracts the first valid answer span for scoring.
 
-9. **Comparison:** `src/main.py` loads saved baseline and structured checkpoints, runs both on the same test set, scores exact match and symbolic accuracy, verifies the structured checkpoint contains node-type weights, and writes JSON, TXT, and per-sample JSONL outputs.
+9. **Comparison:** `src/main.py` loads saved baseline and structured checkpoints, runs both on the same test set, scores exact-match accuracy, verifies the structured checkpoint contains node-type weights, and writes JSON, TXT, and per-sample JSONL outputs.
 
 10. **Plotting:** `src/plot_training_curves.py`, `src/plot_batch_losses.py`, `src/plot_test_losses.py`, and `src/plot_comparison_accuracy.py` turn saved metrics and predictions into loss, accuracy, difficulty, solve-kind, and generation-breakdown plots.
 
@@ -94,7 +93,7 @@ The structured model does not see different text from the baseline. Both models 
 - `src/parser.py` tokenizes solve prompts into symbolic tokens and node-type names.
 - `src/structured_dataset.py` aligns node types to tokenizer pieces and builds structured training batches.
 - `src/structured_model.py` defines the GPT-2 wrapper with learned node-type embeddings.
-- `src/train_baseline.py` trains the text-only GPT-2 baseline and provides solve-answer symbolic scoring helpers.
+- `src/train_baseline.py` trains the text-only GPT-2 baseline with prompt-masked causal LM loss.
 - `src/train_structured.py` trains the structured GPT-2 model and logs node-type / trainable-parameter verification.
 - `src/algebra_generation.py` contains constrained decoding, answer extraction, and structured generation helpers.
 - `src/main.py` is the saved-checkpoint comparison script.

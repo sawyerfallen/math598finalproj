@@ -24,9 +24,8 @@ Final split:
 | Metric | Baseline | Structured |
 | --- | ---: | ---: |
 | Overall exact match | 0.1830 | 0.1830 |
-| Overall symbolic accuracy | 0.1830 | 0.1830 |
-| Easy symbolic accuracy | 0.2826 | 0.3370 |
-| Hard symbolic accuracy | 0.1729 | 0.1674 |
+| Easy exact match | 0.2826 | 0.3370 |
+| Hard exact match | 0.1729 | 0.1674 |
 
 The structured model improved on the easy subset but did not improve overall. In this run, the added node-type signal was not enough to beat the text-only baseline on the harder deduplicated test distribution.
 

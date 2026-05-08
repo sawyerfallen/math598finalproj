@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -29,7 +28,6 @@ from .utils import (
 DEFAULT_MODEL_NAME = "gpt2"
 DEFAULT_EXPERIMENT_NAME = "gpt2-small-baseline"
 DEFAULT_ARTIFACTS_ROOT = Path("artifacts") / "models_training_info"
-SOLUTION_PART_RE = re.compile(r"^\s*([xyzXYZ])\s*=\s*([+-]?\d+)\s*$")
 
 
 @dataclass
@@ -275,39 +273,6 @@ def summarize_named_parameters(model: torch.nn.Module, max_names: int = 20) -> d
         "frozen_parameter_names_sample": frozen[:max_names],
         "all_parameters_trainable": len(frozen) == 0,
     }
-
-
-def parse_solution_set(text: str) -> tuple[str, frozenset[int]] | None:
-    """Parse canonical solve outputs like `x = 2` or `x = -1 or x = 3`."""
-
-    parts = text.strip().split(" or ")
-    if not parts:
-        return None
-
-    variable_name: str | None = None
-    solutions: set[int] = set()
-    for part in parts:
-        match = SOLUTION_PART_RE.match(part)
-        if match is None:
-            return None
-        part_variable = match.group(1).lower()
-        if variable_name is None:
-            variable_name = part_variable
-        elif variable_name != part_variable:
-            return None
-        solutions.add(int(match.group(2)))
-
-    if variable_name is None:
-        return None
-    return variable_name, frozenset(solutions)
-
-
-def is_symbolically_equivalent(prediction: str, target: str) -> bool:
-    """Compare solve answers as unordered integer solution sets."""
-
-    prediction_solutions = parse_solution_set(prediction)
-    target_solutions = parse_solution_set(target)
-    return prediction_solutions is not None and prediction_solutions == target_solutions
 
 
 def parse_args() -> argparse.Namespace:

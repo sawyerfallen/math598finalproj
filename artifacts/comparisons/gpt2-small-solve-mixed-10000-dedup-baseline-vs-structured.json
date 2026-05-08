@@ -22,10 +22,8 @@
   "baseline": {
     "num_examples": 1000,
     "exact_match_accuracy": 0.183,
-    "symbolic_accuracy": 0.183,
     "raw_exact_match_accuracy": 0.183,
-    "raw_symbolic_accuracy": 0.183,
-    "prefix_symbolic_accuracy": 0.0,
+    "prefix_exact_match_accuracy": 0.0,
     "trailing_junk_rate": 0.003,
     "stopped_cleanly_rate": 0.997,
     "sample_mistakes": [
@@ -34,45 +32,43 @@
         "target": "x = 1",
         "raw_prediction": "x = -1",
         "prediction": "x = -1",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve 3*(x - 1) - 5 = -17 for x =>",
         "target": "x = -3",
         "raw_prediction": "x = -4",
         "prediction": "x = -4",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve 3*x - 3*x + 5 = 4*x + 21 for x =>",
         "target": "x = -4",
         "raw_prediction": "x = -6",
         "prediction": "x = -6",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve -x + x - 5 = -2*x - 3 for x =>",
         "target": "x = 1",
         "raw_prediction": "x = -1",
         "prediction": "x = -1",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve -3*(x - 1) - 1 = 2*(x + 3) - 4 for x =>",
         "target": "x = 0",
         "raw_prediction": "x = -1",
         "prediction": "x = -1",
-        "symbolically_correct": false
+        "exact_match": false
       }
     ]
   },
   "structured": {
     "num_examples": 1000,
     "exact_match_accuracy": 0.183,
-    "symbolic_accuracy": 0.183,
     "raw_exact_match_accuracy": 0.183,
-    "raw_symbolic_accuracy": 0.183,
-    "prefix_symbolic_accuracy": 0.0,
+    "prefix_exact_match_accuracy": 0.0,
     "trailing_junk_rate": 0.001,
     "stopped_cleanly_rate": 0.999,
     "sample_mistakes": [
@@ -81,35 +77,35 @@
         "target": "x = 1",
         "raw_prediction": "x = -1",
         "prediction": "x = -1",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve 3*(x - 1) - 5 = -17 for x =>",
         "target": "x = -3",
         "raw_prediction": "x = -4",
         "prediction": "x = -4",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve -4*(x + 3) - 5 = 5*(x - 1) - 3 for x =>",
         "target": "x = -1",
         "raw_prediction": "x = -2",
         "prediction": "x = -2",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve 3*x - 3*x + 5 = 4*x + 21 for x =>",
         "target": "x = -4",
         "raw_prediction": "x = -5",
         "prediction": "x = -5",
-        "symbolically_correct": false
+        "exact_match": false
       },
       {
         "prompt": "solve -x + x - 5 = -2*x - 3 for x =>",
         "target": "x = 1",
         "raw_prediction": "x = -1",
         "prediction": "x = -1",
-        "symbolically_correct": false
+        "exact_match": false
       }
     ]
   },
@@ -118,10 +114,8 @@
       "easy": {
         "num_examples": 92,
         "exact_match_accuracy": 0.2826086956521739,
-        "symbolic_accuracy": 0.2826086956521739,
         "raw_exact_match_accuracy": 0.2826086956521739,
-        "raw_symbolic_accuracy": 0.2826086956521739,
-        "prefix_symbolic_accuracy": 0.0,
+        "prefix_exact_match_accuracy": 0.0,
         "trailing_junk_rate": 0.0,
         "stopped_cleanly_rate": 1.0,
         "sample_mistakes": [
@@ -130,45 +124,43 @@
             "target": "x = 3",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -5*x - 1 = 24 for x =>",
             "target": "x = -5",
             "raw_prediction": "x = -4",
             "prediction": "x = -4",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -4*x - 4 = -24 for x =>",
             "target": "x = 5",
             "raw_prediction": "x = 4",
             "prediction": "x = 4",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3 - 5*x = 18 for x =>",
             "target": "x = -3",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve x + 5 = 3 for x =>",
             "target": "x = -2",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           }
         ]
       },
       "hard": {
         "num_examples": 908,
         "exact_match_accuracy": 0.17290748898678415,
-        "symbolic_accuracy": 0.17290748898678415,
         "raw_exact_match_accuracy": 0.17290748898678415,
-        "raw_symbolic_accuracy": 0.17290748898678415,
-        "prefix_symbolic_accuracy": 0.0,
+        "prefix_exact_match_accuracy": 0.0,
         "trailing_junk_rate": 0.003303964757709251,
         "stopped_cleanly_rate": 0.9966960352422908,
         "sample_mistakes": [
@@ -177,35 +169,35 @@
             "target": "x = 1",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3*(x - 1) - 5 = -17 for x =>",
             "target": "x = -3",
             "raw_prediction": "x = -4",
             "prediction": "x = -4",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3*x - 3*x + 5 = 4*x + 21 for x =>",
             "target": "x = -4",
             "raw_prediction": "x = -6",
             "prediction": "x = -6",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -x + x - 5 = -2*x - 3 for x =>",
             "target": "x = 1",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -3*(x - 1) - 1 = 2*(x + 3) - 4 for x =>",
             "target": "x = 0",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           }
         ]
       }
@@ -214,10 +206,8 @@
       "easy": {
         "num_examples": 92,
         "exact_match_accuracy": 0.33695652173913043,
-        "symbolic_accuracy": 0.33695652173913043,
         "raw_exact_match_accuracy": 0.33695652173913043,
-        "raw_symbolic_accuracy": 0.33695652173913043,
-        "prefix_symbolic_accuracy": 0.0,
+        "prefix_exact_match_accuracy": 0.0,
         "trailing_junk_rate": 0.0,
         "stopped_cleanly_rate": 1.0,
         "sample_mistakes": [
@@ -226,45 +216,43 @@
             "target": "x = 3",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -5*x - 1 = 24 for x =>",
             "target": "x = -5",
             "raw_prediction": "x = -4",
             "prediction": "x = -4",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -4*x - 4 = -24 for x =>",
             "target": "x = 5",
             "raw_prediction": "x = 3",
             "prediction": "x = 3",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3 - 5*x = 18 for x =>",
             "target": "x = -3",
             "raw_prediction": "x = -5",
             "prediction": "x = -5",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve x + 5 = 3 for x =>",
             "target": "x = -2",
             "raw_prediction": "x = 0",
             "prediction": "x = 0",
-            "symbolically_correct": false
+            "exact_match": false
           }
         ]
       },
       "hard": {
         "num_examples": 908,
         "exact_match_accuracy": 0.16740088105726872,
-        "symbolic_accuracy": 0.16740088105726872,
         "raw_exact_match_accuracy": 0.16740088105726872,
-        "raw_symbolic_accuracy": 0.16740088105726872,
-        "prefix_symbolic_accuracy": 0.0,
+        "prefix_exact_match_accuracy": 0.0,
         "trailing_junk_rate": 0.0011013215859030838,
         "stopped_cleanly_rate": 0.998898678414097,
         "sample_mistakes": [
@@ -273,35 +261,35 @@
             "target": "x = 1",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3*(x - 1) - 5 = -17 for x =>",
             "target": "x = -3",
             "raw_prediction": "x = -4",
             "prediction": "x = -4",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -4*(x + 3) - 5 = 5*(x - 1) - 3 for x =>",
             "target": "x = -1",
             "raw_prediction": "x = -2",
             "prediction": "x = -2",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve 3*x - 3*x + 5 = 4*x + 21 for x =>",
             "target": "x = -4",
             "raw_prediction": "x = -5",
             "prediction": "x = -5",
-            "symbolically_correct": false
+            "exact_match": false
           },
           {
             "prompt": "solve -x + x - 5 = -2*x - 3 for x =>",
             "target": "x = 1",
             "raw_prediction": "x = -1",
             "prediction": "x = -1",
-            "symbolically_correct": false
+            "exact_match": false
           }
         ]
       }
@@ -309,8 +297,7 @@
   },
   "accuracy_delta": {
     "exact_match_accuracy": 0.0,
-    "symbolic_accuracy": 0.0,
-    "raw_symbolic_accuracy": 0.0,
-    "prefix_symbolic_accuracy": 0.0
+    "raw_exact_match_accuracy": 0.0,
+    "prefix_exact_match_accuracy": 0.0
   }
 }

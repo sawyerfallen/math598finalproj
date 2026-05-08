@@ -18,7 +18,7 @@ from .algebra_generation import (
     postprocess_prediction,
 )
 from .structured_model import StructuredCausalLM
-from .train_baseline import JsonlAlgebraDataset, is_symbolically_equivalent
+from .train_baseline import JsonlAlgebraDataset
 from .utils import ensure_padding_token
 
 
@@ -156,35 +156,28 @@ def evaluate_prediction(prompt: str, raw_prediction: str, target: str) -> dict[s
     raw_prediction = postprocess_prediction(raw_prediction)
     extracted_prediction = extract_first_answer_span(prompt, raw_prediction)
     raw_exact_match = raw_prediction == target
-    raw_symbolic_match = is_symbolically_equivalent(raw_prediction, target)
     exact_match = extracted_prediction == target
-    symbolic_match = is_symbolically_equivalent(extracted_prediction, target)
 
     return {
         "raw_prediction": raw_prediction,
         "prediction": extracted_prediction,
         "raw_exact_match": raw_exact_match,
-        "raw_symbolic_match": raw_symbolic_match,
         "exact_match": exact_match,
-        "symbolic_match": symbolic_match,
-        # This metric is useful when the raw continuation contains a correct
-        # answer span followed by extra text that should not define the answer.
-        "prefix_symbolic_match": symbolic_match and raw_prediction != extracted_prediction,
-        "span_symbolic_match": symbolic_match,
+        # This diagnostic captures cases where answer extraction saved a
+        # correct first answer span from an otherwise non-exact raw continuation.
+        "prefix_exact_match": exact_match and raw_prediction != extracted_prediction,
         "had_trailing_junk": raw_prediction != extracted_prediction,
         "stopped_cleanly": raw_prediction == extracted_prediction,
     }
 
 
 def compute_accuracy_metrics(records: list[dict[str, Any]], model_key: str) -> dict[str, Any]:
-    """Compute raw and extracted-answer accuracies from saved per-sample records."""
+    """Compute exact-match metrics from saved per-sample records."""
 
     total = max(len(records), 1)
     exact_matches = sum(1 for record in records if record[model_key]["exact_match"])
-    symbolic_matches = sum(1 for record in records if record[model_key]["symbolic_match"])
     raw_exact_matches = sum(1 for record in records if record[model_key]["raw_exact_match"])
-    raw_symbolic_matches = sum(1 for record in records if record[model_key]["raw_symbolic_match"])
-    prefix_symbolic_matches = sum(1 for record in records if record[model_key]["prefix_symbolic_match"])
+    prefix_exact_matches = sum(1 for record in records if record[model_key]["prefix_exact_match"])
     trailing_junk_count = sum(1 for record in records if record[model_key]["had_trailing_junk"])
     stopped_cleanly_count = sum(1 for record in records if record[model_key]["stopped_cleanly"])
 
@@ -198,17 +191,15 @@ def compute_accuracy_metrics(records: list[dict[str, Any]], model_key: str) -> d
                     "target": record["target"],
                     "raw_prediction": model_record["raw_prediction"],
                     "prediction": model_record["prediction"],
-                    "symbolically_correct": model_record["symbolic_match"],
+                    "exact_match": model_record["exact_match"],
                 }
             )
 
     return {
         "num_examples": len(records),
         "exact_match_accuracy": exact_matches / total,
-        "symbolic_accuracy": symbolic_matches / total,
         "raw_exact_match_accuracy": raw_exact_matches / total,
-        "raw_symbolic_accuracy": raw_symbolic_matches / total,
-        "prefix_symbolic_accuracy": prefix_symbolic_matches / total,
+        "prefix_exact_match_accuracy": prefix_exact_matches / total,
         "trailing_junk_rate": trailing_junk_count / total,
         "stopped_cleanly_rate": stopped_cleanly_count / total,
         "sample_mistakes": mistakes,
@@ -269,14 +260,12 @@ def build_per_sample_records(
                 "baseline": baseline_record,
                 "structured": structured_record,
                 "comparison": {
-                    "both_symbolically_correct": baseline_record["symbolic_match"]
-                    and structured_record["symbolic_match"],
-                    "only_baseline_symbolically_correct": baseline_record["symbolic_match"]
-                    and not structured_record["symbolic_match"],
-                    "only_structured_symbolically_correct": structured_record["symbolic_match"]
-                    and not baseline_record["symbolic_match"],
-                    "both_symbolically_wrong": not baseline_record["symbolic_match"]
-                    and not structured_record["symbolic_match"],
+                    "both_exact_match": baseline_record["exact_match"] and structured_record["exact_match"],
+                    "only_baseline_exact_match": baseline_record["exact_match"]
+                    and not structured_record["exact_match"],
+                    "only_structured_exact_match": structured_record["exact_match"]
+                    and not baseline_record["exact_match"],
+                    "both_wrong": not baseline_record["exact_match"] and not structured_record["exact_match"],
                 },
             }
         )
@@ -297,9 +286,8 @@ def print_metrics(label: str, metrics: dict[str, Any]) -> None:
     print(label)
     print(f"  examples: {metrics['num_examples']}")
     print(f"  exact match accuracy: {metrics['exact_match_accuracy']:.4f}")
-    print(f"  symbolic accuracy: {metrics['symbolic_accuracy']:.4f}")
-    print(f"  raw symbolic accuracy: {metrics['raw_symbolic_accuracy']:.4f}")
-    print(f"  prefix-before-junk symbolic accuracy: {metrics['prefix_symbolic_accuracy']:.4f}")
+    print(f"  raw exact match accuracy: {metrics['raw_exact_match_accuracy']:.4f}")
+    print(f"  prefix-before-junk exact match accuracy: {metrics['prefix_exact_match_accuracy']:.4f}")
 
 
 def build_comparison_table(
@@ -320,22 +308,16 @@ def build_comparison_table(
             f"{structured_metrics['exact_match_accuracy'] - baseline_metrics['exact_match_accuracy']:+.4f}",
         ),
         (
-            "Symbolic Accuracy",
-            f"{baseline_metrics['symbolic_accuracy']:.4f}",
-            f"{structured_metrics['symbolic_accuracy']:.4f}",
-            f"{structured_metrics['symbolic_accuracy'] - baseline_metrics['symbolic_accuracy']:+.4f}",
+            "Raw Exact Match Accuracy",
+            f"{baseline_metrics['raw_exact_match_accuracy']:.4f}",
+            f"{structured_metrics['raw_exact_match_accuracy']:.4f}",
+            f"{structured_metrics['raw_exact_match_accuracy'] - baseline_metrics['raw_exact_match_accuracy']:+.4f}",
         ),
         (
-            "Raw Symbolic Accuracy",
-            f"{baseline_metrics['raw_symbolic_accuracy']:.4f}",
-            f"{structured_metrics['raw_symbolic_accuracy']:.4f}",
-            f"{structured_metrics['raw_symbolic_accuracy'] - baseline_metrics['raw_symbolic_accuracy']:+.4f}",
-        ),
-        (
-            "Prefix Symbolic Accuracy",
-            f"{baseline_metrics['prefix_symbolic_accuracy']:.4f}",
-            f"{structured_metrics['prefix_symbolic_accuracy']:.4f}",
-            f"{structured_metrics['prefix_symbolic_accuracy'] - baseline_metrics['prefix_symbolic_accuracy']:+.4f}",
+            "Prefix Exact Match Accuracy",
+            f"{baseline_metrics['prefix_exact_match_accuracy']:.4f}",
+            f"{structured_metrics['prefix_exact_match_accuracy']:.4f}",
+            f"{structured_metrics['prefix_exact_match_accuracy'] - baseline_metrics['prefix_exact_match_accuracy']:+.4f}",
         ),
     ]
 
@@ -352,10 +334,10 @@ def build_difficulty_table(
     baseline_by_difficulty: dict[str, Any],
     structured_by_difficulty: dict[str, Any],
 ) -> str:
-    """Format easy/hard grouped exact and symbolic accuracies."""
+    """Format easy/hard grouped exact-match accuracies."""
 
     difficulties = sorted(set(baseline_by_difficulty) | set(structured_by_difficulty))
-    rows = [("Difficulty", "Examples", "Baseline Exact", "Baseline Symbolic", "Structured Exact", "Structured Symbolic")]
+    rows = [("Difficulty", "Examples", "Baseline Exact", "Structured Exact")]
     for difficulty in difficulties:
         baseline_metrics = baseline_by_difficulty.get(difficulty, {})
         structured_metrics = structured_by_difficulty.get(difficulty, {})
@@ -365,15 +347,13 @@ def build_difficulty_table(
                 difficulty,
                 str(examples),
                 f"{baseline_metrics.get('exact_match_accuracy', 0.0):.4f}",
-                f"{baseline_metrics.get('symbolic_accuracy', 0.0):.4f}",
                 f"{structured_metrics.get('exact_match_accuracy', 0.0):.4f}",
-                f"{structured_metrics.get('symbolic_accuracy', 0.0):.4f}",
             )
         )
 
     widths = [max(len(row[column_index]) for row in rows) for column_index in range(len(rows[0]))]
 
-    def format_row(row: tuple[str, str, str, str, str, str]) -> str:
+    def format_row(row: tuple[str, str, str, str]) -> str:
         return " | ".join(cell.ljust(width) for cell, width in zip(row, widths))
 
     separator = "-+-".join("-" * width for width in widths)
@@ -436,7 +416,7 @@ def build_text_summary(
                     f"  Target: {item['target']}",
                     f"  Raw prediction: {item['raw_prediction']}",
                     f"  Prediction: {item['prediction']}",
-                    f"  Symbolically correct: {item['symbolically_correct']}",
+                    f"  Exact match: {item['exact_match']}",
                 ]
             )
     else:
@@ -452,7 +432,7 @@ def build_text_summary(
                     f"  Target: {item['target']}",
                     f"  Raw prediction: {item['raw_prediction']}",
                     f"  Prediction: {item['prediction']}",
-                    f"  Symbolically correct: {item['symbolically_correct']}",
+                    f"  Exact match: {item['exact_match']}",
                 ]
             )
     else:
@@ -569,12 +549,10 @@ def main() -> None:
         "accuracy_delta": {
             "exact_match_accuracy": structured_metrics["exact_match_accuracy"]
             - baseline_metrics["exact_match_accuracy"],
-            "symbolic_accuracy": structured_metrics["symbolic_accuracy"]
-            - baseline_metrics["symbolic_accuracy"],
-            "raw_symbolic_accuracy": structured_metrics["raw_symbolic_accuracy"]
-            - baseline_metrics["raw_symbolic_accuracy"],
-            "prefix_symbolic_accuracy": structured_metrics["prefix_symbolic_accuracy"]
-            - baseline_metrics["prefix_symbolic_accuracy"],
+            "raw_exact_match_accuracy": structured_metrics["raw_exact_match_accuracy"]
+            - baseline_metrics["raw_exact_match_accuracy"],
+            "prefix_exact_match_accuracy": structured_metrics["prefix_exact_match_accuracy"]
+            - baseline_metrics["prefix_exact_match_accuracy"],
         },
     }
 
