@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -40,6 +41,7 @@ DEFAULT_MODEL_NAME = "gpt2"
 DEFAULT_EXPERIMENT_NAME = "gpt2-small-baseline"
 DEFAULT_ARTIFACTS_ROOT = Path("artifacts") / "models_training_info"
 SYMPY_LOCALS = {name: sp.Symbol(name) for name in ("x", "y", "z")}
+SOLUTION_PART_RE = re.compile(r"^\s*([xyzXYZ])\s*=\s*([+-]?\d+)\s*$")
 
 
 @dataclass
@@ -262,6 +264,31 @@ def maybe_save_checkpoint(
     return save_dir
 
 
+def summarize_named_parameters(model: torch.nn.Module, max_names: int = 20) -> dict[str, Any]:
+    """Record representative parameter names so fine-tuning is auditable."""
+
+    trainable = []
+    frozen = []
+    for name, parameter in model.named_parameters():
+        record = {
+            "name": name,
+            "shape": list(parameter.shape),
+            "numel": parameter.numel(),
+        }
+        if parameter.requires_grad:
+            trainable.append(record)
+        else:
+            frozen.append(record)
+
+    return {
+        "trainable_parameter_count": len(trainable),
+        "frozen_parameter_count": len(frozen),
+        "trainable_parameter_names_sample": trainable[:max_names],
+        "frozen_parameter_names_sample": frozen[:max_names],
+        "all_parameters_trainable": len(frozen) == 0,
+    }
+
+
 def parse_symbolic_answer(text: str) -> sp.Basic | sp.Equality | None:
     """Parse a generated algebra answer into a SymPy expression/equality when possible."""
 
@@ -280,8 +307,38 @@ def parse_symbolic_answer(text: str) -> sp.Basic | sp.Equality | None:
         return None
 
 
+def parse_solution_set(text: str) -> tuple[str, frozenset[int]] | None:
+    """Parse canonical solve outputs like `x = 2` or `x = -1 or x = 3`."""
+
+    parts = text.strip().split(" or ")
+    if not parts:
+        return None
+
+    variable_name: str | None = None
+    solutions: set[int] = set()
+    for part in parts:
+        match = SOLUTION_PART_RE.match(part)
+        if match is None:
+            return None
+        part_variable = match.group(1).lower()
+        if variable_name is None:
+            variable_name = part_variable
+        elif variable_name != part_variable:
+            return None
+        solutions.add(int(match.group(2)))
+
+    if variable_name is None:
+        return None
+    return variable_name, frozenset(solutions)
+
+
 def is_symbolically_equivalent(prediction: str, target: str) -> bool:
     """Compare answers by symbolic meaning, allowing algebraically equivalent text."""
+
+    prediction_solutions = parse_solution_set(prediction)
+    target_solutions = parse_solution_set(target)
+    if prediction_solutions is not None or target_solutions is not None:
+        return prediction_solutions == target_solutions
 
     parsed_prediction = parse_symbolic_answer(prediction)
     parsed_target = parse_symbolic_answer(target)
@@ -360,6 +417,7 @@ def main() -> None:
     model.config.pad_token_id = tokenizer.pad_token_id
     model.to(device)
     total_params, trainable_params = count_parameters(model)
+    parameter_summary = summarize_named_parameters(model)
 
     # Baseline examples use only text; prompt labels are masked inside the dataset wrapper.
     train_examples = JsonlAlgebraDataset(args.train_path).take(args.max_train_samples)
@@ -417,6 +475,10 @@ def main() -> None:
     print(f"Output: {sample_item['output']}")
     print(f"Input ids length: {sample_item['input_ids'].shape[0]}")
     print(f"Masked label positions: {(sample_item['labels'] == -100).sum().item()}")
+    print("Baseline verification:")
+    print(f"Trainable parameter tensors: {parameter_summary['trainable_parameter_count']}")
+    print(f"Frozen parameter tensors: {parameter_summary['frozen_parameter_count']}")
+    print(f"All parameters trainable: {parameter_summary['all_parameters_trainable']}")
     append_jsonl(
         metrics_file,
         {
@@ -442,6 +504,7 @@ def main() -> None:
             "sample_output": sample_item["output"],
             "sample_input_length": int(sample_item["input_ids"].shape[0]),
             "sample_masked_positions": int((sample_item["labels"] == -100).sum().item()),
+            "parameter_summary": parameter_summary,
         },
     )
 
@@ -566,6 +629,11 @@ def main() -> None:
             f"Total parameters: {total_params}",
             f"Trainable parameters: {trainable_params}",
             f"Frozen parameters: {total_params - trainable_params}",
+            f"Trainable parameter tensors: {parameter_summary['trainable_parameter_count']}",
+            f"Frozen parameter tensors: {parameter_summary['frozen_parameter_count']}",
+            f"All parameters trainable: {parameter_summary['all_parameters_trainable']}",
+            "Trainable parameter sample: "
+            + ", ".join(item["name"] for item in parameter_summary["trainable_parameter_names_sample"][:10]),
             f"Train examples: {len(train_examples)}",
             f"Validation examples: {len(val_examples)}",
             f"Test examples: {len(test_examples)}",

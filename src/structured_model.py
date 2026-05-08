@@ -43,6 +43,7 @@ class StructuredCausalLM(nn.Module):
         node_type_ids: torch.Tensor,
         attention_mask: torch.Tensor | None = None,
         labels: torch.Tensor | None = None,
+        position_ids: torch.Tensor | None = None,
         past_key_values=None,
         use_cache: bool | None = None,
     ):
@@ -56,6 +57,7 @@ class StructuredCausalLM(nn.Module):
             inputs_embeds=inputs_embeds,
             attention_mask=attention_mask,
             labels=labels,
+            position_ids=position_ids,
             past_key_values=past_key_values,
             use_cache=use_cache,
         )

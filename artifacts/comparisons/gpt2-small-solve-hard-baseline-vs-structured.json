@@ -1,0 +1,110 @@
+{
+  "baseline_checkpoint": "artifacts\\models_training_info\\gpt2-small-baseline-solve-hard\\best-epoch-2",
+  "structured_checkpoint": "artifacts\\models_training_info\\gpt2-small-structured-solve-hard\\best-epoch-2",
+  "test_path": "data\\solve_hard\\test.jsonl",
+  "per_sample_output_path": "artifacts\\comparisons\\gpt2-small-solve-hard-baseline-vs-structured-per-sample.jsonl",
+  "max_samples": null,
+  "batch_size": 32,
+  "max_new_tokens": 20,
+  "stop_on_valid_answer": true,
+  "baseline": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.272,
+    "symbolic_accuracy": 0.272,
+    "raw_exact_match_accuracy": 0.272,
+    "raw_symbolic_accuracy": 0.272,
+    "prefix_symbolic_accuracy": 0.0,
+    "trailing_junk_rate": 0.0,
+    "stopped_cleanly_rate": 1.0,
+    "sample_mistakes": [
+      {
+        "prompt": "solve 9 - 6*x = 3 - 5*x for x =>",
+        "target": "x = 6",
+        "raw_prediction": "x = 2",
+        "prediction": "x = 2",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve x - x + 3 = 3*x for x =>",
+        "target": "x = 1",
+        "raw_prediction": "x = -1",
+        "prediction": "x = -1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve x + 5*x - 2 = 0*x + 28 for x =>",
+        "target": "x = 5",
+        "raw_prediction": "x = 6",
+        "prediction": "x = 6",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -6*x - 2 = -2*x - 10 for x =>",
+        "target": "x = 2",
+        "raw_prediction": "x = -4",
+        "prediction": "x = -4",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve 5*x - 1 = 65 - 6*x for x =>",
+        "target": "x = 6",
+        "raw_prediction": "x = 5",
+        "prediction": "x = 5",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "structured": {
+    "num_examples": 500,
+    "exact_match_accuracy": 0.258,
+    "symbolic_accuracy": 0.258,
+    "raw_exact_match_accuracy": 0.258,
+    "raw_symbolic_accuracy": 0.258,
+    "prefix_symbolic_accuracy": 0.0,
+    "trailing_junk_rate": 0.0,
+    "stopped_cleanly_rate": 1.0,
+    "sample_mistakes": [
+      {
+        "prompt": "solve 9 - 6*x = 3 - 5*x for x =>",
+        "target": "x = 6",
+        "raw_prediction": "x = 1",
+        "prediction": "x = 1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve x - x + 3 = 3*x for x =>",
+        "target": "x = 1",
+        "raw_prediction": "x = -1",
+        "prediction": "x = -1",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve x + 5*x - 2 = 0*x + 28 for x =>",
+        "target": "x = 5",
+        "raw_prediction": "x = 4",
+        "prediction": "x = 4",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve -6*x - 2 = -2*x - 10 for x =>",
+        "target": "x = 2",
+        "raw_prediction": "x = -3",
+        "prediction": "x = -3",
+        "symbolically_correct": false
+      },
+      {
+        "prompt": "solve 4*x + 3*x = -4*x for x =>",
+        "target": "x = 0",
+        "raw_prediction": "x = -1",
+        "prediction": "x = -1",
+        "symbolically_correct": false
+      }
+    ]
+  },
+  "accuracy_delta": {
+    "exact_match_accuracy": -0.014000000000000012,
+    "symbolic_accuracy": -0.014000000000000012,
+    "raw_symbolic_accuracy": -0.014000000000000012,
+    "prefix_symbolic_accuracy": 0.0
+  }
+}

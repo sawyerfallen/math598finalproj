@@ -1,0 +1,43 @@
+Experiment: gpt2-small-structured-solve-mixed-10000
+Model: gpt2
+Device: cpu
+Output directory: artifacts\models_training_info\gpt2-small-structured-solve-mixed-10000
+Metrics file: artifacts\models_training_info\gpt2-small-structured-solve-mixed-10000\metrics.jsonl
+Test sample losses file: artifacts\models_training_info\gpt2-small-structured-solve-mixed-10000\test_sample_losses.jsonl
+Best checkpoint: artifacts\models_training_info\gpt2-small-structured-solve-mixed-10000\best-epoch-1
+Final checkpoint: artifacts\models_training_info\gpt2-small-structured-solve-mixed-10000\final-model
+Total parameters: 124446720
+Trainable parameters: 124446720
+Frozen parameters: 0
+Trainable parameter tensors: 149
+Frozen parameter tensors: 0
+Trainable parameter sample: base.transformer.wte.weight, base.transformer.wpe.weight, base.transformer.h.0.ln_1.weight, base.transformer.h.0.ln_1.bias, base.transformer.h.0.attn.c_attn.weight, base.transformer.h.0.attn.c_attn.bias, base.transformer.h.0.attn.c_proj.weight, base.transformer.h.0.attn.c_proj.bias, base.transformer.h.0.ln_2.weight, base.transformer.h.0.ln_2.bias
+Freeze base: False
+Node-type embedding trainable: True
+Node-type embedding shape: [9, 768]
+Node-type usage over 128 train examples: {'ADD': 267, 'CONSTANT': 532, 'EQUALITY': 128, 'MUL': 179, 'POW': 16, 'PUNCT': 198, 'TASK': 384, 'VARIABLE': 333}
+Non-OTHER prompt node-type tokens: 2037 / 2037
+Prompts with non-OTHER node types: 128
+Train examples: 10000
+Validation examples: 1000
+Test examples: 1000
+Epochs: 1
+Batch size: 32
+Eval batch size: 32
+Learning rate: 0.0001
+Weight decay: 0.01
+Max grad norm: 1.0
+Max length: 128
+Seed: 42
+Best validation loss: 0.333315
+Last validation loss: 0.333315
+Test loss: 0.343596
+Best checkpoint structured_state.pt exists: True
+Best checkpoint node_type_embedding present: True
+Best checkpoint node_type_embedding shape: [9, 768]
+Best checkpoint node_type_embedding abs sum: 11.705364227294922
+Best checkpoint node_type_embedding nonzero: True
+Final checkpoint structured_state.pt exists: True
+Final checkpoint node_type_embedding nonzero: True
+Save best checkpoint: True
+Generation evaluation: skipped in v1 for inputs_embeds-based structured model.

@@ -1,0 +1,1000 @@
+{"prompt": "solve 1*(x + 3) + 2 = 5*(x + 1) - 16 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x + 2) + 3 = 9 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*(x) = -5*(x) - 32 for x =>", "output": "x = -4"}
+{"prompt": "solve 9 - 3*x = 3 - 4*x for x =>", "output": "x = -6"}
+{"prompt": "solve -x + 2*x + 1 = -2*x + 19 for x =>", "output": "x = 6"}
+{"prompt": "solve 3*x + x - 4 = 3*x - 8 for x =>", "output": "x = -4"}
+{"prompt": "solve 1 - 4*x = -7 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*(x) = -5*(x + 4) + 68 for x =>", "output": "x = 6"}
+{"prompt": "solve -3*x - 3*x - 3 = -2*x + 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 1*(x + 2) + 1 = 3 for x =>", "output": "x = 0"}
+{"prompt": "solve 3 - 4*x = 3 for x =>", "output": "x = 0"}
+{"prompt": "solve 5*x + 6 = 6*x + 8 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*(x - 5) - 2 = -4*(x + 1) + 24 for x =>", "output": "x = 6"}
+{"prompt": "solve 4*x + 4 = 20 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*(x - 3) + 5 = 37 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 3 = 2*x + 5 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x + x = x + 6 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x + 4) - 2 = 4*(x + 5) + 10 for x =>", "output": "x = -6"}
+{"prompt": "solve -2*x - 4 = -10 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x + 3) - 4 = -4 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*(x + 3) + 5 = 5*(x) + 13 for x =>", "output": "x = 4"}
+{"prompt": "solve 6*x - 3 = -5*x - 47 for x =>", "output": "x = -4"}
+{"prompt": "solve 6*x - 7 = -x for x =>", "output": "x = 1"}
+{"prompt": "solve -6*x - 3 = 2*x - 11 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*(x + 4) - 5 = -2*(x + 3) - 15 for x =>", "output": "x = 0"}
+{"prompt": "solve 1*(x + 3) + 3 = -2*(x - 5) + 8 for x =>", "output": "x = 4"}
+{"prompt": "solve -1*(x + 2) + 4 = -2 for x =>", "output": "x = 4"}
+{"prompt": "solve -3*x - 2*x + 1 = -x - 19 for x =>", "output": "x = 5"}
+{"prompt": "solve 1*(x + 4) + 3 = -4*(x - 3) + 15 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*x - 5*x - 2 = 5*x + 26 for x =>", "output": "x = -2"}
+{"prompt": "solve 1*(x + 5) = 5 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*x + x - 4 = 4*x + 20 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x = -8 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*(x + 5) + 5 = -22 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x + 3) - 5 = 27 for x =>", "output": "x = 5"}
+{"prompt": "solve 4*x + 1 = -19 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x - 2*x = -3*x + 6 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*(x + 2) + 5 = 1 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x - 9 = 39 - 4*x for x =>", "output": "x = 6"}
+{"prompt": "solve 5*(x - 3) = -20 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x + 5*x - 2 = 5*x + 3 for x =>", "output": "x = 1"}
+{"prompt": "solve -1*(x - 1) + 5 = -5*(x) - 10 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x + 1) - 2 = 1*(x + 1) + 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x - 3*x - 4 = -3*x + 16 for x =>", "output": "x = 5"}
+{"prompt": "solve 1*(x - 4) + 2 = 2 for x =>", "output": "x = 4"}
+{"prompt": "solve -5*x - 2 = -17 for x =>", "output": "x = 3"}
+{"prompt": "solve -3*(x - 1) + 4 = 4*(x - 2) + 29 for x =>", "output": "x = -2"}
+{"prompt": "solve -1*(x + 5) = -4*(x + 4) + 5 for x =>", "output": "x = -2"}
+{"prompt": "solve -3*(x) - 3 = 12 for x =>", "output": "x = -5"}
+{"prompt": "solve -1*(x - 4) - 1 = -4*(x - 2) - 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x + 5) - 1 = 2 for x =>", "output": "x = -4"}
+{"prompt": "solve 5 - 6*x = 5 - x for x =>", "output": "x = 0"}
+{"prompt": "solve 1 - 3*x = -11 for x =>", "output": "x = 4"}
+{"prompt": "solve -1*(x - 2) - 1 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*x + 5 = 12 - 5*x for x =>", "output": "x = 1"}
+{"prompt": "solve 4*x - 8 = 6*x - 14 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*x + 5*x + 4 = -3*x - 2 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x - 7 = -4*x - 25 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x - 5*x - 4 = x + 5 for x =>", "output": "x = -3"}
+{"prompt": "solve -5*x + 4*x - 4 = 2*x - 10 for x =>", "output": "x = 2"}
+{"prompt": "solve x**2 + 8*x + 15 = 0 for x =>", "output": "x = -5 or x = -3"}
+{"prompt": "solve 5*(x) - 5 = -2*(x + 5) + 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x + 4) - 5 = 2*(x + 5) - 8 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*(x + 5) + 1 = -5*(x + 1) + 61 for x =>", "output": "x = 5"}
+{"prompt": "solve 10 - x = 18 - 3*x for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x) + 5 = -15 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*x - 3*x - 3 = 2*x + 1 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x - 3*x + 2 = x + 2 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x - 3*x + 3 = -4*x - 1 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x - 4) - 2 = 3*(x + 4) - 32 for x =>", "output": "x = 5"}
+{"prompt": "solve -2*x + 4*x - 3 = 3*x - 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 5*x - 4 = 1 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x - x - 2 = 0*x + 4 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x - 5) - 2 = -47 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x + x + 2 = -2*x + 9 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*(x - 1) - 3 = -4*(x - 1) - 7 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x - 4) + 5 = 8 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x + 3*x + 5 = 0*x + 15 for x =>", "output": "x = 2"}
+{"prompt": "solve 4 - 5*x = 29 for x =>", "output": "x = -5"}
+{"prompt": "solve -1*(x + 3) - 4 = -10 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*(x + 2) + 1 = -5*(x + 5) + 15 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x + 5) + 1 = -3 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*(x + 4) + 4 = 19 for x =>", "output": "x = 1"}
+{"prompt": "solve x - 7 = 28 - 6*x for x =>", "output": "x = 5"}
+{"prompt": "solve -5*(x - 3) - 5 = -3*(x + 2) + 24 for x =>", "output": "x = -4"}
+{"prompt": "solve -x - 5*x - 3 = 4*x + 37 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*(x - 5) + 5 = -16 for x =>", "output": "x = -2"}
+{"prompt": "solve 6 - 6*x = -3*x - 6 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x - x - 2 = -4*x + 22 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*(x - 2) + 3 = 13 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x - 5) - 5 = -19 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x - 7 = -6*x - 43 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x - 5) - 2 = -4*(x + 4) + 26 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*x + x - 2 = -5*x - 26 for x =>", "output": "x = -6"}
+{"prompt": "solve -4*(x - 4) + 3 = 23 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*x - 5 = -20 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x + 2*x - 3 = 5*x - 9 for x =>", "output": "x = 6"}
+{"prompt": "solve -5*(x) - 3 = -28 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 5*x - 1 = 4*x + 35 for x =>", "output": "x = -6"}
+{"prompt": "solve 3*(x - 1) - 3 = -15 for x =>", "output": "x = -3"}
+{"prompt": "solve x - 5*x + 4 = -5*x + 5 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*x + 2*x - 5 = 5*x - 10 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*x**2 + 20*x + 48 = 0 for x =>", "output": "x = -6 or x = -4"}
+{"prompt": "solve 3*(x - 5) - 2 = -2 for x =>", "output": "x = 5"}
+{"prompt": "solve 6*x - 2 = 26 - x for x =>", "output": "x = 4"}
+{"prompt": "solve 2*x - 6 = x - 7 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x - 2) - 1 = 3*(x + 2) - 19 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x - 1) - 5 = -2*(x - 5) + 2 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*(x - 5) + 3 = -5*(x) + 20 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x + 1 = -15 for x =>", "output": "x = -4"}
+{"prompt": "solve x - 3*x + 2 = 2*x - 2 for x =>", "output": "x = 1"}
+{"prompt": "solve -5*(x - 1) - 2 = -3*(x - 2) - 5 for x =>", "output": "x = 1"}
+{"prompt": "solve -5*(x + 5) + 3 = -3*(x - 2) - 16 for x =>", "output": "x = -6"}
+{"prompt": "solve 5*x + 9 = -6*x - 13 for x =>", "output": "x = -2"}
+{"prompt": "solve 1 - x = 25 - 5*x for x =>", "output": "x = 6"}
+{"prompt": "solve -1*(x + 1) - 3 = -9 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x + 6 = 3*x + 11 for x =>", "output": "x = -5"}
+{"prompt": "solve 9 - 2*x = 5*x + 16 for x =>", "output": "x = -1"}
+{"prompt": "solve 2 - 2*x = 10 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x + 4 = 44 - 5*x for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 3 = 2*x - 21 for x =>", "output": "x = -6"}
+{"prompt": "solve -5*(x + 2) - 4 = 11 for x =>", "output": "x = -5"}
+{"prompt": "solve -3*(x + 1) = 12 for x =>", "output": "x = -5"}
+{"prompt": "solve x + 2*x - 5 = 5*x - 3 for x =>", "output": "x = -1"}
+{"prompt": "solve 4*x + 6 = 6 - 2*x for x =>", "output": "x = 0"}
+{"prompt": "solve -x + 3*x + 4 = -3*x - 26 for x =>", "output": "x = -6"}
+{"prompt": "solve 4*x + x - 5 = 0*x - 20 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x + 2*x - 3 = x - 23 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x**2 - 2*x - 24 = 0 for x =>", "output": "x = -3 or x = 4"}
+{"prompt": "solve -6*x - 6 = 6*x + 54 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*(x + 4) - 5 = -2*(x - 1) - 23 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*(x + 3) + 5 = -4*(x - 3) - 23 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*(x + 2) + 2 = -2*(x - 3) + 8 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x = 5*x + 9 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*(x + 1) - 4 = -4 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*x - 2*x - 1 = -2*x + 1 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x - 4) + 3 = 18 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x - 1) - 1 = -2*(x - 5) - 4 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*(x - 5) - 5 = -1*(x + 5) - 30 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x**2 - 21*x + 30 = 0 for x =>", "output": "x = 2 or x = 5"}
+{"prompt": "solve -2*(x - 5) + 4 = -4*(x - 5) + 6 for x =>", "output": "x = 6"}
+{"prompt": "solve 1 - x = 3 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x - 3 = -15 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x) + 4 = 14 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*x + 2*x - 1 = -x - 7 for x =>", "output": "x = 6"}
+{"prompt": "solve -2*x + 5*x = 2*x + 2 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*x - x + 5 = -5*x + 3 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x = 2*x + 4 for x =>", "output": "x = 4"}
+{"prompt": "solve -x - 2*x - 2 = -4*x + 1 for x =>", "output": "x = 3"}
+{"prompt": "solve -x + x - 5 = -5*x + 20 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x + 5*x + 4 = -4*x + 14 for x =>", "output": "x = 2"}
+{"prompt": "solve 1*(x - 2) - 2 = -3 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*x + 5 = 17 - x for x =>", "output": "x = 2"}
+{"prompt": "solve -3*(x + 2) - 2 = -23 for x =>", "output": "x = 5"}
+{"prompt": "solve 1*(x - 5) + 3 = -4 for x =>", "output": "x = -2"}
+{"prompt": "solve 5*(x - 4) - 4 = -9 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x + 3*x - 3 = x + 1 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*x + x - 3 = 2*x - 9 for x =>", "output": "x = -6"}
+{"prompt": "solve 5*x + 2*x - 3 = 5*x + 5 for x =>", "output": "x = 4"}
+{"prompt": "solve 1*(x - 1) + 4 = 5*(x + 1) - 18 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x - 4) - 2 = -14 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*x - 5 = 11 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x - 5 = 2 - 4*x for x =>", "output": "x = 1"}
+{"prompt": "solve -4*(x - 3) = 20 for x =>", "output": "x = -2"}
+{"prompt": "solve -x - 3*x - 3 = -x - 12 for x =>", "output": "x = 3"}
+{"prompt": "solve x + 3*x - 3 = 0*x + 5 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x - 2 = -x for x =>", "output": "x = -2"}
+{"prompt": "solve -6*x = 4*x + 40 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*x + 2*x - 2 = -x - 6 for x =>", "output": "x = 2"}
+{"prompt": "solve 1 - 4*x = 21 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*(x + 3) - 5 = -7 for x =>", "output": "x = -4"}
+{"prompt": "solve -x - 4 = 5*x - 10 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*(x - 5) + 4 = -41 for x =>", "output": "x = -4"}
+{"prompt": "solve 6 - 5*x = 5*x + 6 for x =>", "output": "x = 0"}
+{"prompt": "solve -x - 10 = 3*x + 14 for x =>", "output": "x = -6"}
+{"prompt": "solve 2*(x + 3) + 3 = 15 for x =>", "output": "x = 3"}
+{"prompt": "solve 1*(x + 3) = -1*(x - 4) - 5 for x =>", "output": "x = -2"}
+{"prompt": "solve -x - 3*x + 5 = -x + 14 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x - 4 = x - 4 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*x + 2*x - 2 = -4*x - 14 for x =>", "output": "x = -6"}
+{"prompt": "solve 2*(x + 5) - 3 = 15 for x =>", "output": "x = 4"}
+{"prompt": "solve -3*(x - 3) - 5 = -1*(x + 5) + 21 for x =>", "output": "x = -6"}
+{"prompt": "solve x + 8 = 3*x + 8 for x =>", "output": "x = 0"}
+{"prompt": "solve 5 - x = 2 for x =>", "output": "x = 3"}
+{"prompt": "solve -1*(x - 1) + 1 = 0 for x =>", "output": "x = 2"}
+{"prompt": "solve 1*(x + 1) - 5 = -5*(x - 2) + 16 for x =>", "output": "x = 5"}
+{"prompt": "solve -2*x + 4*x - 3 = 0*x + 3 for x =>", "output": "x = 3"}
+{"prompt": "solve 6*x + 6 = 20 - x for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x - 3 = x - 23 for x =>", "output": "x = 4"}
+{"prompt": "solve -1*(x - 5) - 2 = 2 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x + 5*x - 2 = -5*x - 80 for x =>", "output": "x = -6"}
+{"prompt": "solve 6*x + 8 = 53 - 3*x for x =>", "output": "x = 5"}
+{"prompt": "solve 3*(x - 3) + 5 = 5*(x - 1) + 11 for x =>", "output": "x = -5"}
+{"prompt": "solve -1*(x - 3) - 3 = -5 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x - 5*x + 2 = 3*x - 22 for x =>", "output": "x = 2"}
+{"prompt": "solve 6*x + 8 = -6*x - 28 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*x - 3 = 12 for x =>", "output": "x = 3"}
+{"prompt": "solve x + 3*x + 2 = -3*x - 33 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*x - 3 = 3 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*(x + 3) + 5 = 37 for x =>", "output": "x = 5"}
+{"prompt": "solve x + 6 = 5*x - 6 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*x + 10 = -2*x - 14 for x =>", "output": "x = -4"}
+{"prompt": "solve 6*x - 5 = 11 - 2*x for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x - 1 = 9 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*x + 3*x + 5 = -5*x - 3 for x =>", "output": "x = -2"}
+{"prompt": "solve -1*(x - 5) + 1 = -2*(x - 4) - 8 for x =>", "output": "x = -6"}
+{"prompt": "solve 6 - 3*x = 2*x - 24 for x =>", "output": "x = 6"}
+{"prompt": "solve -4*(x) - 4 = 0 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*x + 2 = -4*x - 16 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*(x + 3) - 5 = 9 for x =>", "output": "x = 4"}
+{"prompt": "solve -x + 2*x + 5 = -x + 17 for x =>", "output": "x = 6"}
+{"prompt": "solve 1*(x - 4) + 1 = -6 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*(x + 4) + 5 = 17 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*x + 3*x - 1 = -3*x - 61 for x =>", "output": "x = -6"}
+{"prompt": "solve 6*x + 10 = 42 - 2*x for x =>", "output": "x = 4"}
+{"prompt": "solve -2*x - x - 2 = -x - 8 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x - 3) + 4 = -26 for x =>", "output": "x = -3"}
+{"prompt": "solve 1*(x - 3) - 1 = -1 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*(x - 3) + 4 = 32 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*x - 3*x = -2*x - 20 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*(x + 1) - 2 = -3*(x - 5) - 25 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*(x) = -5*(x - 2) - 52 for x =>", "output": "x = -6"}
+{"prompt": "solve -2*(x + 3) + 3 = -3*(x - 3) - 12 for x =>", "output": "x = 0"}
+{"prompt": "solve 4 - 5*x = -6 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x + 2*x + 1 = 2*x + 17 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*x - 5*x + 2 = 5*x - 58 for x =>", "output": "x = 5"}
+{"prompt": "solve -5*x + 2*x + 4 = -4*x - 1 for x =>", "output": "x = -5"}
+{"prompt": "solve 2 - 4*x = -10 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*(x + 4) - 1 = 7 for x =>", "output": "x = -2"}
+{"prompt": "solve -5*x - 2*x - 4 = 2*x - 49 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*(x - 4) - 4 = 1 for x =>", "output": "x = 5"}
+{"prompt": "solve 4*(x - 4) - 4 = 3*(x - 4) - 5 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x + 2) + 5 = -15 for x =>", "output": "x = 2"}
+{"prompt": "solve -x - 3 = -3 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*(x - 4) + 4 = -2*(x + 4) + 30 for x =>", "output": "x = -6"}
+{"prompt": "solve -1*(x + 2) + 2 = 4 for x =>", "output": "x = -4"}
+{"prompt": "solve 5 - 4*x = -3 for x =>", "output": "x = 2"}
+{"prompt": "solve -1*(x + 1) + 4 = -2 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*(x - 5) + 5 = -35 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*(x - 5) = -5 for x =>", "output": "x = 4"}
+{"prompt": "solve x + 3 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*x + 2*x + 4 = 3*x + 4 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*(x + 1) - 5 = -5*(x + 5) + 19 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*x - 5 = 3*x + 31 for x =>", "output": "x = -6"}
+{"prompt": "solve 4*x - 6 = 2 - 4*x for x =>", "output": "x = 1"}
+{"prompt": "solve 3 - 2*x = -1 for x =>", "output": "x = 2"}
+{"prompt": "solve -1*(x - 3) + 2 = 10 for x =>", "output": "x = -5"}
+{"prompt": "solve -5*x + 2*x - 5 = -5*x + 3 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*(x - 4) - 2 = -37 for x =>", "output": "x = -3"}
+{"prompt": "solve x - 6 = 5*x - 18 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x + 4 = 34 - 3*x for x =>", "output": "x = 6"}
+{"prompt": "solve 4*(x - 5) - 2 = -18 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*x - 9 = -x - 39 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 4 = 19 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x + 4 = 19 - 2*x for x =>", "output": "x = 3"}
+{"prompt": "solve -1*(x - 4) = -1 for x =>", "output": "x = 5"}
+{"prompt": "solve x + 3 = 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x - 5*x - 5 = 3*x - 17 for x =>", "output": "x = 3"}
+{"prompt": "solve -1*(x - 4) + 4 = -5*(x + 2) - 2 for x =>", "output": "x = -5"}
+{"prompt": "solve x + 10 = 5*x + 10 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*x + 5*x = -4*x + 12 for x =>", "output": "x = 3"}
+{"prompt": "solve x**2 - 3*x + 2 = 0 for x =>", "output": "x = 1 or x = 2"}
+{"prompt": "solve -5*(x - 2) + 1 = 5*(x + 1) - 14 for x =>", "output": "x = 2"}
+{"prompt": "solve -3*(x - 2) + 2 = -4 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x**2 - 9*x - 54 = 0 for x =>", "output": "x = -3 or x = 6"}
+{"prompt": "solve -4*x - 2 = 4*x - 42 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x - 3 = -11 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x**2 - 48 = 0 for x =>", "output": "x = -4 or x = 4"}
+{"prompt": "solve 4*x - 4*x = -2*x - 8 for x =>", "output": "x = -4"}
+{"prompt": "solve 1*(x + 1) - 1 = 3 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*x - 4*x + 4 = 2*x for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x**2 - 18*x + 24 = 0 for x =>", "output": "x = 2 or x = 4"}
+{"prompt": "solve 4*(x + 5) + 4 = 28 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*(x - 4) - 5 = 5*(x + 4) - 10 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x + 3*x + 3 = -x - 51 for x =>", "output": "x = -6"}
+{"prompt": "solve -3*(x + 5) + 4 = -8 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x - 4) - 1 = 2 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*x - 10 = -2*x for x =>", "output": "x = -5"}
+{"prompt": "solve 1 - 5*x = 4 - 2*x for x =>", "output": "x = -1"}
+{"prompt": "solve 5 - 3*x = 14 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x) + 4 = 5*(x + 1) - 31 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x - 3 = -5*x - 3 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*x + x + 4 = 3*x + 12 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*(x + 3) + 3 = 2*(x - 3) - 33 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*x - 2*x + 3 = -2*x + 15 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*x - 1 = 4 - 3*x for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x + 4*x - 2 = -4*x + 58 for x =>", "output": "x = 6"}
+{"prompt": "solve 4*(x - 1) + 2 = 5*(x - 4) + 21 for x =>", "output": "x = -3"}
+{"prompt": "solve -x - 6 = 4*x - 26 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*(x - 5) - 1 = 15 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*x - 3 = 5*x + 24 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*x + 3 = -3 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*(x + 1) + 2 = -2*(x - 4) - 28 for x =>", "output": "x = -6"}
+{"prompt": "solve x - 3 = -5*x - 3 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*x - 5*x - 2 = -5*x + 6 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x - 5) + 5 = 5*(x + 1) + 10 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*(x - 2) + 2 = -8 for x =>", "output": "x = 4"}
+{"prompt": "solve -1*(x - 2) - 3 = -6 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 4 = 32 - 4*x for x =>", "output": "x = 4"}
+{"prompt": "solve 5*x - 2*x - 1 = 2*x - 7 for x =>", "output": "x = -6"}
+{"prompt": "solve -4*x + x - 5 = -2*x - 10 for x =>", "output": "x = 5"}
+{"prompt": "solve 2 - 6*x = -3*x - 7 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*(x - 3) + 5 = 5*(x + 1) + 57 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*x - 10 = 6*x - 4 for x =>", "output": "x = -6"}
+{"prompt": "solve -1*(x) = 2*(x - 4) + 23 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*(x + 5) - 2 = -4*(x + 1) - 9 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x - 3) + 1 = 3 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x - 4) - 3 = 17 for x =>", "output": "x = 0"}
+{"prompt": "solve 5*x - 3 = 17 for x =>", "output": "x = 4"}
+{"prompt": "solve 2 - 3*x = 14 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*(x - 3) - 5 = -4*(x + 3) + 12 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 6 = 6*x + 2 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*x - 4 = x - 34 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x - 10 = 3*x - 4 for x =>", "output": "x = -6"}
+{"prompt": "solve 2*(x) + 4 = -1*(x - 4) - 18 for x =>", "output": "x = -6"}
+{"prompt": "solve 3*(x + 1) - 3 = -15 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x - 5 = 5*x + 5 for x =>", "output": "x = -5"}
+{"prompt": "solve -5*(x - 3) - 1 = 14 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x + 4) - 1 = -1*(x + 1) + 36 for x =>", "output": "x = 6"}
+{"prompt": "solve 2*x - 6 = 1 - 5*x for x =>", "output": "x = 1"}
+{"prompt": "solve 4*(x - 1) + 4 = -3*(x - 4) + 23 for x =>", "output": "x = 5"}
+{"prompt": "solve 1*(x + 5) = 4*(x + 1) + 4 for x =>", "output": "x = -1"}
+{"prompt": "solve 1*(x - 3) - 2 = -9 for x =>", "output": "x = -4"}
+{"prompt": "solve -1*(x - 5) - 5 = 3*(x - 3) + 1 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x - 3 = 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*x + 2 = -7 for x =>", "output": "x = -3"}
+{"prompt": "solve -2*x - 4*x - 3 = -4*x + 3 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*(x - 3) + 4 = -16 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x - 2*x - 4 = -4*x + 3 for x =>", "output": "x = 1"}
+{"prompt": "solve x**2 - 6*x + 8 = 0 for x =>", "output": "x = 2 or x = 4"}
+{"prompt": "solve -1*(x - 1) + 4 = -2*(x + 5) + 21 for x =>", "output": "x = 6"}
+{"prompt": "solve -2*x - 5*x + 4 = 3*x + 14 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x - 4) + 3 = -4*(x - 1) + 9 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*x + x - 2 = -x - 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*x - 4*x - 2 = 2*x - 20 for x =>", "output": "x = 2"}
+{"prompt": "solve -3*(x + 1) + 4 = 4*(x - 3) + 27 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*x - 9 = x + 11 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*x + 1 = -19 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x - 3*x + 4 = x - 2 for x =>", "output": "x = 6"}
+{"prompt": "solve 1*(x - 4) + 5 = 4*(x - 1) + 8 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x - 5) + 5 = -13 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*x + 8 = 56 - 5*x for x =>", "output": "x = 6"}
+{"prompt": "solve -2*(x - 1) + 5 = -5*(x - 4) - 4 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*(x - 1) - 2 = 2*(x - 3) + 22 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x**2 + 18*x + 15 = 0 for x =>", "output": "x = -5 or x = -1"}
+{"prompt": "solve -4*(x - 2) + 2 = 2 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x - 3*x - 2 = 2*x - 56 for x =>", "output": "x = 6"}
+{"prompt": "solve 3*(x + 1) - 5 = 5*(x - 2) + 8 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*x + 3*x - 4 = -5*x - 16 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x - 3) + 3 = -4*(x + 3) + 27 for x =>", "output": "x = 3"}
+{"prompt": "solve 2 - 5*x = 6*x + 13 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*(x - 5) + 2 = 3*(x + 3) - 22 for x =>", "output": "x = 5"}
+{"prompt": "solve -x - 7 = 5 - 3*x for x =>", "output": "x = 6"}
+{"prompt": "solve 4*(x - 2) - 1 = 2*(x - 1) - 3 for x =>", "output": "x = 2"}
+{"prompt": "solve 1*(x + 2) + 3 = -2*(x - 4) - 12 for x =>", "output": "x = -3"}
+{"prompt": "solve -5*(x - 4) = -4*(x + 3) + 33 for x =>", "output": "x = -1"}
+{"prompt": "solve 1*(x + 5) + 1 = 11 for x =>", "output": "x = 5"}
+{"prompt": "solve 8 - 3*x = 4*x + 29 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x + 4) + 4 = -3 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*x + 4*x - 5 = 5*x + 10 for x =>", "output": "x = -5"}
+{"prompt": "solve -3*(x - 5) - 3 = 6 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x - 2*x + 5 = -2*x + 17 for x =>", "output": "x = 6"}
+{"prompt": "solve 3 - 6*x = 5 - 5*x for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x + 5*x + 2 = 2*x + 20 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*x - 5 = 1 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x = 6 - 5*x for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x - 4*x + 3 = 2*x - 37 for x =>", "output": "x = 5"}
+{"prompt": "solve -1*(x + 4) + 2 = -3*(x - 3) - 11 for x =>", "output": "x = 0"}
+{"prompt": "solve x + 1 = 2 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x - 5 = 10 for x =>", "output": "x = 5"}
+{"prompt": "solve 4*(x - 1) + 3 = 3 for x =>", "output": "x = 1"}
+{"prompt": "solve 4*x + 4*x = -4*x for x =>", "output": "x = 0"}
+{"prompt": "solve 4*x + 5*x - 4 = 5*x - 16 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*(x + 5) + 4 = 5*(x + 1) + 4 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*(x - 4) + 5 = 5 for x =>", "output": "x = 4"}
+{"prompt": "solve -5*x - x - 4 = -x - 9 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*(x - 4) - 2 = -8 for x =>", "output": "x = 2"}
+{"prompt": "solve -x - x + 2 = 5*x - 19 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*x - 4*x + 4 = -4*x + 8 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x - x + 1 = x - 2 for x =>", "output": "x = -1"}
+{"prompt": "solve -1*(x + 3) - 4 = 4*(x + 4) - 3 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*x - 2*x + 1 = -2*x + 11 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*x + 4*x - 1 = -5*x + 29 for x =>", "output": "x = 6"}
+{"prompt": "solve -2*(x - 4) + 2 = 6 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x + 1) = 15 for x =>", "output": "x = -4"}
+{"prompt": "solve -x - 4 = -2*x - 7 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x - 5 = -x - 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*(x) - 5 = 11 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x - 3 = -6*x - 12 for x =>", "output": "x = -1"}
+{"prompt": "solve x + 5*x = -3*x + 54 for x =>", "output": "x = 6"}
+{"prompt": "solve -5*x + 4*x + 1 = -2*x + 2 for x =>", "output": "x = 1"}
+{"prompt": "solve -5*x + 3*x + 4 = -x + 7 for x =>", "output": "x = -3"}
+{"prompt": "solve x + 2 = 0 for x =>", "output": "x = -2"}
+{"prompt": "solve 2 - 6*x = x - 26 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x + 2) + 1 = -3 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*x - 9 = 4*x - 2 for x =>", "output": "x = -1"}
+{"prompt": "solve -x - 4*x - 2 = -4*x - 4 for x =>", "output": "x = 2"}
+{"prompt": "solve -4*(x - 2) - 1 = 3*(x + 3) - 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -x + 5*x - 2 = 2*x - 8 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*(x - 1) - 3 = 5 for x =>", "output": "x = 5"}
+{"prompt": "solve -5*(x + 3) + 5 = 2*(x) + 18 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*x - 7 = -6*x - 8 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*(x + 4) - 4 = -24 for x =>", "output": "x = 0"}
+{"prompt": "solve 3 - 3*x = -x - 7 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*x + 4*x + 1 = -3*x + 25 for x =>", "output": "x = 6"}
+{"prompt": "solve 3*x**2 - 3*x - 60 = 0 for x =>", "output": "x = -4 or x = 5"}
+{"prompt": "solve 1*(x + 2) - 2 = -3*(x - 4) + 12 for x =>", "output": "x = 6"}
+{"prompt": "solve -2*(x - 5) - 4 = 5*(x - 1) + 39 for x =>", "output": "x = -4"}
+{"prompt": "solve -1*(x + 2) - 5 = -10 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x + 3) - 1 = -3*(x - 4) - 26 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x + 5) = 4*(x + 2) - 37 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x - 4) - 5 = 1*(x + 2) + 43 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*(x + 5) - 1 = 19 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x + 1 = -8 for x =>", "output": "x = -3"}
+{"prompt": "solve -5*(x + 3) - 1 = -1 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*x - 10 = -3*x - 50 for x =>", "output": "x = -5"}
+{"prompt": "solve 7 - 5*x = 3*x + 31 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x - 5*x - 1 = -x + 3 for x =>", "output": "x = -2"}
+{"prompt": "solve 3 - x = 1 for x =>", "output": "x = 2"}
+{"prompt": "solve -6*x - 7 = 5*x + 4 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*x - 4 = -4 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*x - 4 = 2*x + 4 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x - 3 = 7 - 3*x for x =>", "output": "x = 2"}
+{"prompt": "solve 6*x + 7 = 4*x + 11 for x =>", "output": "x = 2"}
+{"prompt": "solve -3*x - 3*x + 2 = -4*x + 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*x - 4*x - 2 = x - 47 for x =>", "output": "x = 5"}
+{"prompt": "solve -5*x - x + 2 = 5*x + 46 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*x + 3*x + 3 = -2*x + 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 4*(x - 1) + 5 = 9 for x =>", "output": "x = 2"}
+{"prompt": "solve 5*x + 1 = -5*x - 19 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x + 4*x + 3 = -4*x + 25 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*(x - 2) + 5 = -3*(x + 3) - 8 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*x + 5*x - 5 = -5*x + 11 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x - 5) - 3 = 22 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*(x + 1) + 4 = 1*(x - 3) + 12 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*(x - 1) - 4 = -1*(x - 2) - 17 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*(x + 2) + 4 = -4*(x - 4) - 20 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*(x - 1) + 2 = 2*(x + 3) + 6 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x + 3*x - 4 = 4*x - 4 for x =>", "output": "x = 0"}
+{"prompt": "solve -x - 4 = 0 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x - 4) + 3 = 38 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x + 1) + 5 = 6 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*x + 7 = -x - 17 for x =>", "output": "x = -6"}
+{"prompt": "solve x - 4 = 4*x - 22 for x =>", "output": "x = 6"}
+{"prompt": "solve -4*x + 5*x = 2*x + 2 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x = 4 for x =>", "output": "x = 2"}
+{"prompt": "solve 1*(x - 4) + 4 = 1 for x =>", "output": "x = 1"}
+{"prompt": "solve 4*x + 2 = -5*x - 7 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*x - x - 1 = -5*x + 5 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x - 2) + 2 = 2*(x + 5) - 3 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*(x - 5) - 3 = -9 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x - 3) = -5 for x =>", "output": "x = 4"}
+{"prompt": "solve 9 - 4*x = 3 - 6*x for x =>", "output": "x = -3"}
+{"prompt": "solve -x + 4*x + 2 = -4*x + 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*(x + 2) - 1 = -5*(x + 3) + 10 for x =>", "output": "x = 4"}
+{"prompt": "solve 1*(x + 2) + 5 = 6 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*(x - 4) + 4 = -1*(x + 2) - 11 for x =>", "output": "x = -3"}
+{"prompt": "solve -2*(x - 1) - 5 = -3*(x - 3) - 9 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*x + x + 5 = -5*x - 7 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x + 3) + 4 = 4*(x + 5) - 29 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x - 5 = -17 for x =>", "output": "x = -4"}
+{"prompt": "solve x - 3 = -5 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*(x + 2) - 2 = 10 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x + 4 = 10 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*x - 1 = x - 7 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*(x - 3) + 5 = 4*(x + 2) - 15 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*x - 2 = 3*x + 6 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x - 3) - 4 = 1*(x - 2) - 23 for x =>", "output": "x = -6"}
+{"prompt": "solve 6*x + 2 = 3*x + 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*(x + 1) - 3 = -1*(x + 5) + 6 for x =>", "output": "x = -6"}
+{"prompt": "solve 6*x + 7 = 3*x + 4 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*x - 2*x - 2 = x - 7 for x =>", "output": "x = 5"}
+{"prompt": "solve -2*x + 5*x = -4*x + 35 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 4 = 24 - 2*x for x =>", "output": "x = 4"}
+{"prompt": "solve x - 4*x - 3 = 3*x - 15 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x - 4 = 2 for x =>", "output": "x = 3"}
+{"prompt": "solve -3*(x + 1) + 3 = 15 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*(x - 1) - 4 = -12 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*x + 5*x + 4 = -4*x + 16 for x =>", "output": "x = 1"}
+{"prompt": "solve x + 9 = 4 - 4*x for x =>", "output": "x = -1"}
+{"prompt": "solve -1*(x + 4) + 2 = 5*(x + 4) - 10 for x =>", "output": "x = -2"}
+{"prompt": "solve x + x + 4 = -4*x - 20 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*(x - 4) - 3 = -4*(x + 1) - 7 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*x - x + 4 = -3*x - 20 for x =>", "output": "x = -6"}
+{"prompt": "solve -2*(x - 5) - 5 = 4*(x - 1) + 3 for x =>", "output": "x = 1"}
+{"prompt": "solve 1*(x - 1) + 2 = 2*(x - 3) + 4 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*x + 4*x + 4 = 4*x - 5 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x + 4) - 5 = -2*(x + 5) - 9 for x =>", "output": "x = -1"}
+{"prompt": "solve 8 - x = 4*x - 17 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*(x) + 4 = -16 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*(x - 2) + 1 = -3*(x - 1) - 52 for x =>", "output": "x = -6"}
+{"prompt": "solve 6*x - 4 = -4*x - 24 for x =>", "output": "x = -2"}
+{"prompt": "solve 5*(x + 1) + 5 = -3*(x - 4) + 14 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*(x + 3) - 2 = -4*(x + 1) - 12 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*x + 3*x - 4 = -4*x - 28 for x =>", "output": "x = -2"}
+{"prompt": "solve -x - 4 = -2*x - 6 for x =>", "output": "x = -2"}
+{"prompt": "solve 1*(x - 1) + 1 = -5 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*x - 5*x = -2*x - 10 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*x + x - 1 = -4*x + 11 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x**2 - 15*x + 12 = 0 for x =>", "output": "x = 1 or x = 4"}
+{"prompt": "solve 3*x + 8 = 1 - 4*x for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x + 4) + 4 = 3*(x + 2) for x =>", "output": "x = -2"}
+{"prompt": "solve 3*(x + 5) - 3 = 27 for x =>", "output": "x = 5"}
+{"prompt": "solve x - 2 = 6*x + 23 for x =>", "output": "x = -5"}
+{"prompt": "solve 6*x + 7 = -5*x - 26 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*(x + 1) - 5 = 4*(x + 1) - 33 for x =>", "output": "x = 3"}
+{"prompt": "solve -3*(x - 2) - 4 = 14 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*(x) + 1 = 7 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*(x + 4) - 5 = 2*(x + 5) - 27 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*(x - 4) + 2 = -3*(x - 2) - 40 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*(x + 3) - 2 = -4*(x) + 34 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*(x) + 1 = 2*(x + 1) - 1 for x =>", "output": "x = 0"}
+{"prompt": "solve -x - 2*x + 4 = 2*x + 9 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*x - 5 = -14 for x =>", "output": "x = 3"}
+{"prompt": "solve x - 2 = -5*x - 38 for x =>", "output": "x = -6"}
+{"prompt": "solve 2*x + x - 2 = 5*x - 12 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*(x + 2) - 1 = -5*(x - 4) - 19 for x =>", "output": "x = 4"}
+{"prompt": "solve 5 - 4*x = 1 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*(x + 1) + 1 = 4*(x - 4) + 49 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*x - 4 = 6 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 2 = 10 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*(x + 2) + 5 = -5 for x =>", "output": "x = 0"}
+{"prompt": "solve 5*(x - 5) + 5 = -2*(x - 3) - 54 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x - 4 = 4 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x - 5*x + 5 = -5*x + 11 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x - 3) + 4 = 14 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*x - 2*x + 1 = x - 3 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x + 5) - 4 = 14 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*x + 2 = -2 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*(x + 3) - 2 = -16 for x =>", "output": "x = 4"}
+{"prompt": "solve x + 5*x - 5 = 5*x - 9 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*x - x + 2 = -x - 2 for x =>", "output": "x = 2"}
+{"prompt": "solve -3*(x + 5) - 1 = -1 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 4*x - 1 = -5*x - 49 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x - 4) + 4 = -2*(x - 3) - 50 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x + 4*x = -3*x + 36 for x =>", "output": "x = 4"}
+{"prompt": "solve -2*x + x = x - 12 for x =>", "output": "x = 6"}
+{"prompt": "solve -1*(x + 2) + 4 = -1 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x + 1) + 3 = -12 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*x - 1 = -26 for x =>", "output": "x = 5"}
+{"prompt": "solve x - 5*x - 5 = -2*x + 3 for x =>", "output": "x = -4"}
+{"prompt": "solve 9 - 5*x = 12 - 2*x for x =>", "output": "x = -1"}
+{"prompt": "solve -6*x - 10 = -4*x - 8 for x =>", "output": "x = -1"}
+{"prompt": "solve 1*(x - 3) + 1 = -5*(x + 5) + 5 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x + 3) + 3 = 5 for x =>", "output": "x = -5"}
+{"prompt": "solve 10 - 2*x = 4*x + 28 for x =>", "output": "x = -3"}
+{"prompt": "solve 5 - 2*x = 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x - x + 4 = -2*x - 16 for x =>", "output": "x = -5"}
+{"prompt": "solve -1*(x - 3) + 1 = -1 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*(x + 3) - 4 = -1*(x) + 29 for x =>", "output": "x = 6"}
+{"prompt": "solve 2*x + 2 = 4*x + 6 for x =>", "output": "x = -2"}
+{"prompt": "solve -2*(x - 3) - 5 = -4*(x - 4) - 15 for x =>", "output": "x = 0"}
+{"prompt": "solve 6*x + 8 = -5*x - 3 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x - 1) + 5 = -4*(x - 1) - 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x + 5*x - 4 = -5*x + 80 for x =>", "output": "x = 6"}
+{"prompt": "solve -4*x - 4 = x - 4 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x - 1) - 4 = -7 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*x + 5*x + 4 = -2*x + 10 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*(x - 1) + 4 = 4 for x =>", "output": "x = 1"}
+{"prompt": "solve 6*x - 2 = -4*x - 52 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x = -2*x - 20 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*(x + 2) + 4 = 1*(x - 5) + 27 for x =>", "output": "x = -6"}
+{"prompt": "solve 4*x + 8 = -5*x - 19 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*(x + 2) + 4 = 1*(x - 3) + 33 for x =>", "output": "x = 6"}
+{"prompt": "solve -3*(x + 5) + 3 = -27 for x =>", "output": "x = 5"}
+{"prompt": "solve 4 - 5*x = 4*x + 31 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x + 1) + 4 = -8 for x =>", "output": "x = 2"}
+{"prompt": "solve x + 5*x - 4 = 2*x for x =>", "output": "x = 1"}
+{"prompt": "solve -3*x + 5*x - 5 = -2*x - 5 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*(x) - 2 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x + 2) + 4 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve 4*x + 9 = 5*x + 7 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*(x - 5) - 1 = -25 for x =>", "output": "x = -3"}
+{"prompt": "solve 7 - 2*x = 6*x - 41 for x =>", "output": "x = 6"}
+{"prompt": "solve 5*(x - 1) + 5 = 1*(x + 3) + 21 for x =>", "output": "x = 6"}
+{"prompt": "solve 4*x + 1 = 21 for x =>", "output": "x = 5"}
+{"prompt": "solve 4*(x + 2) + 5 = 5*(x - 2) + 24 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x) + 5 = -1*(x - 3) + 6 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x + 2) + 4 = 8 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x + 4) - 4 = -5*(x + 2) - 17 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*(x + 4) - 4 = 3*(x + 5) - 56 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x + 1) - 1 = 2*(x - 4) + 24 for x =>", "output": "x = 4"}
+{"prompt": "solve -5*x - 1 = 19 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x - 5) - 4 = 1*(x + 4) - 1 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*(x - 3) + 1 = 3*(x - 3) - 8 for x =>", "output": "x = -6"}
+{"prompt": "solve x - x + 1 = -4*x + 13 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x + 2*x = -2*x for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x + 2) + 4 = 13 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*(x - 4) = 1*(x - 5) - 2 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*(x + 4) - 5 = 4*(x) + 13 for x =>", "output": "x = -6"}
+{"prompt": "solve x - 4 = 4*x - 13 for x =>", "output": "x = 3"}
+{"prompt": "solve x + 5*x + 3 = 4*x + 1 for x =>", "output": "x = -1"}
+{"prompt": "solve -4*(x - 1) + 5 = -2*(x + 4) + 9 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*x - 4 = 4*x - 14 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*(x) - 1 = 4*(x) - 49 for x =>", "output": "x = 6"}
+{"prompt": "solve -2*(x - 4) - 3 = -1*(x + 5) + 14 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x - 1 = 5*x + 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 2 - 6*x = -2*x - 2 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x - 2*x - 2 = -3*x + 18 for x =>", "output": "x = 5"}
+{"prompt": "solve 6 - 5*x = 12 - 3*x for x =>", "output": "x = -3"}
+{"prompt": "solve 1*(x - 1) + 3 = 5*(x + 2) - 16 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*(x + 1) = 4*(x) + 14 for x =>", "output": "x = -6"}
+{"prompt": "solve -3*x - 4 = 3*x - 10 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*(x - 2) + 2 = -3*(x + 2) - 28 for x =>", "output": "x = -5"}
+{"prompt": "solve -3*x - 3 = -3 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*(x - 1) - 4 = 3*(x + 1) - 10 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*(x - 3) = 2*(x) for x =>", "output": "x = 5"}
+{"prompt": "solve 1*(x + 2) + 4 = -2*(x + 5) + 16 for x =>", "output": "x = 0"}
+{"prompt": "solve -x - 8 = -4*x - 5 for x =>", "output": "x = 1"}
+{"prompt": "solve 2 - 3*x = 4 - 4*x for x =>", "output": "x = 2"}
+{"prompt": "solve -3*(x - 3) - 1 = 1*(x - 5) + 33 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x + 4 = 4 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*(x - 2) + 4 = -4*(x - 5) - 32 for x =>", "output": "x = -1"}
+{"prompt": "solve x - 8 = 5*x for x =>", "output": "x = -2"}
+{"prompt": "solve 6*x + 9 = -x - 5 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x - 3 = 3*x + 1 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x + 4) + 2 = 14 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x + 2) + 5 = -1*(x + 4) + 13 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*(x - 5) + 2 = 42 for x =>", "output": "x = -5"}
+{"prompt": "solve -3*(x + 2) + 5 = -1*(x + 1) + 4 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*(x + 2) + 1 = -7 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*x - 1 = -1 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x - 2) + 2 = -19 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x + 2) - 5 = 1*(x - 4) - 5 for x =>", "output": "x = 0"}
+{"prompt": "solve x + 5 = 1 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*(x - 3) + 4 = 20 for x =>", "output": "x = -1"}
+{"prompt": "solve x - 2 = -2 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*(x + 1) = 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*x - 2 = -2 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x - 2 = x + 1 for x =>", "output": "x = 3"}
+{"prompt": "solve 9 - 6*x = 5*x - 57 for x =>", "output": "x = 6"}
+{"prompt": "solve 4*(x - 2) - 5 = -21 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x - x - 4 = 5*x + 12 for x =>", "output": "x = -4"}
+{"prompt": "solve 7 - 6*x = 3*x + 34 for x =>", "output": "x = -3"}
+{"prompt": "solve -x - x - 3 = -x - 4 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*(x - 2) = 12 for x =>", "output": "x = -2"}
+{"prompt": "solve 5*(x + 1) + 2 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x + 1) - 1 = -7 for x =>", "output": "x = 2"}
+{"prompt": "solve 6*x - 5 = 5*x - 9 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x - 3) - 4 = 1 for x =>", "output": "x = 4"}
+{"prompt": "solve -1*(x + 3) - 2 = -4 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x + 1) - 2 = 16 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*(x + 5) - 3 = -3*(x + 1) - 21 for x =>", "output": "x = -6"}
+{"prompt": "solve 4*x + 3*x = -2*x + 9 for x =>", "output": "x = 1"}
+{"prompt": "solve 6*x + 7 = -3*x - 38 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*(x + 4) + 1 = -1*(x + 3) + 16 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x + 4 = 5*x + 10 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x - 2*x - 4 = 5*x - 22 for x =>", "output": "x = 6"}
+{"prompt": "solve -5*x + x = 2*x + 30 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x + 2 = 6 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x - 1 = -3*x - 3 for x =>", "output": "x = -2"}
+{"prompt": "solve -x - 8 = 4*x + 22 for x =>", "output": "x = -6"}
+{"prompt": "solve x + 3*x + 3 = 2*x - 7 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*x + 2*x - 3 = -2*x - 11 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x + 3) = -10 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*(x + 1) - 1 = -1*(x - 5) + 9 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*(x - 3) + 1 = -1*(x + 1) + 8 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*(x - 4) + 5 = -3*(x + 3) + 31 for x =>", "output": "x = 5"}
+{"prompt": "solve 6*x = 45 - 3*x for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 3*x - 5 = -x - 9 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x - 2*x + 2 = -5*x - 28 for x =>", "output": "x = -5"}
+{"prompt": "solve x + 5*x + 3 = 2*x + 11 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x + 8 = 43 - 5*x for x =>", "output": "x = 5"}
+{"prompt": "solve 5 - 6*x = 25 - x for x =>", "output": "x = -4"}
+{"prompt": "solve -x + 2*x + 1 = 4*x + 10 for x =>", "output": "x = -3"}
+{"prompt": "solve 10 - 2*x = 5*x - 18 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x + 4) + 3 = 1 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x**2 - 2*x - 40 = 0 for x =>", "output": "x = -4 or x = 5"}
+{"prompt": "solve x - 4*x + 2 = x + 6 for x =>", "output": "x = -1"}
+{"prompt": "solve -x + 3*x - 4 = 5*x - 13 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*x - 3 = -11 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x + 7 = 4*x + 6 for x =>", "output": "x = 1"}
+{"prompt": "solve x - 3 = 2*x - 7 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*(x - 3) = -5 for x =>", "output": "x = 2"}
+{"prompt": "solve -5*x = -25 for x =>", "output": "x = 5"}
+{"prompt": "solve x + x + 3 = -2*x + 15 for x =>", "output": "x = 3"}
+{"prompt": "solve -4*(x + 5) - 2 = 1*(x - 5) - 22 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*(x - 1) - 2 = 18 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*x = -9 for x =>", "output": "x = 3"}
+{"prompt": "solve -1*(x + 1) - 5 = 2*(x - 4) + 17 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*x + 3*x + 2 = -x - 6 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x - 3*x + 1 = 0*x + 5 for x =>", "output": "x = 4"}
+{"prompt": "solve 8 - 3*x = 3*x + 26 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x**2 - 14*x + 20 = 0 for x =>", "output": "x = 2 or x = 5"}
+{"prompt": "solve -2*(x + 1) - 3 = 1*(x + 3) - 8 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*(x - 5) - 4 = 8 for x =>", "output": "x = -1"}
+{"prompt": "solve -4*(x - 2) + 5 = 1*(x - 5) + 23 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*(x + 2) - 5 = 3*(x + 2) - 5 for x =>", "output": "x = -2"}
+{"prompt": "solve x - 10 = 6*x - 40 for x =>", "output": "x = 6"}
+{"prompt": "solve 1*(x + 3) - 4 = -5*(x + 5) - 6 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*(x - 2) = 1*(x + 4) + 14 for x =>", "output": "x = -2"}
+{"prompt": "solve 6*x - 5 = 15 - 4*x for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 4 = 3*x + 2 for x =>", "output": "x = -2"}
+{"prompt": "solve 3 - 4*x = -17 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x - 1 = -5 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*(x + 2) + 2 = -10 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x - 3) - 5 = 3*(x - 3) - 8 for x =>", "output": "x = 0"}
+{"prompt": "solve 7 - 4*x = 3*x + 28 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*(x - 3) + 4 = 5*(x + 2) - 21 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x - 1) + 2 = 17 for x =>", "output": "x = -2"}
+{"prompt": "solve -1*(x + 4) + 1 = 3*(x + 1) + 6 for x =>", "output": "x = -3"}
+{"prompt": "solve 8 - 2*x = x + 23 for x =>", "output": "x = -5"}
+{"prompt": "solve x - 5 = 4*x - 14 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*(x - 2) = -9 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x - 4) - 1 = -5*(x + 2) + 23 for x =>", "output": "x = 1"}
+{"prompt": "solve 4*(x - 3) + 1 = 1*(x + 2) - 19 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x - 4 = 6*x + 4 for x =>", "output": "x = -2"}
+{"prompt": "solve 3*(x + 5) + 2 = 14 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*(x - 1) + 5 = 5 for x =>", "output": "x = 1"}
+{"prompt": "solve 1 - 2*x = -3*x for x =>", "output": "x = -1"}
+{"prompt": "solve 2*(x - 1) - 1 = -3*(x + 5) + 22 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x - 5*x + 3 = 5*x - 69 for x =>", "output": "x = 6"}
+{"prompt": "solve -3*(x + 1) - 5 = 5*(x + 3) - 63 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 6 = 6*x - 11 for x =>", "output": "x = 5"}
+{"prompt": "solve 7 - 3*x = 2*x + 32 for x =>", "output": "x = -5"}
+{"prompt": "solve x + 2 = 7 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 3*x - 5 = 4*x + 15 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x - 4) + 4 = 20 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x - 5) + 2 = 4*(x + 5) - 20 for x =>", "output": "x = 3"}
+{"prompt": "solve x + 3 = -2*x - 15 for x =>", "output": "x = -6"}
+{"prompt": "solve -x - 5 = 0 for x =>", "output": "x = -5"}
+{"prompt": "solve -x - 2 = -7 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*x + 3*x + 2 = -3*x + 20 for x =>", "output": "x = 6"}
+{"prompt": "solve 5*x + 2 = -18 for x =>", "output": "x = -4"}
+{"prompt": "solve 1 - 2*x = 4*x + 31 for x =>", "output": "x = -5"}
+{"prompt": "solve x - 1 = 0 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*(x + 1) = 12 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x - 4) - 1 = 29 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*(x - 4) - 4 = 24 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*x - 2 = -8 for x =>", "output": "x = 2"}
+{"prompt": "solve -3*x - 4*x - 5 = -4*x - 17 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*(x - 4) + 3 = 5*(x - 5) + 17 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*x - 3*x - 3 = -5*x - 18 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 2 = 22 - x for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x - 3) = -4*(x + 3) + 8 for x =>", "output": "x = 1"}
+{"prompt": "solve -x + 5*x + 3 = -5*x - 51 for x =>", "output": "x = -6"}
+{"prompt": "solve -4*(x - 2) = 20 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x + 4*x + 1 = -4*x + 1 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*x = 20 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*x - 3 = -2*x - 15 for x =>", "output": "x = 4"}
+{"prompt": "solve -3*x = 0 for x =>", "output": "x = 0"}
+{"prompt": "solve 5*(x + 3) + 3 = -1*(x + 3) + 45 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x - 2) + 4 = -12 for x =>", "output": "x = -2"}
+{"prompt": "solve x - 5*x - 5 = 2*x - 35 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*(x - 2) - 5 = 4*(x + 5) - 29 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*x + x - 1 = 5*x + 7 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x + 5*x - 1 = -2*x - 13 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*(x - 2) + 5 = 11 for x =>", "output": "x = -1"}
+{"prompt": "solve x - 7 = 29 - 5*x for x =>", "output": "x = 6"}
+{"prompt": "solve 6 - x = 2*x for x =>", "output": "x = 2"}
+{"prompt": "solve -x - x - 1 = 2*x + 11 for x =>", "output": "x = -3"}
+{"prompt": "solve -x + 3*x + 4 = -3*x - 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 4*x + 4*x - 2 = -3*x + 64 for x =>", "output": "x = 6"}
+{"prompt": "solve 2*x + 3*x - 5 = -4*x - 41 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x + 5) - 1 = -5*(x) - 36 for x =>", "output": "x = -6"}
+{"prompt": "solve -3*(x + 3) + 1 = -4*(x + 2) + 2 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*(x - 2) + 4 = -3*(x - 5) + 15 for x =>", "output": "x = 6"}
+{"prompt": "solve 9 - 3*x = 3*x + 39 for x =>", "output": "x = -5"}
+{"prompt": "solve 1*(x - 4) = -9 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*x - 2 = -18 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x + 7 = 2*x + 6 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*x - 5 = 4 - 6*x for x =>", "output": "x = 3"}
+{"prompt": "solve -5*x - 2*x - 5 = -2*x - 20 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*(x + 2) - 5 = -15 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*(x - 1) - 3 = -18 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*(x - 4) + 3 = -9 for x =>", "output": "x = 0"}
+{"prompt": "solve -4*(x) - 4 = -5*(x - 5) - 28 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*x - 3 = -3 for x =>", "output": "x = 0"}
+{"prompt": "solve 1*(x - 1) - 5 = 2*(x - 2) - 6 for x =>", "output": "x = 4"}
+{"prompt": "solve x + 4*x + 1 = -x - 5 for x =>", "output": "x = -1"}
+{"prompt": "solve -1*(x + 5) + 5 = 4*(x + 1) - 4 for x =>", "output": "x = 0"}
+{"prompt": "solve x - 4*x - 5 = 5*x - 45 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*(x + 2) = -5*(x + 4) + 17 for x =>", "output": "x = -1"}
+{"prompt": "solve -3*(x + 5) = -9 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*(x - 4) + 3 = -15 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x + 1) - 3 = -7 for x =>", "output": "x = 1"}
+{"prompt": "solve -1*(x - 5) + 3 = 2*(x - 1) + 7 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*(x + 3) - 3 = 27 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x + 2 = -x - 4 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*x = 12 for x =>", "output": "x = -3"}
+{"prompt": "solve -x - 9 = -4*x - 27 for x =>", "output": "x = -6"}
+{"prompt": "solve -5*(x + 4) + 4 = 2*(x + 1) - 46 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*(x + 1) - 3 = 3*(x - 1) + 1 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*x - 6 = -6*x - 15 for x =>", "output": "x = -3"}
+{"prompt": "solve 1*(x + 2) + 5 = 4*(x - 5) + 42 for x =>", "output": "x = -5"}
+{"prompt": "solve -6*x - 1 = 5*x - 45 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x - 2*x = 5*x - 8 for x =>", "output": "x = 2"}
+{"prompt": "solve 3 - 3*x = 5*x - 29 for x =>", "output": "x = 4"}
+{"prompt": "solve 1*(x - 4) - 4 = -3*(x + 3) + 25 for x =>", "output": "x = 6"}
+{"prompt": "solve 4*x - 2*x + 5 = -4*x - 25 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*(x + 5) - 4 = 5*(x + 2) + 7 for x =>", "output": "x = -1"}
+{"prompt": "solve -1*(x + 5) + 3 = 1*(x + 4) - 12 for x =>", "output": "x = 3"}
+{"prompt": "solve 3*(x - 3) + 1 = -5 for x =>", "output": "x = 1"}
+{"prompt": "solve -x - 5 = -3 for x =>", "output": "x = -2"}
+{"prompt": "solve x - 5 = -2 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x + 2*x - 1 = 0*x - 17 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x + x + 2 = 4*x - 1 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*(x - 2) - 1 = -21 for x =>", "output": "x = -3"}
+{"prompt": "solve 1*(x - 3) - 1 = 4*(x - 1) for x =>", "output": "x = 0"}
+{"prompt": "solve 1 - 3*x = 1 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x = 3 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*(x - 3) = 16 for x =>", "output": "x = -1"}
+{"prompt": "solve -4*x - 3 = 13 for x =>", "output": "x = -4"}
+{"prompt": "solve -2*(x - 1) + 3 = 3*(x - 1) + 18 for x =>", "output": "x = -2"}
+{"prompt": "solve x**2 - 3*x - 10 = 0 for x =>", "output": "x = -2 or x = 5"}
+{"prompt": "solve -x + x - 5 = -2*x + 7 for x =>", "output": "x = 6"}
+{"prompt": "solve -5*x - 5*x - 3 = -2*x + 45 for x =>", "output": "x = -6"}
+{"prompt": "solve 9 - 2*x = x + 9 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x + x + 3 = x - 6 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x**2 - 10*x - 12 = 0 for x =>", "output": "x = -1 or x = 6"}
+{"prompt": "solve 4*x = -4 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x - 10 = -5*x for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x + 2 = 17 for x =>", "output": "x = 5"}
+{"prompt": "solve -1*(x - 1) + 4 = -5*(x - 4) - 23 for x =>", "output": "x = -2"}
+{"prompt": "solve -5*x - x - 2 = -5*x - 2 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*(x - 1) - 2 = -2 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*x**2 - 50 = 0 for x =>", "output": "x = -5 or x = 5"}
+{"prompt": "solve 2*x + 4*x - 4 = -5*x + 7 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*x - x + 4 = 0*x + 14 for x =>", "output": "x = -2"}
+{"prompt": "solve -5*x + x + 5 = x + 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x + 4 = -2*x - 20 for x =>", "output": "x = -6"}
+{"prompt": "solve -2*(x + 5) = -3*(x + 4) + 3 for x =>", "output": "x = 1"}
+{"prompt": "solve x**2 - 16 = 0 for x =>", "output": "x = -4 or x = 4"}
+{"prompt": "solve 4*x + 9 = x + 24 for x =>", "output": "x = 5"}
+{"prompt": "solve 8 - 3*x = 14 - 4*x for x =>", "output": "x = 6"}
+{"prompt": "solve 5*x - 1 = 6*x + 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x + 3*x + 2 = 4*x + 5 for x =>", "output": "x = 1"}
+{"prompt": "solve 3*(x + 2) + 3 = 24 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*(x + 5) - 2 = 5*(x - 1) + 22 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x + 3 = -x - 22 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*(x + 3) + 4 = -5*(x - 5) + 27 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*x - 2*x + 3 = -4*x - 33 for x =>", "output": "x = -6"}
+{"prompt": "solve 5*(x - 5) + 4 = -26 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*x - 2 = -22 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*(x + 5) + 5 = 11 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*x - 5 = 45 - 5*x for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 4 = 8 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*(x + 3) - 3 = -2*(x + 4) + 4 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*(x + 3) + 5 = 9 for x =>", "output": "x = -1"}
+{"prompt": "solve 4 - x = -1 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x + 2*x - 2 = -x - 26 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x + 1) + 1 = 21 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 5 = 5 - 4*x for x =>", "output": "x = 0"}
+{"prompt": "solve -1*(x - 4) = 4*(x - 3) - 4 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*(x + 5) - 3 = -11 for x =>", "output": "x = -3"}
+{"prompt": "solve -5*x - 5*x + 1 = 4*x - 27 for x =>", "output": "x = 2"}
+{"prompt": "solve 1*(x - 2) = -7 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*x + 8 = -6*x - 52 for x =>", "output": "x = -6"}
+{"prompt": "solve -x - 3*x + 4 = 2*x - 8 for x =>", "output": "x = 2"}
+{"prompt": "solve -x - 3 = x + 3 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*(x + 4) + 2 = 17 for x =>", "output": "x = 1"}
+{"prompt": "solve 1*(x + 1) + 2 = 2 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*(x + 2) + 2 = -3*(x - 4) - 20 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x) - 2 = 10 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*x + 4 = 0 for x =>", "output": "x = -1"}
+{"prompt": "solve 7 - 4*x = 15 - 2*x for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x - 10 = -x - 4 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*(x + 1) - 1 = 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x + 3*x + 4 = -4*x - 41 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x + 1) + 3 = -1*(x - 5) + 2 for x =>", "output": "x = -6"}
+{"prompt": "solve -2*x - 4 = -x - 1 for x =>", "output": "x = -3"}
+{"prompt": "solve -1*(x - 3) + 5 = 3*(x + 5) - 11 for x =>", "output": "x = 1"}
+{"prompt": "solve x**2 - 25 = 0 for x =>", "output": "x = -5 or x = 5"}
+{"prompt": "solve 2 - 2*x = 0 for x =>", "output": "x = 1"}
+{"prompt": "solve 5 - 3*x = 20 for x =>", "output": "x = -5"}
+{"prompt": "solve -5*x - 5 = x + 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 4*x + 4 = 8 for x =>", "output": "x = 1"}
+{"prompt": "solve -1*(x - 5) + 4 = 2*(x + 5) - 10 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*(x + 4) - 2 = -2*(x + 5) + 56 for x =>", "output": "x = 4"}
+{"prompt": "solve -6*x - 2 = 2*x - 18 for x =>", "output": "x = 2"}
+{"prompt": "solve x - 4 = 1 for x =>", "output": "x = 5"}
+{"prompt": "solve x + 2*x = 4*x - 2 for x =>", "output": "x = 2"}
+{"prompt": "solve -2*x + 4*x + 3 = 3*x + 1 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 6 = 3*x + 1 for x =>", "output": "x = -5"}
+{"prompt": "solve -x - x - 5 = -5*x + 7 for x =>", "output": "x = 4"}
+{"prompt": "solve 2*(x + 2) + 1 = 5 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*x - 8 = -5*x - 17 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*x + 4 = 4 for x =>", "output": "x = 0"}
+{"prompt": "solve -2*x - 10 = -3*x - 13 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*(x + 2) - 1 = 2*(x) - 32 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x = 0 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*x + x + 3 = 0*x - 13 for x =>", "output": "x = 4"}
+{"prompt": "solve -4*x - 4*x - 1 = x + 26 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*x**2 - 18*x = 0 for x =>", "output": "x = 0 or x = 6"}
+{"prompt": "solve -2*(x + 5) - 1 = -7 for x =>", "output": "x = -2"}
+{"prompt": "solve 1*(x + 1) + 4 = 6 for x =>", "output": "x = 1"}
+{"prompt": "solve 4*x - 10 = -4*x - 10 for x =>", "output": "x = 0"}
+{"prompt": "solve 1*(x + 1) + 2 = -2*(x + 3) for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x + 1) = -3*(x + 5) + 6 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x - 5*x - 4 = 4*x - 28 for x =>", "output": "x = 6"}
+{"prompt": "solve -3*x - 2*x - 3 = 4*x + 42 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x - 1) = -4 for x =>", "output": "x = 3"}
+{"prompt": "solve 5*x - 3*x + 5 = 0*x + 5 for x =>", "output": "x = 0"}
+{"prompt": "solve -3*(x + 4) + 1 = 2*(x + 2) + 15 for x =>", "output": "x = -6"}
+{"prompt": "solve 5*(x + 4) = -2*(x + 4) + 14 for x =>", "output": "x = -2"}
+{"prompt": "solve -1*(x + 4) + 2 = 3*(x - 5) + 17 for x =>", "output": "x = -1"}
+{"prompt": "solve -5*(x - 4) - 5 = 30 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*(x - 2) - 2 = 4*(x + 4) - 12 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*(x + 1) + 3 = -1*(x - 1) + 5 for x =>", "output": "x = -2"}
+{"prompt": "solve 4*x - x = -5*x + 8 for x =>", "output": "x = 1"}
+{"prompt": "solve -x - 2*x - 3 = 4*x + 25 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*(x + 5) - 3 = 4*(x - 3) - 59 for x =>", "output": "x = 6"}
+{"prompt": "solve -4*(x + 5) + 4 = -5*(x - 2) - 30 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*x - 5 = 1 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*(x - 5) = 5*(x + 3) - 10 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*x + x + 3 = 4*x + 38 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*(x - 1) - 2 = 6 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x - x + 4 = 0*x + 22 for x =>", "output": "x = 6"}
+{"prompt": "solve 6*x - 3 = -5*x - 69 for x =>", "output": "x = -6"}
+{"prompt": "solve 2*(x - 5) = -16 for x =>", "output": "x = -3"}
+{"prompt": "solve -x = -2 for x =>", "output": "x = 2"}
+{"prompt": "solve 2 - 6*x = -4*x - 4 for x =>", "output": "x = 3"}
+{"prompt": "solve 9 - 6*x = x + 9 for x =>", "output": "x = 0"}
+{"prompt": "solve 5 - 6*x = 20 - x for x =>", "output": "x = -3"}
+{"prompt": "solve 4 - 5*x = -3*x - 6 for x =>", "output": "x = 5"}
+{"prompt": "solve -3*x + 5*x + 4 = -x - 8 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x**2 - 6*x = 0 for x =>", "output": "x = 0 or x = 3"}
+{"prompt": "solve 4*x + 8 = 35 - 5*x for x =>", "output": "x = 3"}
+{"prompt": "solve -3*x - 4 = 3*x - 34 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x + 5 = -15 for x =>", "output": "x = -4"}
+{"prompt": "solve x - 1 = -1 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x + 2 = 4 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*x - 1 = 3 - 2*x for x =>", "output": "x = -4"}
+{"prompt": "solve -1*(x - 2) - 5 = -6 for x =>", "output": "x = 3"}
+{"prompt": "solve x + 10 = 5*x - 14 for x =>", "output": "x = 6"}
+{"prompt": "solve -5*x + x - 4 = -5*x - 3 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*(x + 2) - 1 = -21 for x =>", "output": "x = 3"}
+{"prompt": "solve 2*x = -5*x for x =>", "output": "x = 0"}
+{"prompt": "solve x**2 + 7*x + 6 = 0 for x =>", "output": "x = -6 or x = -1"}
+{"prompt": "solve x - 2 = -3*x - 18 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*x - 10 = x - 10 for x =>", "output": "x = 0"}
+{"prompt": "solve 1 - x = -1 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*(x - 5) - 4 = -22 for x =>", "output": "x = -4"}
+{"prompt": "solve -5*(x + 4) + 1 = -29 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x - 4 = 3*x - 9 for x =>", "output": "x = 5"}
+{"prompt": "solve -1*(x - 4) = 1*(x + 4) + 4 for x =>", "output": "x = -2"}
+{"prompt": "solve 2*x + 3 = -5 for x =>", "output": "x = -4"}
+{"prompt": "solve x + 10 = 14 - x for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + x + 3 = 2*x - 9 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x - 4) - 5 = -5*(x - 3) - 100 for x =>", "output": "x = -6"}
+{"prompt": "solve -1*(x - 4) + 5 = 12 for x =>", "output": "x = -3"}
+{"prompt": "solve -6*x - 5 = -x for x =>", "output": "x = -1"}
+{"prompt": "solve 5*(x - 3) + 2 = -8 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*x - 2*x + 1 = -3*x - 14 for x =>", "output": "x = 5"}
+{"prompt": "solve -5*(x - 1) - 2 = 1*(x + 4) - 1 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*(x + 5) - 4 = 1*(x - 2) + 3 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*(x + 1) - 2 = 18 for x =>", "output": "x = 3"}
+{"prompt": "solve -5*(x + 5) - 4 = -54 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x + x - 3 = 5*x - 5 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x + 4*x - 5 = -5*x - 49 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x**2 + 14*x + 24 = 0 for x =>", "output": "x = -4 or x = -3"}
+{"prompt": "solve 4*(x + 2) - 5 = 5*(x - 2) + 19 for x =>", "output": "x = -6"}
+{"prompt": "solve -x + x + 5 = 4*x - 11 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x - 1 = 4*x - 5 for x =>", "output": "x = 4"}
+{"prompt": "solve -5*(x + 4) + 4 = 4*(x + 4) + 4 for x =>", "output": "x = -4"}
+{"prompt": "solve 3*x - 9 = 18 - 6*x for x =>", "output": "x = 3"}
+{"prompt": "solve -4*x + 4*x - 1 = 5*x - 21 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*(x - 2) + 3 = 1*(x + 2) - 5 for x =>", "output": "x = 1"}
+{"prompt": "solve 2*(x) + 5 = 1*(x + 1) + 1 for x =>", "output": "x = -3"}
+{"prompt": "solve 6 - 3*x = 2*x + 21 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x - 1 = -5*x - 1 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x + 5*x - 4 = 5*x - 4 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x + 9 = 14 - 2*x for x =>", "output": "x = 1"}
+{"prompt": "solve 3*x - 2 = -17 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*x - x + 4 = 0*x - 6 for x =>", "output": "x = 2"}
+{"prompt": "solve x + x - 4 = 0*x - 10 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*(x + 3) + 4 = 4 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*(x - 1) - 2 = 22 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*(x + 1) - 5 = -11 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x - 6 = 4*x - 4 for x =>", "output": "x = -1"}
+{"prompt": "solve -2*x - 3*x + 1 = 4*x + 28 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*(x - 2) - 3 = -5*(x + 3) - 2 for x =>", "output": "x = -1"}
+{"prompt": "solve x + x = -2*x - 20 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*(x + 5) + 1 = 21 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*(x + 5) - 5 = 1*(x - 4) - 2 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*(x - 3) + 2 = -2*(x - 1) + 13 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*x + 2*x + 1 = -x - 6 for x =>", "output": "x = -1"}
+{"prompt": "solve -4*(x - 1) = 1*(x + 4) + 15 for x =>", "output": "x = -3"}
+{"prompt": "solve -5*x - 5 = 5*x + 45 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 9 = 6*x + 27 for x =>", "output": "x = -6"}
+{"prompt": "solve -5*(x - 3) + 1 = 4*(x + 4) + 9 for x =>", "output": "x = -1"}
+{"prompt": "solve 2*x**2 - 16*x + 24 = 0 for x =>", "output": "x = 2 or x = 6"}
+{"prompt": "solve -2*(x + 4) + 1 = -4*(x - 1) - 1 for x =>", "output": "x = 5"}
+{"prompt": "solve 5 - 3*x = -7 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*x - 3*x - 3 = 0*x + 1 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 5*x + 5 = -2*x - 6 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*(x - 4) + 1 = -11 for x =>", "output": "x = 0"}
+{"prompt": "solve -5*(x - 2) + 3 = -2*(x - 5) + 9 for x =>", "output": "x = -2"}
+{"prompt": "solve 1*(x - 3) - 4 = -10 for x =>", "output": "x = -3"}
+{"prompt": "solve -3*(x + 5) - 3 = -4*(x - 2) - 29 for x =>", "output": "x = -3"}
+{"prompt": "solve 2*x**2 - 14*x + 24 = 0 for x =>", "output": "x = 3 or x = 4"}
+{"prompt": "solve 2 - x = 7 for x =>", "output": "x = -5"}
+{"prompt": "solve 5*x + x + 2 = -3*x + 47 for x =>", "output": "x = 5"}
+{"prompt": "solve 5*x + 1 = -9 for x =>", "output": "x = -2"}
+{"prompt": "solve -4*(x + 5) + 4 = 0 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x - 3*x = 4*x + 12 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*x + 2*x + 5 = 2*x + 20 for x =>", "output": "x = 3"}
+{"prompt": "solve 5 - 3*x = 1 - x for x =>", "output": "x = 2"}
+{"prompt": "solve -5*x - 2 = 4*x - 56 for x =>", "output": "x = 6"}
+{"prompt": "solve x**2 - x - 12 = 0 for x =>", "output": "x = -3 or x = 4"}

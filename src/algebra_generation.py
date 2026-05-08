@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 import torch
@@ -17,7 +18,12 @@ except ImportError:
 
 
 OTHER_NODE_TYPE_ID = NODE_TYPE_TO_ID["OTHER"]
-ALLOWED_OUTPUT_CHARACTERS = set(" xyzXYZ0123456789+-*/=()^")
+ALLOWED_OUTPUT_CHARACTERS = set(" xyzXYZor0123456789+-*/=()^")
+SOLVE_ANSWER_RE = re.compile(r"\b([xyzXYZ])\s*=\s*([+-]?\d+)\b")
+SOLVE_TWO_ROOTS_RE = re.compile(
+    r"\b([xyzXYZ])\s*=\s*([+-]?\d+)\s+or\s+\1\s*=\s*([+-]?\d+)\b"
+)
+SUBSTITUTE_ANSWER_RE = re.compile(r"(?<![\w.])([+-]?\d+)(?![\w.])")
 
 
 def _decoded_token_text(tokenizer: Any, token_id: int) -> str:
@@ -58,6 +64,78 @@ def postprocess_prediction(text: str) -> str:
     return text.splitlines()[0].strip()
 
 
+def task_name_from_prompt(prompt: str) -> str:
+    """Use the first prompt word as the task name."""
+
+    return prompt.split(maxsplit=1)[0].strip().lower() if prompt.strip() else ""
+
+
+def prompt_looks_quadratic(prompt: str) -> bool:
+    """Detect generated quadratic solve prompts from the visible equation text."""
+
+    return "x**2" in prompt or "x^2" in prompt
+
+
+def extract_first_answer_span(prompt: str, text: str) -> str:
+    """Extract the first complete answer-like span without using the target.
+
+    This prevents a correct solve answer such as `x = 2` from being marked wrong
+    solely because the model continues with extra algebraic junk afterward.
+    """
+
+    cleaned = postprocess_prediction(text)
+    task = task_name_from_prompt(prompt)
+
+    if task == "solve":
+        two_root_match = SOLVE_TWO_ROOTS_RE.search(cleaned)
+        if two_root_match:
+            variable = two_root_match.group(1).lower()
+            roots = sorted({int(two_root_match.group(2)), int(two_root_match.group(3))})
+            return " or ".join(f"{variable} = {root}" for root in roots)
+
+        match = SOLVE_ANSWER_RE.search(cleaned)
+        if match:
+            variable = match.group(1).lower()
+            value = int(match.group(2))
+            return f"{variable} = {value}"
+        return cleaned
+
+    if task == "substitute":
+        match = SUBSTITUTE_ANSWER_RE.search(cleaned)
+        if match:
+            return str(int(match.group(1)))
+        return cleaned
+
+    return cleaned
+
+
+def has_complete_answer_span(prompt: str, text: str) -> bool:
+    """Tell the decoder when a task-specific complete answer has appeared."""
+
+    task = task_name_from_prompt(prompt)
+    if task == "solve":
+        if prompt_looks_quadratic(prompt):
+            return SOLVE_TWO_ROOTS_RE.search(text) is not None
+        return SOLVE_ANSWER_RE.search(text) is not None
+    if task == "substitute":
+        return SUBSTITUTE_ANSWER_RE.search(text) is not None
+    return False
+
+
+def _prompt_position_ids(attention_mask: torch.Tensor) -> torch.Tensor:
+    """Position real prompt tokens from zero even when the batch is left-padded."""
+
+    position_ids = attention_mask.long().cumsum(dim=-1) - 1
+    return position_ids.masked_fill(attention_mask == 0, 0)
+
+
+def _next_token_position_ids(attention_mask: torch.Tensor) -> torch.Tensor:
+    """Position the current generated token correctly when using a KV cache."""
+
+    position_ids = attention_mask.long().sum(dim=-1, keepdim=True) - 1
+    return position_ids.clamp_min(0)
+
+
 def _apply_output_constraints(logits: torch.Tensor, allowed_token_mask: torch.Tensor) -> torch.Tensor:
     constrained = logits.clone()
     constrained[:, ~allowed_token_mask] = -torch.inf
@@ -83,6 +161,7 @@ def generate_baseline_predictions(
     device: torch.device,
     max_new_tokens: int,
     allowed_token_mask: torch.Tensor,
+    stop_on_valid_answer: bool = True,
 ) -> list[str]:
     """Greedy decode baseline answers with algebra-only token constraints."""
 
@@ -104,12 +183,14 @@ def generate_baseline_predictions(
         eos_token_id = tokenizer.eos_token_id
         pad_token_id = tokenizer.pad_token_id or 0
         next_input_ids = encoded["input_ids"]
+        position_ids = _prompt_position_ids(encoded["attention_mask"])
         past_key_values = None
 
         for _ in range(max_new_tokens):
             outputs = model(
                 input_ids=next_input_ids,
                 attention_mask=encoded["attention_mask"],
+                position_ids=position_ids,
                 past_key_values=past_key_values,
                 use_cache=True,
             )
@@ -124,16 +205,26 @@ def generate_baseline_predictions(
                     torch.full_like(next_token, pad_token_id),
                 )
 
+            active_rows = unfinished.clone()
             for row_index, token_id in enumerate(next_token.tolist()):
                 if unfinished[row_index] and token_id != pad_token_id:
                     generated_token_rows[row_index].append(token_id)
 
+            if stop_on_valid_answer:
+                for row_index, token_ids in enumerate(generated_token_rows):
+                    if not unfinished[row_index]:
+                        continue
+                    decoded = tokenizer.decode(token_ids, skip_special_tokens=True)
+                    if has_complete_answer_span(prompts[row_index], decoded):
+                        unfinished[row_index] = False
+
             encoded["input_ids"] = torch.cat([encoded["input_ids"], next_token.unsqueeze(1)], dim=1)
             encoded["attention_mask"] = torch.cat(
-                [encoded["attention_mask"], unfinished.long().unsqueeze(1)],
+                [encoded["attention_mask"], active_rows.long().unsqueeze(1)],
                 dim=1,
             )
             next_input_ids = next_token.unsqueeze(1)
+            position_ids = _next_token_position_ids(encoded["attention_mask"])
 
             if eos_token_id is not None:
                 unfinished = unfinished & (next_token != eos_token_id)
@@ -186,6 +277,7 @@ def generate_structured_predictions(
     device: torch.device,
     max_new_tokens: int,
     allowed_token_mask: torch.Tensor,
+    stop_on_valid_answer: bool = True,
 ) -> list[str]:
     """Greedy decode structured answers while appending OTHER node types for new tokens."""
 
@@ -198,6 +290,7 @@ def generate_structured_predictions(
     pad_token_id = tokenizer.pad_token_id or 0
     next_input_ids = batch["input_ids"]
     next_node_type_ids = batch["node_type_ids"]
+    position_ids = _prompt_position_ids(batch["attention_mask"])
     past_key_values = None
 
     for _ in range(max_new_tokens):
@@ -205,6 +298,7 @@ def generate_structured_predictions(
             input_ids=next_input_ids,
             node_type_ids=next_node_type_ids,
             attention_mask=batch["attention_mask"],
+            position_ids=position_ids,
             past_key_values=past_key_values,
             use_cache=True,
         )
@@ -219,16 +313,26 @@ def generate_structured_predictions(
                 torch.full_like(next_token, pad_token_id),
             )
 
+        active_rows = unfinished.clone()
         for row_index, token_id in enumerate(next_token.tolist()):
             if unfinished[row_index] and token_id != pad_token_id:
                 generated_token_rows[row_index].append(token_id)
 
+        if stop_on_valid_answer:
+            for row_index, token_ids in enumerate(generated_token_rows):
+                if not unfinished[row_index]:
+                    continue
+                decoded = tokenizer.decode(token_ids, skip_special_tokens=True)
+                if has_complete_answer_span(prompts[row_index], decoded):
+                    unfinished[row_index] = False
+
         batch["attention_mask"] = torch.cat(
-            [batch["attention_mask"], unfinished.long().unsqueeze(1)],
+            [batch["attention_mask"], active_rows.long().unsqueeze(1)],
             dim=1,
         )
         next_input_ids = next_token.unsqueeze(1)
         next_node_type_ids = torch.full((len(prompts), 1), OTHER_NODE_TYPE_ID, dtype=torch.long, device=device)
+        position_ids = _next_token_position_ids(batch["attention_mask"])
 
         if eos_token_id is not None:
             unfinished = unfinished & (next_token != eos_token_id)

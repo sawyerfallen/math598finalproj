@@ -1,0 +1,15 @@
+Dataset Generation Summary
+Output directory: data\solve_mixed_10000_dedup
+Tasks: solve
+Solve difficulty: mixed
+Seed: 45
+Deduplicated before split: True
+Raw generated examples: 20968
+Unique examples after deduplication: 12000
+Duplicate examples removed: 8968
+Requested split sizes: {'train': 10000, 'val': 1000, 'test': 1000}
+Final split sizes: {'train': 10000, 'val': 1000, 'test': 1000}
+Exact requested split sizes achieved: True
+Cross-split duplicate count: 0
+Difficulty counts: {'easy': 1207, 'hard': 10793}
+Solve kind counts: {'collect_like_terms': 2762, 'distribution_both_sides': 2683, 'linear_easy': 1207, 'parenthesized_linear': 2500, 'quadratic_two_real_roots': 234, 'x_both_sides': 2614}

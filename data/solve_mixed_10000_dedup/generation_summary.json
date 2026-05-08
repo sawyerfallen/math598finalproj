@@ -1,0 +1,80 @@
+{
+  "output_dir": "data\\solve_mixed_10000_dedup",
+  "tasks": [
+    "solve"
+  ],
+  "solve_difficulty": "mixed",
+  "seed": 45,
+  "deduplicated_before_split": true,
+  "deduplication_identity": "prompt/output",
+  "raw_generated_examples": 20968,
+  "unique_examples_after_deduplication": 12000,
+  "duplicate_examples_removed": 8968,
+  "requested_dataset_size": 12000,
+  "requested_split_sizes": {
+    "train": 10000,
+    "val": 1000,
+    "test": 1000
+  },
+  "final_split_sizes": {
+    "train": 10000,
+    "val": 1000,
+    "test": 1000
+  },
+  "exact_requested_split_sizes_achieved": true,
+  "cross_split_duplicate_count": 0,
+  "difficulty_counts": {
+    "easy": 1207,
+    "hard": 10793
+  },
+  "solve_kind_counts": {
+    "collect_like_terms": 2762,
+    "distribution_both_sides": 2683,
+    "linear_easy": 1207,
+    "parenthesized_linear": 2500,
+    "quadratic_two_real_roots": 234,
+    "x_both_sides": 2614
+  },
+  "split_difficulty_counts": {
+    "train": {
+      "easy": 1004,
+      "hard": 8996
+    },
+    "val": {
+      "easy": 111,
+      "hard": 889
+    },
+    "test": {
+      "easy": 92,
+      "hard": 908
+    }
+  },
+  "split_solve_kind_counts": {
+    "train": {
+      "collect_like_terms": 2310,
+      "distribution_both_sides": 2228,
+      "linear_easy": 1004,
+      "parenthesized_linear": 2088,
+      "quadratic_two_real_roots": 192,
+      "x_both_sides": 2178
+    },
+    "val": {
+      "collect_like_terms": 221,
+      "distribution_both_sides": 223,
+      "linear_easy": 111,
+      "parenthesized_linear": 205,
+      "quadratic_two_real_roots": 26,
+      "x_both_sides": 214
+    },
+    "test": {
+      "collect_like_terms": 231,
+      "distribution_both_sides": 232,
+      "linear_easy": 92,
+      "parenthesized_linear": 207,
+      "quadratic_two_real_roots": 16,
+      "x_both_sides": 222
+    }
+  },
+  "max_raw_examples": 100000,
+  "dedup_batch_size": 5000
+}

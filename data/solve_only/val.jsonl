@@ -1,0 +1,96 @@
+{"prompt": "solve 2*x + 3 = -3 for x =>", "output": "x = -3"}
+{"prompt": "solve 5*x + 2 = 12 for x =>", "output": "x = 2"}
+{"prompt": "solve 5 - 2*x = 7 for x =>", "output": "x = -1"}
+{"prompt": "solve 5 - 2*x = 7 for x =>", "output": "x = -1"}
+{"prompt": "solve 3*x + 1 = -14 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*x + 2 = 10 for x =>", "output": "x = 2"}
+{"prompt": "solve -x - 5 = -10 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x + 5 = 9 for x =>", "output": "x = 2"}
+{"prompt": "solve 5 - 2*x = -5 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 2 = -2 for x =>", "output": "x = 0"}
+{"prompt": "solve -x - 5 = -7 for x =>", "output": "x = 2"}
+{"prompt": "solve 5*x + 2 = 27 for x =>", "output": "x = 5"}
+{"prompt": "solve -x - 5 = -2 for x =>", "output": "x = -3"}
+{"prompt": "solve 5 - 3*x = 17 for x =>", "output": "x = -4"}
+{"prompt": "solve 4*x - 5 = -9 for x =>", "output": "x = -1"}
+{"prompt": "solve 5*x = 25 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x - 3 = 5 for x =>", "output": "x = 4"}
+{"prompt": "solve 4*x + 1 = 17 for x =>", "output": "x = 4"}
+{"prompt": "solve 5 - x = 10 for x =>", "output": "x = -5"}
+{"prompt": "solve 4 - 2*x = 8 for x =>", "output": "x = -2"}
+{"prompt": "solve x + 3 = -1 for x =>", "output": "x = -4"}
+{"prompt": "solve -3*x - 1 = 11 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*x - 1 = -5 for x =>", "output": "x = 1"}
+{"prompt": "solve 4 - x = -1 for x =>", "output": "x = 5"}
+{"prompt": "solve 4 - 4*x = -12 for x =>", "output": "x = 4"}
+{"prompt": "solve 3*x - 3 = -3 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x + 3 = 7 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x + 2 = -7 for x =>", "output": "x = -3"}
+{"prompt": "solve 3*x - 1 = 14 for x =>", "output": "x = 5"}
+{"prompt": "solve -x - 2 = -4 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x - 3 = 0 for x =>", "output": "x = 1"}
+{"prompt": "solve 1 - x = 1 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*x + 4 = 4 for x =>", "output": "x = 0"}
+{"prompt": "solve x - 5 = -2 for x =>", "output": "x = 3"}
+{"prompt": "solve 1 - 4*x = -11 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*x + 4 = 12 for x =>", "output": "x = 2"}
+{"prompt": "solve 3 - 4*x = -1 for x =>", "output": "x = 1"}
+{"prompt": "solve -5*x - 4 = 11 for x =>", "output": "x = -3"}
+{"prompt": "solve 4*x + 4 = -16 for x =>", "output": "x = -5"}
+{"prompt": "solve -4*x - 4 = 16 for x =>", "output": "x = -5"}
+{"prompt": "solve 3*x + 4 = 10 for x =>", "output": "x = 2"}
+{"prompt": "solve 2*x - 3 = 1 for x =>", "output": "x = 2"}
+{"prompt": "solve 4*x + 1 = -19 for x =>", "output": "x = -5"}
+{"prompt": "solve -2*x - 1 = 5 for x =>", "output": "x = -3"}
+{"prompt": "solve x - 5 = -10 for x =>", "output": "x = -5"}
+{"prompt": "solve 4*x + 4 = 8 for x =>", "output": "x = 1"}
+{"prompt": "solve -2*x = -10 for x =>", "output": "x = 5"}
+{"prompt": "solve -4*x - 1 = 7 for x =>", "output": "x = -2"}
+{"prompt": "solve 3 - 2*x = -5 for x =>", "output": "x = 4"}
+{"prompt": "solve x + 4 = 7 for x =>", "output": "x = 3"}
+{"prompt": "solve -2*x - 1 = -7 for x =>", "output": "x = 3"}
+{"prompt": "solve 4*x - 4 = 16 for x =>", "output": "x = 5"}
+{"prompt": "solve -x = 1 for x =>", "output": "x = -1"}
+{"prompt": "solve 2 - 4*x = -2 for x =>", "output": "x = 1"}
+{"prompt": "solve 5*x + 3 = 3 for x =>", "output": "x = 0"}
+{"prompt": "solve 2*x + 4 = -4 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x + 4 = 10 for x =>", "output": "x = 3"}
+{"prompt": "solve 2 - 3*x = -4 for x =>", "output": "x = 2"}
+{"prompt": "solve 5*x + 2 = -8 for x =>", "output": "x = -2"}
+{"prompt": "solve 3 - 5*x = 8 for x =>", "output": "x = -1"}
+{"prompt": "solve 4 - x = 7 for x =>", "output": "x = -3"}
+{"prompt": "solve 2 - 3*x = 14 for x =>", "output": "x = -4"}
+{"prompt": "solve 2 - 3*x = -4 for x =>", "output": "x = 2"}
+{"prompt": "solve 3*x - 4 = 11 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x = 0 for x =>", "output": "x = 0"}
+{"prompt": "solve x - 2 = -5 for x =>", "output": "x = -3"}
+{"prompt": "solve -4*x = 16 for x =>", "output": "x = -4"}
+{"prompt": "solve 2*x = -8 for x =>", "output": "x = -4"}
+{"prompt": "solve 5*x - 2 = 8 for x =>", "output": "x = 2"}
+{"prompt": "solve 5 - 2*x = 3 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*x - 4 = -7 for x =>", "output": "x = 1"}
+{"prompt": "solve 1 - 4*x = 9 for x =>", "output": "x = -2"}
+{"prompt": "solve 5*x - 1 = 24 for x =>", "output": "x = 5"}
+{"prompt": "solve 3*x - 5 = -17 for x =>", "output": "x = -4"}
+{"prompt": "solve 2 - 3*x = 14 for x =>", "output": "x = -4"}
+{"prompt": "solve -x = 0 for x =>", "output": "x = 0"}
+{"prompt": "solve 5*x - 2 = 13 for x =>", "output": "x = 3"}
+{"prompt": "solve 5 - x = 4 for x =>", "output": "x = 1"}
+{"prompt": "solve -3*x - 4 = -19 for x =>", "output": "x = 5"}
+{"prompt": "solve 2*x + 5 = -5 for x =>", "output": "x = -5"}
+{"prompt": "solve 2*x + 4 = 12 for x =>", "output": "x = 4"}
+{"prompt": "solve 1 - 5*x = 6 for x =>", "output": "x = -1"}
+{"prompt": "solve -x - 5 = -3 for x =>", "output": "x = -2"}
+{"prompt": "solve -3*x - 5 = 7 for x =>", "output": "x = -4"}
+{"prompt": "solve -4*x - 3 = 13 for x =>", "output": "x = -4"}
+{"prompt": "solve 4 - 4*x = 4 for x =>", "output": "x = 0"}
+{"prompt": "solve 3*x + 3 = 6 for x =>", "output": "x = 1"}
+{"prompt": "solve x + 5 = 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 4*x + 5 = 5 for x =>", "output": "x = 0"}
+{"prompt": "solve 2 - 3*x = -1 for x =>", "output": "x = 1"}
+{"prompt": "solve -4*x = 8 for x =>", "output": "x = -2"}
+{"prompt": "solve -x - 2 = -5 for x =>", "output": "x = 3"}
+{"prompt": "solve 5 - x = 10 for x =>", "output": "x = -5"}
+{"prompt": "solve x + 3 = 7 for x =>", "output": "x = 4"}
+{"prompt": "solve 5*x + 2 = -18 for x =>", "output": "x = -4"}
+{"prompt": "solve 5 - 5*x = 25 for x =>", "output": "x = -4"}

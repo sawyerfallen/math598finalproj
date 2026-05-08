@@ -1,0 +1,31 @@
+Experiment: gpt2-small-baseline-solve-mixed-10000-dedup
+Model: gpt2
+Device: cpu
+Output directory: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup
+Metrics file: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\metrics.jsonl
+Test sample losses file: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\test_sample_losses.jsonl
+Best checkpoint: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\best-epoch-1
+Final checkpoint: artifacts\models_training_info\gpt2-small-baseline-solve-mixed-10000-dedup\final-model
+Total parameters: 124439808
+Trainable parameters: 124439808
+Frozen parameters: 0
+Trainable parameter tensors: 148
+Frozen parameter tensors: 0
+All parameters trainable: True
+Trainable parameter sample: transformer.wte.weight, transformer.wpe.weight, transformer.h.0.ln_1.weight, transformer.h.0.ln_1.bias, transformer.h.0.attn.c_attn.weight, transformer.h.0.attn.c_attn.bias, transformer.h.0.attn.c_proj.weight, transformer.h.0.attn.c_proj.bias, transformer.h.0.ln_2.weight, transformer.h.0.ln_2.bias
+Train examples: 10000
+Validation examples: 1000
+Test examples: 1000
+Epochs: 1
+Batch size: 32
+Eval batch size: 32
+Learning rate: 0.0001
+Weight decay: 0.01
+Max grad norm: 1.0
+Max length: 128
+Seed: 42
+Save best checkpoint: True
+Best validation loss: 0.480990
+Last validation loss: 0.480990
+Test loss: 0.482072
+Generation evaluation: skipped during training; use compare-models on saved checkpoints.

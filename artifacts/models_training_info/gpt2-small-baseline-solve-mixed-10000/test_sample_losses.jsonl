@@ -1,0 +1,1000 @@
+{"sample_index": 0, "prompt": "solve x - 1 = -1 for x =>", "output": "x = 0", "loss": 0.16797444224357605}
+{"sample_index": 1, "prompt": "solve 4*x + 1 = -19 for x =>", "output": "x = -5", "loss": 0.12102218717336655}
+{"sample_index": 2, "prompt": "solve 2*x**2 + 12*x + 10 = 0 for x =>", "output": "x = -5 or x = -1", "loss": 0.0781615823507309}
+{"sample_index": 3, "prompt": "solve 3*x**2 + 9*x - 30 = 0 for x =>", "output": "x = -5 or x = 2", "loss": 0.21325522661209106}
+{"sample_index": 4, "prompt": "solve 5*x - 5*x - 1 = x - 1 for x =>", "output": "x = 0", "loss": 0.3789460361003876}
+{"sample_index": 5, "prompt": "solve -1*(x) + 2 = 2 for x =>", "output": "x = 0", "loss": 0.4135077893733978}
+{"sample_index": 6, "prompt": "solve x + 2 = 4 for x =>", "output": "x = 2", "loss": 0.6246889233589172}
+{"sample_index": 7, "prompt": "solve 2*x - 1 = -1 for x =>", "output": "x = 0", "loss": 0.08522292971611023}
+{"sample_index": 8, "prompt": "solve 3*x - 5 = 4 for x =>", "output": "x = 3", "loss": 0.4158894419670105}
+{"sample_index": 9, "prompt": "solve 4*(x + 2) + 1 = -4*(x - 3) - 19 for x =>", "output": "x = -2", "loss": 0.5363989472389221}
+{"sample_index": 10, "prompt": "solve 4*x - 5 = 7 for x =>", "output": "x = 3", "loss": 0.3902930021286011}
+{"sample_index": 11, "prompt": "solve -1*(x - 1) + 2 = 7 for x =>", "output": "x = -4", "loss": 0.4366835951805115}
+{"sample_index": 12, "prompt": "solve 5*x - 8 = 6*x - 2 for x =>", "output": "x = -6", "loss": 0.6269242167472839}
+{"sample_index": 13, "prompt": "solve 3*(x + 2) - 1 = -4*(x - 2) - 31 for x =>", "output": "x = -4", "loss": 0.4657069146633148}
+{"sample_index": 14, "prompt": "solve x**2 + 9*x + 20 = 0 for x =>", "output": "x = -5 or x = -4", "loss": 0.08373098075389862}
+{"sample_index": 15, "prompt": "solve 5*x - 4 = x + 12 for x =>", "output": "x = 4", "loss": 0.673364520072937}
+{"sample_index": 16, "prompt": "solve 4*x + 3 = 11 for x =>", "output": "x = 2", "loss": 0.3383050262928009}
+{"sample_index": 17, "prompt": "solve 5*x + x - 5 = 3*x - 20 for x =>", "output": "x = -5", "loss": 0.3762715458869934}
+{"sample_index": 18, "prompt": "solve x + 3 = 6 - 2*x for x =>", "output": "x = 1", "loss": 0.5459827780723572}
+{"sample_index": 19, "prompt": "solve 2*x - 1 = 3 for x =>", "output": "x = 2", "loss": 0.28732046484947205}
+{"sample_index": 20, "prompt": "solve 7 - 4*x = 4*x + 31 for x =>", "output": "x = -3", "loss": 0.4259224832057953}
+{"sample_index": 21, "prompt": "solve 4 - 2*x = 2 for x =>", "output": "x = 1", "loss": 0.21358492970466614}
+{"sample_index": 22, "prompt": "solve 3*(x - 5) + 5 = 1*(x - 3) - 7 for x =>", "output": "x = 0", "loss": 0.777305543422699}
+{"sample_index": 23, "prompt": "solve x - 4*x - 4 = -x + 4 for x =>", "output": "x = -4", "loss": 0.7840190529823303}
+{"sample_index": 24, "prompt": "solve 3*x - 5 = 4 for x =>", "output": "x = 3", "loss": 0.4158894419670105}
+{"sample_index": 25, "prompt": "solve -3*(x + 4) = 1*(x + 5) - 1 for x =>", "output": "x = -4", "loss": 0.5833096504211426}
+{"sample_index": 26, "prompt": "solve 3*x + 3 = -6 for x =>", "output": "x = -3", "loss": 0.27449074387550354}
+{"sample_index": 27, "prompt": "solve 4*x + 3 = 7 for x =>", "output": "x = 1", "loss": 0.265509694814682}
+{"sample_index": 28, "prompt": "solve 2*x**2 - 12*x + 10 = 0 for x =>", "output": "x = 1 or x = 5", "loss": 0.013835414312779903}
+{"sample_index": 29, "prompt": "solve 2*x + 2 = 2 for x =>", "output": "x = 0", "loss": 0.10533513128757477}
+{"sample_index": 30, "prompt": "solve x + 4 = 3 for x =>", "output": "x = -1", "loss": 0.7598131895065308}
+{"sample_index": 31, "prompt": "solve 4*x - 2*x + 2 = -4*x - 22 for x =>", "output": "x = -4", "loss": 0.4011634290218353}
+{"sample_index": 32, "prompt": "solve 3*x + 2 = -7 for x =>", "output": "x = -3", "loss": 0.25263839960098267}
+{"sample_index": 33, "prompt": "solve -3*x + x + 4 = 2*x - 4 for x =>", "output": "x = 2", "loss": 0.5299732089042664}
+{"sample_index": 34, "prompt": "solve 3*x**2 + 12*x - 15 = 0 for x =>", "output": "x = -5 or x = 1", "loss": 0.03966834768652916}
+{"sample_index": 35, "prompt": "solve 2*(x - 3) + 1 = 1 for x =>", "output": "x = 3", "loss": 0.39343559741973877}
+{"sample_index": 36, "prompt": "solve x + x = -x + 9 for x =>", "output": "x = 3", "loss": 0.7569637894630432}
+{"sample_index": 37, "prompt": "solve -1*(x - 4) - 1 = -3*(x + 1) + 8 for x =>", "output": "x = 1", "loss": 0.7015637755393982}
+{"sample_index": 38, "prompt": "solve x = 2 for x =>", "output": "x = 2", "loss": 0.29007935523986816}
+{"sample_index": 39, "prompt": "solve x + 3*x + 3 = -4*x + 19 for x =>", "output": "x = 2", "loss": 0.7124553918838501}
+{"sample_index": 40, "prompt": "solve 2*x**2 - 18 = 0 for x =>", "output": "x = -3 or x = 3", "loss": 0.1455135941505432}
+{"sample_index": 41, "prompt": "solve -2*x - 1 = 5 for x =>", "output": "x = -3", "loss": 0.29473060369491577}
+{"sample_index": 42, "prompt": "solve 4*x - 5 = 7 for x =>", "output": "x = 3", "loss": 0.3902930021286011}
+{"sample_index": 43, "prompt": "solve 5 - 2*x = -5*x - 4 for x =>", "output": "x = -3", "loss": 0.7313324809074402}
+{"sample_index": 44, "prompt": "solve 4*x + 3*x = -3*x + 60 for x =>", "output": "x = 6", "loss": 0.10376902669668198}
+{"sample_index": 45, "prompt": "solve 3*x - 9 = 6*x - 24 for x =>", "output": "x = 5", "loss": 0.46879884600639343}
+{"sample_index": 46, "prompt": "solve -5*(x - 3) - 4 = 4*(x - 4) + 18 for x =>", "output": "x = 1", "loss": 0.7038027048110962}
+{"sample_index": 47, "prompt": "solve 4*x - 4 = -24 for x =>", "output": "x = -5", "loss": 0.06069972366094589}
+{"sample_index": 48, "prompt": "solve 4*x - 5 = 22 - 5*x for x =>", "output": "x = 3", "loss": 0.5591486692428589}
+{"sample_index": 49, "prompt": "solve -1*(x - 2) - 5 = 2*(x + 4) + 7 for x =>", "output": "x = -6", "loss": 0.42803701758384705}
+{"sample_index": 50, "prompt": "solve x - 5*x + 5 = 4*x - 3 for x =>", "output": "x = 1", "loss": 0.4863051474094391}
+{"sample_index": 51, "prompt": "solve 4*(x) - 2 = -3*(x + 1) + 36 for x =>", "output": "x = 5", "loss": 0.3475947976112366}
+{"sample_index": 52, "prompt": "solve 3*(x + 2) + 1 = 16 for x =>", "output": "x = 3", "loss": 0.5590060353279114}
+{"sample_index": 53, "prompt": "solve -4*(x + 3) - 4 = -2*(x - 3) - 18 for x =>", "output": "x = -2", "loss": 0.7656184434890747}
+{"sample_index": 54, "prompt": "solve 4*x = -12 for x =>", "output": "x = -3", "loss": 0.22294080257415771}
+{"sample_index": 55, "prompt": "solve 6*x - 8 = x + 2 for x =>", "output": "x = 2", "loss": 0.45960885286331177}
+{"sample_index": 56, "prompt": "solve -5*x - 4 = -2*x - 22 for x =>", "output": "x = 6", "loss": 0.3072270154953003}
+{"sample_index": 57, "prompt": "solve 6 - 3*x = 5*x + 22 for x =>", "output": "x = -2", "loss": 0.34844857454299927}
+{"sample_index": 58, "prompt": "solve -3*(x - 5) - 2 = 4*(x + 2) - 9 for x =>", "output": "x = 2", "loss": 0.6101925373077393}
+{"sample_index": 59, "prompt": "solve 5*x - 5*x + 5 = -x + 2 for x =>", "output": "x = -3", "loss": 0.7635676860809326}
+{"sample_index": 60, "prompt": "solve -x - 5 = -3 for x =>", "output": "x = -2", "loss": 0.7540039420127869}
+{"sample_index": 61, "prompt": "solve x**2 + x - 20 = 0 for x =>", "output": "x = -5 or x = 4", "loss": 0.10950659215450287}
+{"sample_index": 62, "prompt": "solve 5*x - 3 = -18 for x =>", "output": "x = -3", "loss": 0.2598380148410797}
+{"sample_index": 63, "prompt": "solve 1 - 4*x = -7 for x =>", "output": "x = 2", "loss": 0.34412136673927307}
+{"sample_index": 64, "prompt": "solve 2 - 3*x = -5*x - 4 for x =>", "output": "x = -3", "loss": 0.8758681416511536}
+{"sample_index": 65, "prompt": "solve 3 - 2*x = -3 for x =>", "output": "x = 3", "loss": 0.5113201141357422}
+{"sample_index": 66, "prompt": "solve 4*x - 5 = -17 for x =>", "output": "x = -3", "loss": 0.4084723889827728}
+{"sample_index": 67, "prompt": "solve -5*(x - 5) - 5 = -1*(x - 3) - 7 for x =>", "output": "x = 6", "loss": 0.4876081943511963}
+{"sample_index": 68, "prompt": "solve 5*x + 10 = 4*x + 11 for x =>", "output": "x = 1", "loss": 0.5131309032440186}
+{"sample_index": 69, "prompt": "solve x**2 + 10*x + 24 = 0 for x =>", "output": "x = -6 or x = -4", "loss": 0.06284196674823761}
+{"sample_index": 70, "prompt": "solve 3*x - 5 = -17 for x =>", "output": "x = -4", "loss": 0.21613195538520813}
+{"sample_index": 71, "prompt": "solve -1*(x - 4) + 3 = -2*(x) + 9 for x =>", "output": "x = 2", "loss": 0.688492476940155}
+{"sample_index": 72, "prompt": "solve 2*(x + 2) - 1 = 5*(x + 5) - 40 for x =>", "output": "x = 6", "loss": 0.4234378933906555}
+{"sample_index": 73, "prompt": "solve 5*x + 3*x + 3 = -x + 30 for x =>", "output": "x = 3", "loss": 0.6076427698135376}
+{"sample_index": 74, "prompt": "solve 3*x**2 + 21*x + 36 = 0 for x =>", "output": "x = -4 or x = -3", "loss": 0.16005541384220123}
+{"sample_index": 75, "prompt": "solve 5*(x + 3) + 4 = -2*(x - 3) + 13 for x =>", "output": "x = 0", "loss": 0.6074897646903992}
+{"sample_index": 76, "prompt": "solve 3*x - 3*x + 2 = 4*x + 10 for x =>", "output": "x = -2", "loss": 0.45758017897605896}
+{"sample_index": 77, "prompt": "solve 4*x + 2 = 10 for x =>", "output": "x = 2", "loss": 0.32001563906669617}
+{"sample_index": 78, "prompt": "solve -1*(x - 5) + 5 = 15 for x =>", "output": "x = -5", "loss": 0.4040955901145935}
+{"sample_index": 79, "prompt": "solve -4*x - 2 = 3*x - 23 for x =>", "output": "x = 3", "loss": 0.7049111127853394}
+{"sample_index": 80, "prompt": "solve -2*x + 4*x + 5 = 5*x + 2 for x =>", "output": "x = 1", "loss": 0.6103349328041077}
+{"sample_index": 81, "prompt": "solve 5*x - 4*x + 2 = -2*x + 14 for x =>", "output": "x = 4", "loss": 0.5990855097770691}
+{"sample_index": 82, "prompt": "solve 6*x + 3 = 51 - 2*x for x =>", "output": "x = 6", "loss": 0.21446365118026733}
+{"sample_index": 83, "prompt": "solve 4*(x + 2) - 1 = -4*(x) + 39 for x =>", "output": "x = 4", "loss": 0.5496073961257935}
+{"sample_index": 84, "prompt": "solve -x + 2*x - 2 = -5*x + 34 for x =>", "output": "x = 6", "loss": 0.19375020265579224}
+{"sample_index": 85, "prompt": "solve 2*(x + 5) + 5 = 4*(x - 5) + 27 for x =>", "output": "x = 4", "loss": 0.580634593963623}
+{"sample_index": 86, "prompt": "solve x**2 + x - 6 = 0 for x =>", "output": "x = -3 or x = 2", "loss": 0.23130451142787933}
+{"sample_index": 87, "prompt": "solve 5 - 3*x = 8 for x =>", "output": "x = -1", "loss": 0.03923410549759865}
+{"sample_index": 88, "prompt": "solve 4*x - 2 = 2 for x =>", "output": "x = 1", "loss": 0.15744826197624207}
+{"sample_index": 89, "prompt": "solve -3*x - 3 = -18 for x =>", "output": "x = 5", "loss": 0.15642954409122467}
+{"sample_index": 90, "prompt": "solve 4*x + x + 5 = 3*x + 3 for x =>", "output": "x = -1", "loss": 0.4924093186855316}
+{"sample_index": 91, "prompt": "solve 4*x + 3 = 63 - 6*x for x =>", "output": "x = 6", "loss": 0.19004148244857788}
+{"sample_index": 92, "prompt": "solve x**2 - x - 30 = 0 for x =>", "output": "x = -5 or x = 6", "loss": 0.07901304215192795}
+{"sample_index": 93, "prompt": "solve 3*x - 3 = 12 for x =>", "output": "x = 5", "loss": 0.2467978596687317}
+{"sample_index": 94, "prompt": "solve 4 - 3*x = -2 for x =>", "output": "x = 2", "loss": 0.47373077273368835}
+{"sample_index": 95, "prompt": "solve 5*x - 10 = 2*x - 13 for x =>", "output": "x = -1", "loss": 0.4739883542060852}
+{"sample_index": 96, "prompt": "solve 2*x + 3 = 7 for x =>", "output": "x = 2", "loss": 0.38180774450302124}
+{"sample_index": 97, "prompt": "solve 3*(x + 1) + 4 = 4*(x - 5) + 21 for x =>", "output": "x = 6", "loss": 0.4886210858821869}
+{"sample_index": 98, "prompt": "solve 1 - 4*x = -11 for x =>", "output": "x = 3", "loss": 0.5516998767852783}
+{"sample_index": 99, "prompt": "solve 4*x + 7 = 6*x - 5 for x =>", "output": "x = 6", "loss": 0.671603798866272}
+{"sample_index": 100, "prompt": "solve 2*(x + 1) - 3 = -1*(x + 5) - 2 for x =>", "output": "x = -2", "loss": 0.5549988746643066}
+{"sample_index": 101, "prompt": "solve -2*x - 3*x - 3 = 3*x + 37 for x =>", "output": "x = -5", "loss": 0.2613215148448944}
+{"sample_index": 102, "prompt": "solve -5*x - 4 = -19 for x =>", "output": "x = 3", "loss": 0.6182504892349243}
+{"sample_index": 103, "prompt": "solve 5*x + 4 = 14 for x =>", "output": "x = 2", "loss": 0.25651198625564575}
+{"sample_index": 104, "prompt": "solve 5*x + 5*x - 5 = 3*x + 37 for x =>", "output": "x = 6", "loss": 0.234055757522583}
+{"sample_index": 105, "prompt": "solve 3*x**2 + 18*x = 0 for x =>", "output": "x = -6 or x = 0", "loss": 0.12694786489009857}
+{"sample_index": 106, "prompt": "solve -6*x - 4 = 3*x - 31 for x =>", "output": "x = 3", "loss": 0.9067770838737488}
+{"sample_index": 107, "prompt": "solve 5*x - 7 = 3*x - 7 for x =>", "output": "x = 0", "loss": 0.4955759644508362}
+{"sample_index": 108, "prompt": "solve 5*(x - 2) + 2 = -2*(x + 1) - 13 for x =>", "output": "x = -1", "loss": 0.6330896615982056}
+{"sample_index": 109, "prompt": "solve 4*x - 2*x - 4 = 4*x for x =>", "output": "x = -2", "loss": 0.6070597171783447}
+{"sample_index": 110, "prompt": "solve 3*x - 5*x + 1 = 2*x + 21 for x =>", "output": "x = -5", "loss": 0.5158318877220154}
+{"sample_index": 111, "prompt": "solve 2*x + 2 = 6 for x =>", "output": "x = 2", "loss": 0.34356486797332764}
+{"sample_index": 112, "prompt": "solve 4*x + 8 = 2*x - 2 for x =>", "output": "x = -5", "loss": 0.552772045135498}
+{"sample_index": 113, "prompt": "solve -5*x = 15 for x =>", "output": "x = -3", "loss": 0.15121814608573914}
+{"sample_index": 114, "prompt": "solve 2*x - 2 = 0 for x =>", "output": "x = 1", "loss": 0.12568897008895874}
+{"sample_index": 115, "prompt": "solve -3*x + 4*x + 2 = -4*x - 18 for x =>", "output": "x = -4", "loss": 0.5670636296272278}
+{"sample_index": 116, "prompt": "solve -x - x - 5 = -3*x - 5 for x =>", "output": "x = 0", "loss": 0.39720550179481506}
+{"sample_index": 117, "prompt": "solve 4*x - 10 = 6*x - 20 for x =>", "output": "x = 5", "loss": 0.48956239223480225}
+{"sample_index": 118, "prompt": "solve -2*(x + 4) - 2 = -12 for x =>", "output": "x = 1", "loss": 0.5052272081375122}
+{"sample_index": 119, "prompt": "solve 3*(x + 2) - 5 = -4*(x + 4) + 24 for x =>", "output": "x = 1", "loss": 0.5630523562431335}
+{"sample_index": 120, "prompt": "solve 6*x - 7 = 3*x + 5 for x =>", "output": "x = 4", "loss": 0.8861528635025024}
+{"sample_index": 121, "prompt": "solve 3 - 3*x = 3 for x =>", "output": "x = 0", "loss": 0.17694403231143951}
+{"sample_index": 122, "prompt": "solve -3*x - 3 = 3 for x =>", "output": "x = -2", "loss": 0.4395122528076172}
+{"sample_index": 123, "prompt": "solve 2*x + 5 = 10 - 3*x for x =>", "output": "x = 1", "loss": 0.41211727261543274}
+{"sample_index": 124, "prompt": "solve 4*(x - 4) - 1 = -25 for x =>", "output": "x = -2", "loss": 0.45986026525497437}
+{"sample_index": 125, "prompt": "solve -4*x - 5 = 3 for x =>", "output": "x = -2", "loss": 0.43166977167129517}
+{"sample_index": 126, "prompt": "solve -2*x - 3 = 3 for x =>", "output": "x = -3", "loss": 0.5975558757781982}
+{"sample_index": 127, "prompt": "solve 4 - 5*x = 14 for x =>", "output": "x = -2", "loss": 0.22839681804180145}
+{"sample_index": 128, "prompt": "solve 4 - 4*x = 8 for x =>", "output": "x = -1", "loss": 0.04511255770921707}
+{"sample_index": 129, "prompt": "solve 5*x + 4 = 24 for x =>", "output": "x = 4", "loss": 0.4504101574420929}
+{"sample_index": 130, "prompt": "solve 2*x**2 - 4*x - 6 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.39589518308639526}
+{"sample_index": 131, "prompt": "solve -3*x - 4 = -16 for x =>", "output": "x = 4", "loss": 0.11572694778442383}
+{"sample_index": 132, "prompt": "solve 4 - 4*x = 16 for x =>", "output": "x = -3", "loss": 0.17430678009986877}
+{"sample_index": 133, "prompt": "solve -x - 5 = -10 for x =>", "output": "x = 5", "loss": 0.4359724521636963}
+{"sample_index": 134, "prompt": "solve 5 - 3*x = 11 for x =>", "output": "x = -2", "loss": 0.1821301281452179}
+{"sample_index": 135, "prompt": "solve -x - 2 = -7 for x =>", "output": "x = 5", "loss": 0.39506182074546814}
+{"sample_index": 136, "prompt": "solve 2*x - 5*x + 4 = -x - 2 for x =>", "output": "x = 3", "loss": 0.5914183259010315}
+{"sample_index": 137, "prompt": "solve -2*(x) + 4 = 6 for x =>", "output": "x = -1", "loss": 0.272166907787323}
+{"sample_index": 138, "prompt": "solve -2*x - 3 = -13 for x =>", "output": "x = 5", "loss": 0.3103390038013458}
+{"sample_index": 139, "prompt": "solve -4*x - 5*x - 2 = 4*x - 2 for x =>", "output": "x = 0", "loss": 0.30600088834762573}
+{"sample_index": 140, "prompt": "solve 5*x + 3 = 28 for x =>", "output": "x = 5", "loss": 0.04583121836185455}
+{"sample_index": 141, "prompt": "solve 4*x - 2 = -2 for x =>", "output": "x = 0", "loss": 0.10853761434555054}
+{"sample_index": 142, "prompt": "solve -2*x = 0 for x =>", "output": "x = 0", "loss": 0.02443302795290947}
+{"sample_index": 143, "prompt": "solve -3*x - 4 = -16 for x =>", "output": "x = 4", "loss": 0.11572694778442383}
+{"sample_index": 144, "prompt": "solve -4*(x + 1) - 4 = -24 for x =>", "output": "x = 4", "loss": 0.2934051752090454}
+{"sample_index": 145, "prompt": "solve x + 1 = 5 for x =>", "output": "x = 4", "loss": 0.37352001667022705}
+{"sample_index": 146, "prompt": "solve 5 - 4*x = 5*x - 31 for x =>", "output": "x = 4", "loss": 0.41702690720558167}
+{"sample_index": 147, "prompt": "solve -3*(x - 4) - 5 = 22 for x =>", "output": "x = -5", "loss": 0.38355329632759094}
+{"sample_index": 148, "prompt": "solve 2*x - 3 = -9 for x =>", "output": "x = -3", "loss": 0.24081292748451233}
+{"sample_index": 149, "prompt": "solve 2*x - 1 = 5 for x =>", "output": "x = 3", "loss": 0.28544166684150696}
+{"sample_index": 150, "prompt": "solve -x = -1 for x =>", "output": "x = 1", "loss": 0.27869486808776855}
+{"sample_index": 151, "prompt": "solve -x - 3 = -8 for x =>", "output": "x = 5", "loss": 0.47119247913360596}
+{"sample_index": 152, "prompt": "solve 5*x + 3 = 18 for x =>", "output": "x = 3", "loss": 0.34565603733062744}
+{"sample_index": 153, "prompt": "solve 3 - 3*x = 6 for x =>", "output": "x = -1", "loss": 0.04101549834012985}
+{"sample_index": 154, "prompt": "solve 5*(x + 3) - 3 = -5*(x + 5) + 57 for x =>", "output": "x = 2", "loss": 0.9966462850570679}
+{"sample_index": 155, "prompt": "solve -3*(x + 5) - 4 = -5*(x - 3) - 42 for x =>", "output": "x = -4", "loss": 0.5841227769851685}
+{"sample_index": 156, "prompt": "solve 3*(x - 2) + 4 = -17 for x =>", "output": "x = -5", "loss": 0.3726807236671448}
+{"sample_index": 157, "prompt": "solve -3*x + 4*x - 2 = 5*x - 2 for x =>", "output": "x = 0", "loss": 0.41433799266815186}
+{"sample_index": 158, "prompt": "solve x**2 + 5*x = 0 for x =>", "output": "x = -5 or x = 0", "loss": 0.018069375306367874}
+{"sample_index": 159, "prompt": "solve 6*x - 1 = 32 - 5*x for x =>", "output": "x = 3", "loss": 0.5986229777336121}
+{"sample_index": 160, "prompt": "solve x - 2 = -2*x - 20 for x =>", "output": "x = -6", "loss": 0.2599581182003021}
+{"sample_index": 161, "prompt": "solve -5*x - 1 = 24 for x =>", "output": "x = -5", "loss": 0.12699666619300842}
+{"sample_index": 162, "prompt": "solve 10 - x = 6 - 5*x for x =>", "output": "x = -1", "loss": 0.5360795259475708}
+{"sample_index": 163, "prompt": "solve -4*x - 10 = -3*x - 5 for x =>", "output": "x = -5", "loss": 0.9846488833427429}
+{"sample_index": 164, "prompt": "solve -3*x - 4 = -16 for x =>", "output": "x = 4", "loss": 0.11572694778442383}
+{"sample_index": 165, "prompt": "solve 4*x + 5 = 35 - 2*x for x =>", "output": "x = 5", "loss": 0.14229390025138855}
+{"sample_index": 166, "prompt": "solve 3*x + 4 = -8 for x =>", "output": "x = -4", "loss": 0.3448086678981781}
+{"sample_index": 167, "prompt": "solve -4*(x - 4) = 5*(x + 5) + 36 for x =>", "output": "x = -5", "loss": 0.3658371567726135}
+{"sample_index": 168, "prompt": "solve 5*x + 1 = -24 for x =>", "output": "x = -5", "loss": 0.06566185504198074}
+{"sample_index": 169, "prompt": "solve -x + 2*x + 3 = 4*x - 12 for x =>", "output": "x = 5", "loss": 0.38537758588790894}
+{"sample_index": 170, "prompt": "solve -2*x - 4*x + 5 = 5*x - 39 for x =>", "output": "x = 4", "loss": 0.4803093373775482}
+{"sample_index": 171, "prompt": "solve x + 4 = 9 for x =>", "output": "x = 5", "loss": 0.12620767951011658}
+{"sample_index": 172, "prompt": "solve -4*(x - 3) - 4 = 28 for x =>", "output": "x = -5", "loss": 0.3570683002471924}
+{"sample_index": 173, "prompt": "solve x + 3 = 5 for x =>", "output": "x = 2", "loss": 0.3932616710662842}
+{"sample_index": 174, "prompt": "solve 1 - 3*x = 4 for x =>", "output": "x = -1", "loss": 0.05261112377047539}
+{"sample_index": 175, "prompt": "solve 4 - x = 6 for x =>", "output": "x = -2", "loss": 0.2837691605091095}
+{"sample_index": 176, "prompt": "solve -x - x - 4 = 5*x + 38 for x =>", "output": "x = -6", "loss": 0.15254941582679749}
+{"sample_index": 177, "prompt": "solve -5*x - 5 = 15 for x =>", "output": "x = -4", "loss": 0.19268421828746796}
+{"sample_index": 178, "prompt": "solve 3*x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.10878914594650269}
+{"sample_index": 179, "prompt": "solve 4*x + 2 = 10 for x =>", "output": "x = 2", "loss": 0.32001563906669617}
+{"sample_index": 180, "prompt": "solve 4*(x - 4) - 1 = -17 for x =>", "output": "x = 0", "loss": 0.7049512267112732}
+{"sample_index": 181, "prompt": "solve 2*(x - 1) = 4*(x - 1) - 4 for x =>", "output": "x = 3", "loss": 0.6392518877983093}
+{"sample_index": 182, "prompt": "solve 1*(x + 5) = 5*(x - 1) + 6 for x =>", "output": "x = 1", "loss": 0.6470766663551331}
+{"sample_index": 183, "prompt": "solve x**2 + 4*x = 0 for x =>", "output": "x = -4 or x = 0", "loss": 0.029552064836025238}
+{"sample_index": 184, "prompt": "solve 5*x = -15 for x =>", "output": "x = -3", "loss": 0.27859100699424744}
+{"sample_index": 185, "prompt": "solve x**2 + x - 2 = 0 for x =>", "output": "x = -2 or x = 1", "loss": 0.01745706982910633}
+{"sample_index": 186, "prompt": "solve -x - 1 = -6 for x =>", "output": "x = 5", "loss": 0.4155537784099579}
+{"sample_index": 187, "prompt": "solve 2*x**2 + 2*x - 40 = 0 for x =>", "output": "x = -5 or x = 4", "loss": 0.02221999131143093}
+{"sample_index": 188, "prompt": "solve 5*x - 5 = -10 for x =>", "output": "x = -1", "loss": 0.13641688227653503}
+{"sample_index": 189, "prompt": "solve 5*(x - 4) = 0 for x =>", "output": "x = 4", "loss": 0.2882544696331024}
+{"sample_index": 190, "prompt": "solve -3*(x) + 5 = -2*(x + 5) + 21 for x =>", "output": "x = -6", "loss": 0.4875739514827728}
+{"sample_index": 191, "prompt": "solve -2*(x - 5) - 4 = 4 for x =>", "output": "x = 1", "loss": 0.7814332842826843}
+{"sample_index": 192, "prompt": "solve 3*x**2 - 3*x - 36 = 0 for x =>", "output": "x = -3 or x = 4", "loss": 0.47275876998901367}
+{"sample_index": 193, "prompt": "solve 5*x + 3 = 3 for x =>", "output": "x = 0", "loss": 0.08643150329589844}
+{"sample_index": 194, "prompt": "solve -4*(x - 2) - 1 = 23 for x =>", "output": "x = -4", "loss": 0.37584495544433594}
+{"sample_index": 195, "prompt": "solve 4*(x + 1) + 3 = -4*(x - 4) - 9 for x =>", "output": "x = 0", "loss": 0.6957296133041382}
+{"sample_index": 196, "prompt": "solve 5*x + 3*x = 2*x + 12 for x =>", "output": "x = 2", "loss": 0.5701422691345215}
+{"sample_index": 197, "prompt": "solve -4*x - 3 = -23 for x =>", "output": "x = 5", "loss": 0.07283839583396912}
+{"sample_index": 198, "prompt": "solve -5*(x + 3) = -2*(x) - 21 for x =>", "output": "x = 2", "loss": 0.6164286136627197}
+{"sample_index": 199, "prompt": "solve 2*x - 2*x - 5 = -x - 10 for x =>", "output": "x = -5", "loss": 0.6039720773696899}
+{"sample_index": 200, "prompt": "solve x**2 - 9*x + 20 = 0 for x =>", "output": "x = 4 or x = 5", "loss": 0.2757282257080078}
+{"sample_index": 201, "prompt": "solve x**2 - x - 30 = 0 for x =>", "output": "x = -5 or x = 6", "loss": 0.07901304215192795}
+{"sample_index": 202, "prompt": "solve x = 1 for x =>", "output": "x = 1", "loss": 0.0774868056178093}
+{"sample_index": 203, "prompt": "solve 4*(x - 5) + 3 = -37 for x =>", "output": "x = -5", "loss": 0.31853264570236206}
+{"sample_index": 204, "prompt": "solve -4*x - x - 4 = 3*x + 36 for x =>", "output": "x = -5", "loss": 0.2910463213920593}
+{"sample_index": 205, "prompt": "solve 2*x**2 + 12*x = 0 for x =>", "output": "x = -6 or x = 0", "loss": 0.22246307134628296}
+{"sample_index": 206, "prompt": "solve -3*(x - 4) = 4*(x) - 2 for x =>", "output": "x = 2", "loss": 0.6231322884559631}
+{"sample_index": 207, "prompt": "solve 6*x + 10 = 2*x - 10 for x =>", "output": "x = -5", "loss": 0.5392832159996033}
+{"sample_index": 208, "prompt": "solve -5*(x) + 2 = 12 for x =>", "output": "x = -2", "loss": 0.31815844774246216}
+{"sample_index": 209, "prompt": "solve 2*x**2 + 2*x - 24 = 0 for x =>", "output": "x = -4 or x = 3", "loss": 0.10374412685632706}
+{"sample_index": 210, "prompt": "solve -2*x - 10 = 4*x + 14 for x =>", "output": "x = -4", "loss": 0.3832065463066101}
+{"sample_index": 211, "prompt": "solve -5*x - 5*x - 3 = 0*x + 7 for x =>", "output": "x = -1", "loss": 0.230889230966568}
+{"sample_index": 212, "prompt": "solve 5 - x = 0 for x =>", "output": "x = 5", "loss": 0.21456874907016754}
+{"sample_index": 213, "prompt": "solve 4*x - 2 = -6 for x =>", "output": "x = -1", "loss": 0.07212314754724503}
+{"sample_index": 214, "prompt": "solve 5*(x - 2) + 5 = -25 for x =>", "output": "x = -4", "loss": 0.3524715304374695}
+{"sample_index": 215, "prompt": "solve 4 - 5*x = 19 for x =>", "output": "x = -3", "loss": 0.1952170431613922}
+{"sample_index": 216, "prompt": "solve -2*x + 4*x - 2 = x for x =>", "output": "x = 2", "loss": 1.2659664154052734}
+{"sample_index": 217, "prompt": "solve -4*(x + 4) + 1 = -15 for x =>", "output": "x = 0", "loss": 0.7167579531669617}
+{"sample_index": 218, "prompt": "solve 3 - 4*x = -13 for x =>", "output": "x = 4", "loss": 0.12825298309326172}
+{"sample_index": 219, "prompt": "solve 3*x - 10 = 10 - x for x =>", "output": "x = 5", "loss": 0.575944721698761}
+{"sample_index": 220, "prompt": "solve 4*x - 2 = 2*x + 10 for x =>", "output": "x = 6", "loss": 0.728376567363739}
+{"sample_index": 221, "prompt": "solve -2*x - 3 = 1 for x =>", "output": "x = -2", "loss": 0.412841260433197}
+{"sample_index": 222, "prompt": "solve 5*x + 4 = 24 for x =>", "output": "x = 4", "loss": 0.4504101574420929}
+{"sample_index": 223, "prompt": "solve 3*x - 1 = -10 for x =>", "output": "x = -3", "loss": 0.1914372742176056}
+{"sample_index": 224, "prompt": "solve 2*x**2 + 4*x - 6 = 0 for x =>", "output": "x = -3 or x = 1", "loss": 0.21294330060482025}
+{"sample_index": 225, "prompt": "solve x + 1 = 3 for x =>", "output": "x = 2", "loss": 0.5243415832519531}
+{"sample_index": 226, "prompt": "solve 5*x = -6*x - 44 for x =>", "output": "x = -4", "loss": 0.4555414319038391}
+{"sample_index": 227, "prompt": "solve -2*x - x + 4 = 0*x + 16 for x =>", "output": "x = -4", "loss": 0.3203194737434387}
+{"sample_index": 228, "prompt": "solve -6*x - 10 = 4*x + 10 for x =>", "output": "x = -2", "loss": 0.34825244545936584}
+{"sample_index": 229, "prompt": "solve -2*x - 5*x - 2 = -2*x + 28 for x =>", "output": "x = -6", "loss": 0.2804446220397949}
+{"sample_index": 230, "prompt": "solve 5 - 4*x = 2*x + 11 for x =>", "output": "x = -1", "loss": 0.2221241295337677}
+{"sample_index": 231, "prompt": "solve 5*(x - 3) - 3 = -1*(x - 2) - 14 for x =>", "output": "x = 1", "loss": 0.7628016471862793}
+{"sample_index": 232, "prompt": "solve x + 3 = 1 for x =>", "output": "x = -2", "loss": 0.33249416947364807}
+{"sample_index": 233, "prompt": "solve 4*(x + 2) - 5 = -4*(x - 1) + 31 for x =>", "output": "x = 4", "loss": 0.5460860729217529}
+{"sample_index": 234, "prompt": "solve 4*x - 5 = 3 for x =>", "output": "x = 2", "loss": 0.26737773418426514}
+{"sample_index": 235, "prompt": "solve 1 - 4*x = -3 for x =>", "output": "x = 1", "loss": 0.21309830248355865}
+{"sample_index": 236, "prompt": "solve 1*(x - 5) + 3 = -4*(x - 2) - 15 for x =>", "output": "x = -1", "loss": 0.6782389879226685}
+{"sample_index": 237, "prompt": "solve -4*x + x - 5 = 4*x - 12 for x =>", "output": "x = 1", "loss": 0.5443212389945984}
+{"sample_index": 238, "prompt": "solve 3*x = 15 for x =>", "output": "x = 5", "loss": 0.04397783800959587}
+{"sample_index": 239, "prompt": "solve -3*x - x + 4 = 2*x - 20 for x =>", "output": "x = 4", "loss": 0.34072861075401306}
+{"sample_index": 240, "prompt": "solve 2*x**2 - 2*x - 24 = 0 for x =>", "output": "x = -3 or x = 4", "loss": 0.24646799266338348}
+{"sample_index": 241, "prompt": "solve 2*(x - 2) + 4 = -3*(x + 5) + 40 for x =>", "output": "x = 5", "loss": 0.3561212420463562}
+{"sample_index": 242, "prompt": "solve x - 10 = 4*x - 10 for x =>", "output": "x = 0", "loss": 0.5822110772132874}
+{"sample_index": 243, "prompt": "solve 2*x**2 - 6*x - 36 = 0 for x =>", "output": "x = -3 or x = 6", "loss": 0.01955888234078884}
+{"sample_index": 244, "prompt": "solve -5*x - 2 = -4*x - 3 for x =>", "output": "x = 1", "loss": 0.3663264513015747}
+{"sample_index": 245, "prompt": "solve x - 2 = -5 for x =>", "output": "x = -3", "loss": 0.22605514526367188}
+{"sample_index": 246, "prompt": "solve -2*x - x - 4 = 4*x - 46 for x =>", "output": "x = 6", "loss": 0.08041473478078842}
+{"sample_index": 247, "prompt": "solve 1 - x = 2 for x =>", "output": "x = -1", "loss": 0.24051563441753387}
+{"sample_index": 248, "prompt": "solve 3*x - 5*x - 5 = 4*x - 23 for x =>", "output": "x = 3", "loss": 0.6244884133338928}
+{"sample_index": 249, "prompt": "solve -4*x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.17359448969364166}
+{"sample_index": 250, "prompt": "solve 3*x - 2 = 13 for x =>", "output": "x = 5", "loss": 0.12895964086055756}
+{"sample_index": 251, "prompt": "solve x - 2*x - 3 = -5*x - 15 for x =>", "output": "x = -3", "loss": 0.372097909450531}
+{"sample_index": 252, "prompt": "solve 3*x - 2*x - 1 = 0*x - 5 for x =>", "output": "x = -4", "loss": 0.9988934397697449}
+{"sample_index": 253, "prompt": "solve 2 - 5*x = -3 for x =>", "output": "x = 1", "loss": 0.2080848217010498}
+{"sample_index": 254, "prompt": "solve x + 1 = 5 for x =>", "output": "x = 4", "loss": 0.37352001667022705}
+{"sample_index": 255, "prompt": "solve 4*(x + 1) - 2 = 5*(x - 2) + 17 for x =>", "output": "x = -5", "loss": 0.5739668011665344}
+{"sample_index": 256, "prompt": "solve x + 4 = 1 for x =>", "output": "x = -3", "loss": 0.43913358449935913}
+{"sample_index": 257, "prompt": "solve -4*x - 4 = 8 for x =>", "output": "x = -3", "loss": 0.24407915771007538}
+{"sample_index": 258, "prompt": "solve 2*x - 3 = 7 for x =>", "output": "x = 5", "loss": 0.25325605273246765}
+{"sample_index": 259, "prompt": "solve 4*x - 2 = 3*x + 1 for x =>", "output": "x = 3", "loss": 0.708579421043396}
+{"sample_index": 260, "prompt": "solve 3*x + 1 = -14 for x =>", "output": "x = -5", "loss": 0.1893308013677597}
+{"sample_index": 261, "prompt": "solve -5*x - 4 = -19 for x =>", "output": "x = 3", "loss": 0.6182504892349243}
+{"sample_index": 262, "prompt": "solve 5*x - 1 = 9 for x =>", "output": "x = 2", "loss": 0.2120356261730194}
+{"sample_index": 263, "prompt": "solve 2*x - 9 = 6*x - 25 for x =>", "output": "x = 4", "loss": 0.6013879179954529}
+{"sample_index": 264, "prompt": "solve -3*x - 9 = 3*x - 33 for x =>", "output": "x = 4", "loss": 0.5696651339530945}
+{"sample_index": 265, "prompt": "solve -4*x - 1 = 15 for x =>", "output": "x = -4", "loss": 0.2928479313850403}
+{"sample_index": 266, "prompt": "solve x = -2 for x =>", "output": "x = -2", "loss": 0.2590291202068329}
+{"sample_index": 267, "prompt": "solve 5*(x - 1) = 15 for x =>", "output": "x = 4", "loss": 0.3195158839225769}
+{"sample_index": 268, "prompt": "solve 2*x**2 - 16*x + 24 = 0 for x =>", "output": "x = 2 or x = 6", "loss": 0.22096467018127441}
+{"sample_index": 269, "prompt": "solve 3 - 4*x = 19 for x =>", "output": "x = -4", "loss": 0.2202894389629364}
+{"sample_index": 270, "prompt": "solve -4*x - 4 = -8 for x =>", "output": "x = 1", "loss": 0.2546611428260803}
+{"sample_index": 271, "prompt": "solve 9 - x = 3 - 2*x for x =>", "output": "x = -6", "loss": 0.9736517667770386}
+{"sample_index": 272, "prompt": "solve -4*x + 3*x + 5 = x + 5 for x =>", "output": "x = 0", "loss": 0.21500784158706665}
+{"sample_index": 273, "prompt": "solve 2*x + 7 = 3*x + 6 for x =>", "output": "x = 1", "loss": 0.4749266803264618}
+{"sample_index": 274, "prompt": "solve 1*(x + 3) = 1 for x =>", "output": "x = -2", "loss": 0.34003838896751404}
+{"sample_index": 275, "prompt": "solve -2*(x - 4) - 2 = 1*(x + 3) - 9 for x =>", "output": "x = 4", "loss": 0.5110710859298706}
+{"sample_index": 276, "prompt": "solve x + 3 = 5 for x =>", "output": "x = 2", "loss": 0.3932616710662842}
+{"sample_index": 277, "prompt": "solve -5*x - 3 = -2*x - 3 for x =>", "output": "x = 0", "loss": 0.2926589548587799}
+{"sample_index": 278, "prompt": "solve 5*x + 5*x - 1 = -3*x + 64 for x =>", "output": "x = 5", "loss": 0.39220255613327026}
+{"sample_index": 279, "prompt": "solve 4 - 2*x = -4 for x =>", "output": "x = 4", "loss": 0.4578236937522888}
+{"sample_index": 280, "prompt": "solve 2 - 4*x = 2*x + 32 for x =>", "output": "x = -5", "loss": 0.31105250120162964}
+{"sample_index": 281, "prompt": "solve 1*(x + 2) + 2 = 8 for x =>", "output": "x = 4", "loss": 0.9218523502349854}
+{"sample_index": 282, "prompt": "solve 2*x + 2*x + 2 = -3*x + 44 for x =>", "output": "x = 6", "loss": 0.1681554913520813}
+{"sample_index": 283, "prompt": "solve 2 - x = 0 for x =>", "output": "x = 2", "loss": 0.3447575569152832}
+{"sample_index": 284, "prompt": "solve 4*x - 3 = -4*x - 19 for x =>", "output": "x = -2", "loss": 0.47558021545410156}
+{"sample_index": 285, "prompt": "solve x**2 + x - 30 = 0 for x =>", "output": "x = -6 or x = 5", "loss": 0.02742047794163227}
+{"sample_index": 286, "prompt": "solve -5*x - 1 = 19 for x =>", "output": "x = -4", "loss": 0.18905410170555115}
+{"sample_index": 287, "prompt": "solve x - 1 = -6*x - 15 for x =>", "output": "x = -2", "loss": 0.500592827796936}
+{"sample_index": 288, "prompt": "solve 4*(x - 4) + 3 = 1*(x + 5) - 3 for x =>", "output": "x = 5", "loss": 0.5002622008323669}
+{"sample_index": 289, "prompt": "solve 6*x - 2 = x + 3 for x =>", "output": "x = 1", "loss": 0.26282861828804016}
+{"sample_index": 290, "prompt": "solve 3 - 5*x = 13 for x =>", "output": "x = -2", "loss": 0.2407287359237671}
+{"sample_index": 291, "prompt": "solve 3 - x = 0 for x =>", "output": "x = 3", "loss": 0.4032420516014099}
+{"sample_index": 292, "prompt": "solve 2 - 3*x = 5 for x =>", "output": "x = -1", "loss": 0.06101816147565842}
+{"sample_index": 293, "prompt": "solve 4*x + 1 = 13 for x =>", "output": "x = 3", "loss": 0.2788368761539459}
+{"sample_index": 294, "prompt": "solve -4*(x - 3) + 1 = 4*(x + 1) + 41 for x =>", "output": "x = -4", "loss": 0.36609941720962524}
+{"sample_index": 295, "prompt": "solve -4*(x + 1) + 2 = 10 for x =>", "output": "x = -3", "loss": 0.3779679536819458}
+{"sample_index": 296, "prompt": "solve 2*x**2 - 6*x - 20 = 0 for x =>", "output": "x = -2 or x = 5", "loss": 0.07296574860811234}
+{"sample_index": 297, "prompt": "solve -4*(x - 4) + 2 = 2*(x - 3) + 42 for x =>", "output": "x = -3", "loss": 0.49160367250442505}
+{"sample_index": 298, "prompt": "solve -2*x = 2 for x =>", "output": "x = -1", "loss": 0.09350612014532089}
+{"sample_index": 299, "prompt": "solve 2*x - 1 = -11 for x =>", "output": "x = -5", "loss": 0.2083985060453415}
+{"sample_index": 300, "prompt": "solve -4*x - 1 = -17 for x =>", "output": "x = 4", "loss": 0.19806943833827972}
+{"sample_index": 301, "prompt": "solve -5*(x + 2) + 1 = 6 for x =>", "output": "x = -3", "loss": 0.41564813256263733}
+{"sample_index": 302, "prompt": "solve 3*x**2 - 3*x - 60 = 0 for x =>", "output": "x = -4 or x = 5", "loss": 0.152897447347641}
+{"sample_index": 303, "prompt": "solve 5*x - 6 = -4*x - 33 for x =>", "output": "x = -3", "loss": 0.5151431560516357}
+{"sample_index": 304, "prompt": "solve x + 3 = 2 for x =>", "output": "x = -1", "loss": 0.335462749004364}
+{"sample_index": 305, "prompt": "solve -1*(x) - 1 = -5*(x - 5) - 22 for x =>", "output": "x = 1", "loss": 0.7140690684318542}
+{"sample_index": 306, "prompt": "solve -3*(x + 2) + 4 = 5*(x - 1) - 45 for x =>", "output": "x = 6", "loss": 0.3451208770275116}
+{"sample_index": 307, "prompt": "solve -2*x - 10 = -x - 5 for x =>", "output": "x = -5", "loss": 0.9910627603530884}
+{"sample_index": 308, "prompt": "solve x - 4 = -9 for x =>", "output": "x = -5", "loss": 0.2922028601169586}
+{"sample_index": 309, "prompt": "solve 5*x = -20 for x =>", "output": "x = -4", "loss": 0.2758016586303711}
+{"sample_index": 310, "prompt": "solve x**2 + x - 20 = 0 for x =>", "output": "x = -5 or x = 4", "loss": 0.10950659215450287}
+{"sample_index": 311, "prompt": "solve x**2 + 3*x = 0 for x =>", "output": "x = -3 or x = 0", "loss": 0.025152890011668205}
+{"sample_index": 312, "prompt": "solve 1*(x + 4) - 3 = 3 for x =>", "output": "x = 2", "loss": 0.7060185670852661}
+{"sample_index": 313, "prompt": "solve 1 - 4*x = -3 for x =>", "output": "x = 1", "loss": 0.21309830248355865}
+{"sample_index": 314, "prompt": "solve x**2 + x - 12 = 0 for x =>", "output": "x = -4 or x = 3", "loss": 0.18346349895000458}
+{"sample_index": 315, "prompt": "solve 4 - 2*x = 0 for x =>", "output": "x = 2", "loss": 0.4819926917552948}
+{"sample_index": 316, "prompt": "solve 2 - 2*x = 5*x + 23 for x =>", "output": "x = -3", "loss": 0.3548617362976074}
+{"sample_index": 317, "prompt": "solve x**2 - 2*x - 3 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.02876412495970726}
+{"sample_index": 318, "prompt": "solve -2*x - 1 = -7 for x =>", "output": "x = 3", "loss": 0.34556183218955994}
+{"sample_index": 319, "prompt": "solve 3 - 5*x = -2 for x =>", "output": "x = 1", "loss": 0.17022305727005005}
+{"sample_index": 320, "prompt": "solve 4*x - 8 = -6*x - 68 for x =>", "output": "x = -6", "loss": 0.08509991317987442}
+{"sample_index": 321, "prompt": "solve 1*(x - 3) + 3 = -4*(x - 4) - 1 for x =>", "output": "x = 3", "loss": 0.6279948949813843}
+{"sample_index": 322, "prompt": "solve 3*(x - 3) - 5 = -1*(x - 1) + 5 for x =>", "output": "x = 5", "loss": 0.4117174744606018}
+{"sample_index": 323, "prompt": "solve x + 5 = 6 for x =>", "output": "x = 1", "loss": 0.22774630784988403}
+{"sample_index": 324, "prompt": "solve -1*(x - 2) - 1 = -1 for x =>", "output": "x = 2", "loss": 0.5558847784996033}
+{"sample_index": 325, "prompt": "solve 1 - 3*x = -11 for x =>", "output": "x = 4", "loss": 0.163169264793396}
+{"sample_index": 326, "prompt": "solve -3*(x) - 4 = -13 for x =>", "output": "x = 3", "loss": 0.34390780329704285}
+{"sample_index": 327, "prompt": "solve -1*(x - 4) - 2 = 1*(x + 3) + 9 for x =>", "output": "x = -5", "loss": 0.38557982444763184}
+{"sample_index": 328, "prompt": "solve 4*x + 6 = 2*x + 16 for x =>", "output": "x = 5", "loss": 0.44573289155960083}
+{"sample_index": 329, "prompt": "solve 2 - 4*x = 4 - 3*x for x =>", "output": "x = -2", "loss": 0.832707405090332}
+{"sample_index": 330, "prompt": "solve 3*(x - 3) + 5 = 2*(x - 1) - 7 for x =>", "output": "x = -5", "loss": 0.48918581008911133}
+{"sample_index": 331, "prompt": "solve -2*x - 3*x = 2*x + 42 for x =>", "output": "x = -6", "loss": 0.1569681167602539}
+{"sample_index": 332, "prompt": "solve 2*x = 8 for x =>", "output": "x = 4", "loss": 0.3002770245075226}
+{"sample_index": 333, "prompt": "solve -3*(x + 4) + 1 = 4*(x + 4) - 62 for x =>", "output": "x = 5", "loss": 0.2903853952884674}
+{"sample_index": 334, "prompt": "solve -1*(x - 3) - 4 = -6 for x =>", "output": "x = 5", "loss": 0.3386823236942291}
+{"sample_index": 335, "prompt": "solve -1*(x + 5) + 1 = -7 for x =>", "output": "x = 3", "loss": 0.5213741660118103}
+{"sample_index": 336, "prompt": "solve 2*x**2 + 2*x - 40 = 0 for x =>", "output": "x = -5 or x = 4", "loss": 0.02221999131143093}
+{"sample_index": 337, "prompt": "solve x - 2 = -7 for x =>", "output": "x = -5", "loss": 0.23992235958576202}
+{"sample_index": 338, "prompt": "solve x**2 + x - 30 = 0 for x =>", "output": "x = -6 or x = 5", "loss": 0.02742047794163227}
+{"sample_index": 339, "prompt": "solve 5 - 3*x = -6*x - 13 for x =>", "output": "x = -6", "loss": 0.8275524377822876}
+{"sample_index": 340, "prompt": "solve 1 - 2*x = 5 for x =>", "output": "x = -2", "loss": 0.2761400640010834}
+{"sample_index": 341, "prompt": "solve -5*(x + 3) = 1*(x - 4) - 17 for x =>", "output": "x = 1", "loss": 0.6048257946968079}
+{"sample_index": 342, "prompt": "solve -2*x - 3 = -5 for x =>", "output": "x = 1", "loss": 0.26222679018974304}
+{"sample_index": 343, "prompt": "solve 3*x - 2 = -5 for x =>", "output": "x = -1", "loss": 0.10608585178852081}
+{"sample_index": 344, "prompt": "solve 3*x - 3 = -12 for x =>", "output": "x = -3", "loss": 0.2019037902355194}
+{"sample_index": 345, "prompt": "solve 5*x - 2*x + 4 = -3*x + 4 for x =>", "output": "x = 0", "loss": 0.4341457188129425}
+{"sample_index": 346, "prompt": "solve -5*x + 3*x = x + 3 for x =>", "output": "x = -1", "loss": 0.28697681427001953}
+{"sample_index": 347, "prompt": "solve 2 - 3*x = -10 for x =>", "output": "x = 4", "loss": 0.17449860274791718}
+{"sample_index": 348, "prompt": "solve -4*(x - 1) - 3 = -5*(x - 5) - 26 for x =>", "output": "x = -2", "loss": 0.7278779149055481}
+{"sample_index": 349, "prompt": "solve -2*(x - 1) = -4 for x =>", "output": "x = 3", "loss": 0.4471556544303894}
+{"sample_index": 350, "prompt": "solve 3*x - 5*x + 4 = 5*x + 4 for x =>", "output": "x = 0", "loss": 0.42509227991104126}
+{"sample_index": 351, "prompt": "solve -1*(x - 2) + 3 = -4*(x) - 10 for x =>", "output": "x = -5", "loss": 0.5373010635375977}
+{"sample_index": 352, "prompt": "solve -3*x - 1 = 8 for x =>", "output": "x = -3", "loss": 0.27261611819267273}
+{"sample_index": 353, "prompt": "solve -2*x - 4 = -4 for x =>", "output": "x = 0", "loss": 0.27490001916885376}
+{"sample_index": 354, "prompt": "solve 8 - 6*x = 14 - 4*x for x =>", "output": "x = -3", "loss": 0.6015764474868774}
+{"sample_index": 355, "prompt": "solve 5*x + 5 = -15 for x =>", "output": "x = -4", "loss": 0.1892162710428238}
+{"sample_index": 356, "prompt": "solve 3*x - 5*x - 3 = 3*x + 17 for x =>", "output": "x = -4", "loss": 0.400799423456192}
+{"sample_index": 357, "prompt": "solve 4*x - 1 = -5 for x =>", "output": "x = -1", "loss": 0.13638190925121307}
+{"sample_index": 358, "prompt": "solve 2*x - 3 = 3 for x =>", "output": "x = 3", "loss": 0.5602293014526367}
+{"sample_index": 359, "prompt": "solve 5*x + 3*x + 3 = 2*x - 3 for x =>", "output": "x = -1", "loss": 0.4302472174167633}
+{"sample_index": 360, "prompt": "solve 5*x + 4 = 4 for x =>", "output": "x = 0", "loss": 0.09355752170085907}
+{"sample_index": 361, "prompt": "solve 5 - 3*x = 4*x + 33 for x =>", "output": "x = -4", "loss": 0.3618016541004181}
+{"sample_index": 362, "prompt": "solve x**2 + 3*x = 0 for x =>", "output": "x = -3 or x = 0", "loss": 0.025152890011668205}
+{"sample_index": 363, "prompt": "solve -3*x - 4 = 2 for x =>", "output": "x = -2", "loss": 0.4708694815635681}
+{"sample_index": 364, "prompt": "solve -4*(x - 5) + 1 = 3*(x + 1) + 53 for x =>", "output": "x = -5", "loss": 0.3133186399936676}
+{"sample_index": 365, "prompt": "solve -3*x - 4*x + 1 = 2*x + 10 for x =>", "output": "x = -1", "loss": 0.3850560784339905}
+{"sample_index": 366, "prompt": "solve -4*x - 1 = -17 for x =>", "output": "x = 4", "loss": 0.19806943833827972}
+{"sample_index": 367, "prompt": "solve -4*(x) + 5 = 4*(x + 2) - 3 for x =>", "output": "x = 0", "loss": 0.5698566436767578}
+{"sample_index": 368, "prompt": "solve -6*x - 5 = -x - 20 for x =>", "output": "x = 3", "loss": 0.5169633626937866}
+{"sample_index": 369, "prompt": "solve 3*x + 1 = -2 for x =>", "output": "x = -1", "loss": 0.12887094914913177}
+{"sample_index": 370, "prompt": "solve 5*x + 4 = 24 for x =>", "output": "x = 4", "loss": 0.4504101574420929}
+{"sample_index": 371, "prompt": "solve -5*x - 2 = -17 for x =>", "output": "x = 3", "loss": 0.5668440461158752}
+{"sample_index": 372, "prompt": "solve 1 - 3*x = -5 for x =>", "output": "x = 2", "loss": 0.31936830282211304}
+{"sample_index": 373, "prompt": "solve 1*(x - 1) + 5 = 9 for x =>", "output": "x = 5", "loss": 0.3473924696445465}
+{"sample_index": 374, "prompt": "solve -4*(x + 1) + 5 = 5*(x - 2) + 11 for x =>", "output": "x = 0", "loss": 0.6451539397239685}
+{"sample_index": 375, "prompt": "solve 3*(x - 5) - 4 = -7 for x =>", "output": "x = 4", "loss": 0.4492667615413666}
+{"sample_index": 376, "prompt": "solve -5*x - 1 = -6 for x =>", "output": "x = 1", "loss": 0.10536257922649384}
+{"sample_index": 377, "prompt": "solve 2*x - 3*x + 5 = -5*x + 13 for x =>", "output": "x = 2", "loss": 0.5615741610527039}
+{"sample_index": 378, "prompt": "solve x - 3 = -1 for x =>", "output": "x = 2", "loss": 0.47356536984443665}
+{"sample_index": 379, "prompt": "solve x - 2 = 0 for x =>", "output": "x = 2", "loss": 0.28667542338371277}
+{"sample_index": 380, "prompt": "solve -3*x + x + 2 = -5*x + 14 for x =>", "output": "x = 4", "loss": 0.6087842583656311}
+{"sample_index": 381, "prompt": "solve x**2 + x - 30 = 0 for x =>", "output": "x = -6 or x = 5", "loss": 0.02742047794163227}
+{"sample_index": 382, "prompt": "solve 2*x + 3 = 5 for x =>", "output": "x = 1", "loss": 0.260503888130188}
+{"sample_index": 383, "prompt": "solve 3*x**2 - 3*x - 18 = 0 for x =>", "output": "x = -2 or x = 3", "loss": 0.3251304030418396}
+{"sample_index": 384, "prompt": "solve 1*(x - 1) + 5 = -2*(x - 2) - 15 for x =>", "output": "x = -5", "loss": 0.4336280822753906}
+{"sample_index": 385, "prompt": "solve -5*(x + 4) = -40 for x =>", "output": "x = 4", "loss": 0.25926294922828674}
+{"sample_index": 386, "prompt": "solve 4*x + 3 = 15 for x =>", "output": "x = 3", "loss": 0.33322805166244507}
+{"sample_index": 387, "prompt": "solve 4*x + 10 = -2*x - 8 for x =>", "output": "x = -3", "loss": 0.3756880760192871}
+{"sample_index": 388, "prompt": "solve x**2 + x = 0 for x =>", "output": "x = -1 or x = 0", "loss": 0.05472202226519585}
+{"sample_index": 389, "prompt": "solve -5*(x) + 3 = 5*(x + 2) - 7 for x =>", "output": "x = 0", "loss": 0.6407199501991272}
+{"sample_index": 390, "prompt": "solve 3*x**2 + 33*x + 90 = 0 for x =>", "output": "x = -6 or x = -5", "loss": 0.046527475118637085}
+{"sample_index": 391, "prompt": "solve 2*x + 4 = -6 for x =>", "output": "x = -5", "loss": 0.5295029282569885}
+{"sample_index": 392, "prompt": "solve 4*x - 4 = -12 for x =>", "output": "x = -2", "loss": 0.2266518771648407}
+{"sample_index": 393, "prompt": "solve 3*x + 3 = -3 for x =>", "output": "x = -2", "loss": 0.2626068890094757}
+{"sample_index": 394, "prompt": "solve -5*(x + 2) + 3 = -27 for x =>", "output": "x = 4", "loss": 0.300849586725235}
+{"sample_index": 395, "prompt": "solve 4*x - 1 = 15 for x =>", "output": "x = 4", "loss": 0.3229878842830658}
+{"sample_index": 396, "prompt": "solve x + 3*x - 2 = 2*x + 4 for x =>", "output": "x = 3", "loss": 0.6214544177055359}
+{"sample_index": 397, "prompt": "solve 4*x - 5 = 11 for x =>", "output": "x = 4", "loss": 0.3113933801651001}
+{"sample_index": 398, "prompt": "solve -5*(x - 3) - 5 = 30 for x =>", "output": "x = -4", "loss": 0.3603162169456482}
+{"sample_index": 399, "prompt": "solve 2*x = 21 - 5*x for x =>", "output": "x = 3", "loss": 0.6470040678977966}
+{"sample_index": 400, "prompt": "solve 2*x**2 - 2*x - 4 = 0 for x =>", "output": "x = -1 or x = 2", "loss": 0.359437495470047}
+{"sample_index": 401, "prompt": "solve 3 - 3*x = -x - 3 for x =>", "output": "x = 3", "loss": 0.5055026412010193}
+{"sample_index": 402, "prompt": "solve -2*x - 3*x - 2 = 5*x - 52 for x =>", "output": "x = 5", "loss": 0.33583876490592957}
+{"sample_index": 403, "prompt": "solve -2*x - 5 = -15 for x =>", "output": "x = 5", "loss": 0.15852034091949463}
+{"sample_index": 404, "prompt": "solve 6*x - 1 = 65 - 5*x for x =>", "output": "x = 6", "loss": 0.10354074835777283}
+{"sample_index": 405, "prompt": "solve x**2 + 6*x + 5 = 0 for x =>", "output": "x = -5 or x = -1", "loss": 0.07784660160541534}
+{"sample_index": 406, "prompt": "solve 5*x + 3 = 13 for x =>", "output": "x = 2", "loss": 0.2847791612148285}
+{"sample_index": 407, "prompt": "solve -2*x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.24476110935211182}
+{"sample_index": 408, "prompt": "solve 4*x - 1 = 7 for x =>", "output": "x = 2", "loss": 0.25542137026786804}
+{"sample_index": 409, "prompt": "solve 2*x + 3*x - 3 = 2*x - 15 for x =>", "output": "x = -4", "loss": 0.3713039755821228}
+{"sample_index": 410, "prompt": "solve -6*x - 4 = -3*x - 4 for x =>", "output": "x = 0", "loss": 0.3443355858325958}
+{"sample_index": 411, "prompt": "solve 4*x + 5*x - 5 = -5*x - 89 for x =>", "output": "x = -6", "loss": 0.12384261190891266}
+{"sample_index": 412, "prompt": "solve 2*x + 5 = -3*x - 20 for x =>", "output": "x = -5", "loss": 0.3181876242160797}
+{"sample_index": 413, "prompt": "solve 5*x - 4 = 6 for x =>", "output": "x = 2", "loss": 0.3738313615322113}
+{"sample_index": 414, "prompt": "solve 5*x + 3*x - 3 = -x + 33 for x =>", "output": "x = 4", "loss": 0.5943312048912048}
+{"sample_index": 415, "prompt": "solve x = 5 for x =>", "output": "x = 5", "loss": 0.09638656675815582}
+{"sample_index": 416, "prompt": "solve 4*(x - 3) + 2 = -3*(x - 4) - 1 for x =>", "output": "x = 3", "loss": 0.6317184567451477}
+{"sample_index": 417, "prompt": "solve -2*(x - 5) + 1 = 21 for x =>", "output": "x = -5", "loss": 0.39554309844970703}
+{"sample_index": 418, "prompt": "solve -2*x - 1 = -5*x - 10 for x =>", "output": "x = -3", "loss": 0.7909619808197021}
+{"sample_index": 419, "prompt": "solve 3*(x - 4) - 1 = 4*(x + 5) - 38 for x =>", "output": "x = 5", "loss": 0.4878884553909302}
+{"sample_index": 420, "prompt": "solve 1*(x - 3) - 3 = -8 for x =>", "output": "x = -2", "loss": 0.5279592275619507}
+{"sample_index": 421, "prompt": "solve 6*x - 1 = 5*x - 4 for x =>", "output": "x = -3", "loss": 0.5791884660720825}
+{"sample_index": 422, "prompt": "solve -2*(x + 2) + 1 = -9 for x =>", "output": "x = 3", "loss": 0.4638771414756775}
+{"sample_index": 423, "prompt": "solve -2*x = 8 for x =>", "output": "x = -4", "loss": 0.19809909164905548}
+{"sample_index": 424, "prompt": "solve 7 - 2*x = 6*x + 47 for x =>", "output": "x = -5", "loss": 0.24157805740833282}
+{"sample_index": 425, "prompt": "solve -3*(x - 4) + 4 = 25 for x =>", "output": "x = -3", "loss": 0.45044994354248047}
+{"sample_index": 426, "prompt": "solve -2*x - 7 = 4*x + 5 for x =>", "output": "x = -2", "loss": 0.38012129068374634}
+{"sample_index": 427, "prompt": "solve 2 - 2*x = 0 for x =>", "output": "x = 1", "loss": 0.08644098043441772}
+{"sample_index": 428, "prompt": "solve 2*x - 3 = 2 - 3*x for x =>", "output": "x = 1", "loss": 0.35366711020469666}
+{"sample_index": 429, "prompt": "solve 3*x**2 + 24*x + 36 = 0 for x =>", "output": "x = -6 or x = -2", "loss": 0.2951487898826599}
+{"sample_index": 430, "prompt": "solve x - 5*x + 2 = x - 13 for x =>", "output": "x = 3", "loss": 0.37973013520240784}
+{"sample_index": 431, "prompt": "solve 3*x + 2 = 8 for x =>", "output": "x = 2", "loss": 0.36283987760543823}
+{"sample_index": 432, "prompt": "solve 2 - 5*x = 7 for x =>", "output": "x = -1", "loss": 0.05456697940826416}
+{"sample_index": 433, "prompt": "solve -4*x = 4 for x =>", "output": "x = -1", "loss": 0.06562264263629913}
+{"sample_index": 434, "prompt": "solve 3*x**2 + 3*x - 36 = 0 for x =>", "output": "x = -4 or x = 3", "loss": 0.09000558406114578}
+{"sample_index": 435, "prompt": "solve -4*x - 5 = -5 for x =>", "output": "x = 0", "loss": 0.3411664664745331}
+{"sample_index": 436, "prompt": "solve -x + 2*x - 2 = -2*x + 16 for x =>", "output": "x = 6", "loss": 0.4915609657764435}
+{"sample_index": 437, "prompt": "solve x**2 + 5*x = 0 for x =>", "output": "x = -5 or x = 0", "loss": 0.018069375306367874}
+{"sample_index": 438, "prompt": "solve 1 - 4*x = 5 for x =>", "output": "x = -1", "loss": 0.07084754854440689}
+{"sample_index": 439, "prompt": "solve 3*x**2 - 18*x + 15 = 0 for x =>", "output": "x = 1 or x = 5", "loss": 0.04667123034596443}
+{"sample_index": 440, "prompt": "solve 5*(x - 1) + 2 = 12 for x =>", "output": "x = 3", "loss": 0.38474076986312866}
+{"sample_index": 441, "prompt": "solve 5*x - 4 = -24 for x =>", "output": "x = -4", "loss": 0.29457464814186096}
+{"sample_index": 442, "prompt": "solve -1*(x + 5) + 4 = -5 for x =>", "output": "x = 4", "loss": 0.6220436692237854}
+{"sample_index": 443, "prompt": "solve -4*x + 3*x + 5 = 2*x - 10 for x =>", "output": "x = 5", "loss": 0.3960389494895935}
+{"sample_index": 444, "prompt": "solve 3*x**2 - 6*x - 9 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.049082908779382706}
+{"sample_index": 445, "prompt": "solve -3*x = -9 for x =>", "output": "x = 3", "loss": 0.32678210735321045}
+{"sample_index": 446, "prompt": "solve -3*x - 1 = -1 for x =>", "output": "x = 0", "loss": 0.0871635153889656}
+{"sample_index": 447, "prompt": "solve 1 - x = 5 for x =>", "output": "x = -4", "loss": 0.30728521943092346}
+{"sample_index": 448, "prompt": "solve x - 3 = -6 for x =>", "output": "x = -3", "loss": 0.21103239059448242}
+{"sample_index": 449, "prompt": "solve -4*(x - 5) - 4 = 20 for x =>", "output": "x = -1", "loss": 0.5281463861465454}
+{"sample_index": 450, "prompt": "solve -1*(x + 3) - 1 = 4*(x - 4) + 22 for x =>", "output": "x = -2", "loss": 0.5808702111244202}
+{"sample_index": 451, "prompt": "solve -2*(x - 1) - 3 = 2*(x - 4) + 15 for x =>", "output": "x = -2", "loss": 0.5502015948295593}
+{"sample_index": 452, "prompt": "solve 2*x**2 - 12*x + 10 = 0 for x =>", "output": "x = 1 or x = 5", "loss": 0.013835414312779903}
+{"sample_index": 453, "prompt": "solve 3*x**2 - 15*x + 18 = 0 for x =>", "output": "x = 2 or x = 3", "loss": 0.5207175016403198}
+{"sample_index": 454, "prompt": "solve x - 3 = 1 for x =>", "output": "x = 4", "loss": 0.2330719232559204}
+{"sample_index": 455, "prompt": "solve -4*x - 5*x - 5 = 5*x - 89 for x =>", "output": "x = 6", "loss": 0.09936413913965225}
+{"sample_index": 456, "prompt": "solve 2 - 3*x = -2*x - 2 for x =>", "output": "x = 4", "loss": 0.5969229340553284}
+{"sample_index": 457, "prompt": "solve -2*x - 2*x + 3 = -x - 3 for x =>", "output": "x = 2", "loss": 0.5763130187988281}
+{"sample_index": 458, "prompt": "solve -2*x - 5 = 3 for x =>", "output": "x = -4", "loss": 0.5901329517364502}
+{"sample_index": 459, "prompt": "solve -3*x - 2 = -5 for x =>", "output": "x = 1", "loss": 0.19828207790851593}
+{"sample_index": 460, "prompt": "solve 3*x - 2*x - 5 = 4*x - 20 for x =>", "output": "x = 5", "loss": 0.24722643196582794}
+{"sample_index": 461, "prompt": "solve 2*x - 5 = -9 for x =>", "output": "x = -2", "loss": 0.19128923118114471}
+{"sample_index": 462, "prompt": "solve 3*(x - 4) - 1 = 4*(x - 2) - 5 for x =>", "output": "x = 0", "loss": 0.702739953994751}
+{"sample_index": 463, "prompt": "solve 3*x - 5 = -17 for x =>", "output": "x = -4", "loss": 0.21613195538520813}
+{"sample_index": 464, "prompt": "solve 1*(x + 3) - 3 = 2*(x + 4) - 7 for x =>", "output": "x = -1", "loss": 0.5777842998504639}
+{"sample_index": 465, "prompt": "solve -4*(x + 4) + 1 = -2*(x) - 17 for x =>", "output": "x = 1", "loss": 0.6840009689331055}
+{"sample_index": 466, "prompt": "solve x + 5 = 4*x + 23 for x =>", "output": "x = -6", "loss": 0.42721325159072876}
+{"sample_index": 467, "prompt": "solve 2*x**2 + 6*x - 20 = 0 for x =>", "output": "x = -5 or x = 2", "loss": 0.06618180871009827}
+{"sample_index": 468, "prompt": "solve 3*x + 3 = -6 for x =>", "output": "x = -3", "loss": 0.27449074387550354}
+{"sample_index": 469, "prompt": "solve 2 - x = 2 for x =>", "output": "x = 0", "loss": 0.49500569701194763}
+{"sample_index": 470, "prompt": "solve -2*x + x = -3*x for x =>", "output": "x = 0", "loss": 0.49755895137786865}
+{"sample_index": 471, "prompt": "solve 4*x = 16 for x =>", "output": "x = 4", "loss": 0.3964027762413025}
+{"sample_index": 472, "prompt": "solve x**2 - 3*x = 0 for x =>", "output": "x = 0 or x = 3", "loss": 0.026661334559321404}
+{"sample_index": 473, "prompt": "solve 3*(x + 5) + 2 = 14 for x =>", "output": "x = -1", "loss": 0.4321530759334564}
+{"sample_index": 474, "prompt": "solve 3*x - x - 4 = -2*x - 24 for x =>", "output": "x = -5", "loss": 0.29294055700302124}
+{"sample_index": 475, "prompt": "solve 4 - x = 6 for x =>", "output": "x = -2", "loss": 0.2837691605091095}
+{"sample_index": 476, "prompt": "solve 5*(x + 4) + 2 = 2 for x =>", "output": "x = -4", "loss": 0.3899310529232025}
+{"sample_index": 477, "prompt": "solve 4*(x) - 2 = 2*(x - 4) + 2 for x =>", "output": "x = -2", "loss": 0.7079373598098755}
+{"sample_index": 478, "prompt": "solve -3*x - 2 = 1 for x =>", "output": "x = -1", "loss": 0.2633468210697174}
+{"sample_index": 479, "prompt": "solve 3*(x - 2) + 2 = 4*(x - 1) + 5 for x =>", "output": "x = -5", "loss": 0.5966981649398804}
+{"sample_index": 480, "prompt": "solve x**2 - 4 = 0 for x =>", "output": "x = -2 or x = 2", "loss": 0.8507609367370605}
+{"sample_index": 481, "prompt": "solve -x = -2 for x =>", "output": "x = 2", "loss": 0.405110627412796}
+{"sample_index": 482, "prompt": "solve 1*(x) + 1 = -4*(x + 2) + 24 for x =>", "output": "x = 3", "loss": 0.5500059723854065}
+{"sample_index": 483, "prompt": "solve 2*x**2 + 8*x - 24 = 0 for x =>", "output": "x = -6 or x = 2", "loss": 0.4887298345565796}
+{"sample_index": 484, "prompt": "solve 4 - 2*x = 0 for x =>", "output": "x = 2", "loss": 0.4819926917552948}
+{"sample_index": 485, "prompt": "solve 1*(x + 3) + 1 = 6 for x =>", "output": "x = 2", "loss": 0.751776397228241}
+{"sample_index": 486, "prompt": "solve 5*x - 2 = 6*x - 2 for x =>", "output": "x = 0", "loss": 0.4728543758392334}
+{"sample_index": 487, "prompt": "solve -x = 3 for x =>", "output": "x = -3", "loss": 0.2579101622104645}
+{"sample_index": 488, "prompt": "solve -1*(x + 4) + 2 = -3*(x - 2) - 12 for x =>", "output": "x = -2", "loss": 0.6482561826705933}
+{"sample_index": 489, "prompt": "solve 1*(x + 4) = 9 for x =>", "output": "x = 5", "loss": 0.5959765315055847}
+{"sample_index": 490, "prompt": "solve 2*x**2 + 8*x - 24 = 0 for x =>", "output": "x = -6 or x = 2", "loss": 0.4887298345565796}
+{"sample_index": 491, "prompt": "solve 2*x - 4*x + 5 = -x + 3 for x =>", "output": "x = 2", "loss": 0.5573703646659851}
+{"sample_index": 492, "prompt": "solve 2*x**2 + 2*x - 4 = 0 for x =>", "output": "x = -2 or x = 1", "loss": 0.0707644522190094}
+{"sample_index": 493, "prompt": "solve 4*(x + 2) + 4 = -4 for x =>", "output": "x = -4", "loss": 0.4719350337982178}
+{"sample_index": 494, "prompt": "solve 2*x**2 + 8*x - 10 = 0 for x =>", "output": "x = -5 or x = 1", "loss": 0.04974599555134773}
+{"sample_index": 495, "prompt": "solve -5*(x + 1) + 5 = 25 for x =>", "output": "x = -5", "loss": 0.35836753249168396}
+{"sample_index": 496, "prompt": "solve 1 - 4*x = 13 for x =>", "output": "x = -3", "loss": 0.22497788071632385}
+{"sample_index": 497, "prompt": "solve x - 2 = -7 for x =>", "output": "x = -5", "loss": 0.23992235958576202}
+{"sample_index": 498, "prompt": "solve -2*(x + 4) - 1 = -4*(x - 4) - 35 for x =>", "output": "x = -5", "loss": 0.44197025895118713}
+{"sample_index": 499, "prompt": "solve 5*x + 4*x = -2*x + 55 for x =>", "output": "x = 5", "loss": 0.2750653624534607}
+{"sample_index": 500, "prompt": "solve -3*(x - 4) + 4 = 3*(x - 4) - 2 for x =>", "output": "x = 5", "loss": 0.3954281210899353}
+{"sample_index": 501, "prompt": "solve -x - 2 = -7 for x =>", "output": "x = 5", "loss": 0.39506182074546814}
+{"sample_index": 502, "prompt": "solve -x - 3 = -2*x - 3 for x =>", "output": "x = 0", "loss": 0.36855486035346985}
+{"sample_index": 503, "prompt": "solve 3*x - 2 = -5 for x =>", "output": "x = -1", "loss": 0.10608585178852081}
+{"sample_index": 504, "prompt": "solve -1*(x - 2) + 5 = 10 for x =>", "output": "x = -3", "loss": 0.4486054480075836}
+{"sample_index": 505, "prompt": "solve 2*x + 2 = 8 for x =>", "output": "x = 3", "loss": 0.3023596704006195}
+{"sample_index": 506, "prompt": "solve -3*x + 3*x = -3*x - 18 for x =>", "output": "x = -6", "loss": 0.551348090171814}
+{"sample_index": 507, "prompt": "solve 5*(x + 2) - 2 = -4*(x - 3) - 22 for x =>", "output": "x = -2", "loss": 0.5445752143859863}
+{"sample_index": 508, "prompt": "solve 3*x**2 + 9*x - 30 = 0 for x =>", "output": "x = -5 or x = 2", "loss": 0.21325522661209106}
+{"sample_index": 509, "prompt": "solve -1*(x + 2) = -7 for x =>", "output": "x = 5", "loss": 0.4570733606815338}
+{"sample_index": 510, "prompt": "solve 5 - 4*x = -11 for x =>", "output": "x = 4", "loss": 0.13774473965168}
+{"sample_index": 511, "prompt": "solve 3*x - 2 = 10 for x =>", "output": "x = 4", "loss": 0.27459806203842163}
+{"sample_index": 512, "prompt": "solve 5*x + 10 = -3*x - 6 for x =>", "output": "x = -2", "loss": 0.3713381886482239}
+{"sample_index": 513, "prompt": "solve -x - 3 = -1 for x =>", "output": "x = -2", "loss": 0.5931466221809387}
+{"sample_index": 514, "prompt": "solve -3*x - 5 = 10 for x =>", "output": "x = -5", "loss": 0.3334106206893921}
+{"sample_index": 515, "prompt": "solve -5*x - 6 = 4*x + 39 for x =>", "output": "x = -5", "loss": 0.30551695823669434}
+{"sample_index": 516, "prompt": "solve -4*x = -4 for x =>", "output": "x = 1", "loss": 0.20042236149311066}
+{"sample_index": 517, "prompt": "solve 4*x + 9 = 41 - 4*x for x =>", "output": "x = 4", "loss": 0.5359410643577576}
+{"sample_index": 518, "prompt": "solve 3*x**2 + 6*x - 72 = 0 for x =>", "output": "x = -6 or x = 4", "loss": 0.17113667726516724}
+{"sample_index": 519, "prompt": "solve 5*(x - 5) - 5 = 3*(x + 5) - 37 for x =>", "output": "x = 4", "loss": 0.5991529822349548}
+{"sample_index": 520, "prompt": "solve 5*x + 1 = -6*x - 54 for x =>", "output": "x = -5", "loss": 0.2800561785697937}
+{"sample_index": 521, "prompt": "solve 5*x + 4 = 24 for x =>", "output": "x = 4", "loss": 0.4504101574420929}
+{"sample_index": 522, "prompt": "solve x = 5*x + 16 for x =>", "output": "x = -4", "loss": 0.32589060068130493}
+{"sample_index": 523, "prompt": "solve 4*x + 7 = 6*x + 13 for x =>", "output": "x = -3", "loss": 0.5050734877586365}
+{"sample_index": 524, "prompt": "solve -4*x - 1 = -9 for x =>", "output": "x = 2", "loss": 0.28060612082481384}
+{"sample_index": 525, "prompt": "solve 3*x - 5 = 16 - 4*x for x =>", "output": "x = 3", "loss": 0.41185861825942993}
+{"sample_index": 526, "prompt": "solve -4*x - 4 = -20 for x =>", "output": "x = 4", "loss": 0.14485760033130646}
+{"sample_index": 527, "prompt": "solve 2*x + 4 = 8 for x =>", "output": "x = 2", "loss": 0.43556687235832214}
+{"sample_index": 528, "prompt": "solve 3 - 2*x = 9 for x =>", "output": "x = -3", "loss": 0.3354543149471283}
+{"sample_index": 529, "prompt": "solve 6*x - 3 = -2*x - 51 for x =>", "output": "x = -6", "loss": 0.08916795998811722}
+{"sample_index": 530, "prompt": "solve x - 4 = -6 for x =>", "output": "x = -2", "loss": 0.2974209785461426}
+{"sample_index": 531, "prompt": "solve x**2 - x - 2 = 0 for x =>", "output": "x = -1 or x = 2", "loss": 0.06255754083395004}
+{"sample_index": 532, "prompt": "solve -x - 5*x + 4 = -5*x + 3 for x =>", "output": "x = 1", "loss": 0.4951092600822449}
+{"sample_index": 533, "prompt": "solve x + 2 = 0 for x =>", "output": "x = -2", "loss": 0.15212784707546234}
+{"sample_index": 534, "prompt": "solve 2*x + 5 = 7 for x =>", "output": "x = 1", "loss": 0.2957453429698944}
+{"sample_index": 535, "prompt": "solve 1 - 2*x = 5 for x =>", "output": "x = -2", "loss": 0.2761400640010834}
+{"sample_index": 536, "prompt": "solve 3*x**2 + 6*x = 0 for x =>", "output": "x = -2 or x = 0", "loss": 0.07139122486114502}
+{"sample_index": 537, "prompt": "solve x + 5*x + 1 = -x - 6 for x =>", "output": "x = -1", "loss": 0.31697121262550354}
+{"sample_index": 538, "prompt": "solve 3 - x = 4 for x =>", "output": "x = -1", "loss": 0.21402588486671448}
+{"sample_index": 539, "prompt": "solve 3*x**2 - 48 = 0 for x =>", "output": "x = -4 or x = 4", "loss": 0.13090045750141144}
+{"sample_index": 540, "prompt": "solve 2*x - 5*x - 4 = -5*x + 8 for x =>", "output": "x = 6", "loss": 0.6754265427589417}
+{"sample_index": 541, "prompt": "solve 1*(x - 4) + 2 = 5*(x + 5) - 15 for x =>", "output": "x = -3", "loss": 0.53049635887146}
+{"sample_index": 542, "prompt": "solve 5*x + 4*x = x for x =>", "output": "x = 0", "loss": 0.16116945445537567}
+{"sample_index": 543, "prompt": "solve -5*x - 3 = 3*x - 51 for x =>", "output": "x = 6", "loss": 0.11730992794036865}
+{"sample_index": 544, "prompt": "solve 3*(x - 1) + 3 = -4*(x + 2) - 20 for x =>", "output": "x = -4", "loss": 0.5137766599655151}
+{"sample_index": 545, "prompt": "solve 5*(x + 5) - 5 = 45 for x =>", "output": "x = 5", "loss": 0.2358049601316452}
+{"sample_index": 546, "prompt": "solve 4*(x - 2) + 3 = -2*(x) + 7 for x =>", "output": "x = 2", "loss": 0.61887127161026}
+{"sample_index": 547, "prompt": "solve -2*(x - 2) + 4 = 18 for x =>", "output": "x = -5", "loss": 0.3954954147338867}
+{"sample_index": 548, "prompt": "solve 3*x - 5 = -20 for x =>", "output": "x = -5", "loss": 0.13679614663124084}
+{"sample_index": 549, "prompt": "solve 2*x**2 + 14*x + 24 = 0 for x =>", "output": "x = -4 or x = -3", "loss": 0.07860947400331497}
+{"sample_index": 550, "prompt": "solve 4 - 4*x = 24 for x =>", "output": "x = -5", "loss": 0.1381022334098816}
+{"sample_index": 551, "prompt": "solve -5*(x - 5) - 4 = 5*(x + 4) + 41 for x =>", "output": "x = -4", "loss": 0.3613188564777374}
+{"sample_index": 552, "prompt": "solve -1*(x - 1) = -4*(x - 2) + 8 for x =>", "output": "x = 5", "loss": 0.5015312433242798}
+{"sample_index": 553, "prompt": "solve -5*(x) - 2 = 23 for x =>", "output": "x = -5", "loss": 0.24928677082061768}
+{"sample_index": 554, "prompt": "solve -4*x - 2 = -14 for x =>", "output": "x = 3", "loss": 0.44054222106933594}
+{"sample_index": 555, "prompt": "solve 3*x**2 - 21*x + 18 = 0 for x =>", "output": "x = 1 or x = 6", "loss": 0.07581587135791779}
+{"sample_index": 556, "prompt": "solve 1 - x = -3 for x =>", "output": "x = 4", "loss": 0.277992844581604}
+{"sample_index": 557, "prompt": "solve 3*x**2 - 3*x - 36 = 0 for x =>", "output": "x = -3 or x = 4", "loss": 0.47275876998901367}
+{"sample_index": 558, "prompt": "solve -5*x = 4*x - 18 for x =>", "output": "x = 2", "loss": 0.5644840598106384}
+{"sample_index": 559, "prompt": "solve -2*(x - 2) - 4 = 4*(x) + 18 for x =>", "output": "x = -3", "loss": 0.4328170716762543}
+{"sample_index": 560, "prompt": "solve 3*x - 2 = 13 for x =>", "output": "x = 5", "loss": 0.12895964086055756}
+{"sample_index": 561, "prompt": "solve 5*x + x + 4 = -4*x + 34 for x =>", "output": "x = 3", "loss": 0.742768406867981}
+{"sample_index": 562, "prompt": "solve 5*x - 5*x - 2 = -3*x - 17 for x =>", "output": "x = -5", "loss": 0.45402565598487854}
+{"sample_index": 563, "prompt": "solve 1 - 4*x = 21 for x =>", "output": "x = -5", "loss": 0.16546396911144257}
+{"sample_index": 564, "prompt": "solve -2*(x - 3) + 3 = 19 for x =>", "output": "x = -5", "loss": 0.391305148601532}
+{"sample_index": 565, "prompt": "solve x + 5 = 3 for x =>", "output": "x = -2", "loss": 0.6633940935134888}
+{"sample_index": 566, "prompt": "solve 5*x + 1 = -14 for x =>", "output": "x = -3", "loss": 0.23941166698932648}
+{"sample_index": 567, "prompt": "solve x - 3*x - 2 = -5*x + 7 for x =>", "output": "x = 3", "loss": 0.5652862787246704}
+{"sample_index": 568, "prompt": "solve -3*(x + 1) + 3 = -2*(x + 5) + 13 for x =>", "output": "x = -3", "loss": 0.606785774230957}
+{"sample_index": 569, "prompt": "solve x + 1 = 4 for x =>", "output": "x = 3", "loss": 0.40355169773101807}
+{"sample_index": 570, "prompt": "solve -5*(x - 2) + 1 = -14 for x =>", "output": "x = 5", "loss": 0.37858983874320984}
+{"sample_index": 571, "prompt": "solve -4*(x + 1) + 2 = -5*(x + 3) + 10 for x =>", "output": "x = -3", "loss": 0.626777708530426}
+{"sample_index": 572, "prompt": "solve 3*x**2 + 18*x = 0 for x =>", "output": "x = -6 or x = 0", "loss": 0.12694786489009857}
+{"sample_index": 573, "prompt": "solve -2*x - 2 = -4 for x =>", "output": "x = 1", "loss": 0.18415920436382294}
+{"sample_index": 574, "prompt": "solve x + 8 = 2*x + 5 for x =>", "output": "x = 3", "loss": 0.6997982859611511}
+{"sample_index": 575, "prompt": "solve 5*x - 6 = 6*x - 4 for x =>", "output": "x = -2", "loss": 0.5403079390525818}
+{"sample_index": 576, "prompt": "solve 4*x - 4 = -12 for x =>", "output": "x = -2", "loss": 0.2266518771648407}
+{"sample_index": 577, "prompt": "solve 4*x + 3*x - 1 = 3*x - 13 for x =>", "output": "x = -3", "loss": 0.4412914216518402}
+{"sample_index": 578, "prompt": "solve -2*x - 2 = -4 for x =>", "output": "x = 1", "loss": 0.18415920436382294}
+{"sample_index": 579, "prompt": "solve x + 7 = 49 - 6*x for x =>", "output": "x = 6", "loss": 0.3217475116252899}
+{"sample_index": 580, "prompt": "solve -1*(x + 1) - 4 = -3 for x =>", "output": "x = -2", "loss": 0.6232342720031738}
+{"sample_index": 581, "prompt": "solve x + 3 = 4 for x =>", "output": "x = 1", "loss": 0.23374409973621368}
+{"sample_index": 582, "prompt": "solve -3*(x - 4) - 4 = 23 for x =>", "output": "x = -5", "loss": 0.3674921989440918}
+{"sample_index": 583, "prompt": "solve 4*(x - 2) - 4 = 4 for x =>", "output": "x = 4", "loss": 0.47149887681007385}
+{"sample_index": 584, "prompt": "solve 5*x + 4 = 4 for x =>", "output": "x = 0", "loss": 0.09355752170085907}
+{"sample_index": 585, "prompt": "solve 2*x + 3*x - 1 = 2*x - 16 for x =>", "output": "x = -5", "loss": 0.3425248861312866}
+{"sample_index": 586, "prompt": "solve 5*x - 5 = -25 for x =>", "output": "x = -4", "loss": 0.34042301774024963}
+{"sample_index": 587, "prompt": "solve -x - 3 = -8 for x =>", "output": "x = 5", "loss": 0.47119247913360596}
+{"sample_index": 588, "prompt": "solve -4*x - 3 = 6*x + 7 for x =>", "output": "x = -1", "loss": 0.2477051466703415}
+{"sample_index": 589, "prompt": "solve 3*(x - 2) - 5 = 1*(x + 5) - 20 for x =>", "output": "x = -2", "loss": 0.5869817733764648}
+{"sample_index": 590, "prompt": "solve 3 - x = 8 for x =>", "output": "x = -5", "loss": 0.34467706084251404}
+{"sample_index": 591, "prompt": "solve -x + x + 3 = -2*x + 15 for x =>", "output": "x = 6", "loss": 0.4898039996623993}
+{"sample_index": 592, "prompt": "solve 2 - 3*x = 17 for x =>", "output": "x = -5", "loss": 0.18267908692359924}
+{"sample_index": 593, "prompt": "solve x**2 + x - 6 = 0 for x =>", "output": "x = -3 or x = 2", "loss": 0.23130451142787933}
+{"sample_index": 594, "prompt": "solve 3*x = 15 for x =>", "output": "x = 5", "loss": 0.04397783800959587}
+{"sample_index": 595, "prompt": "solve 2*(x - 3) + 4 = 3*(x + 1) - 9 for x =>", "output": "x = 4", "loss": 0.6220932006835938}
+{"sample_index": 596, "prompt": "solve x - 5*x + 1 = -3*x + 1 for x =>", "output": "x = 0", "loss": 0.5138018727302551}
+{"sample_index": 597, "prompt": "solve 5*x + 2*x + 4 = -2*x + 40 for x =>", "output": "x = 4", "loss": 0.5369796752929688}
+{"sample_index": 598, "prompt": "solve x + x - 2 = 0*x + 6 for x =>", "output": "x = 4", "loss": 0.643872082233429}
+{"sample_index": 599, "prompt": "solve -5*(x - 3) + 2 = 22 for x =>", "output": "x = -1", "loss": 0.4982360005378723}
+{"sample_index": 600, "prompt": "solve -4*x - 4 = 8 for x =>", "output": "x = -3", "loss": 0.24407915771007538}
+{"sample_index": 601, "prompt": "solve 5*x + 3 = 18 for x =>", "output": "x = 3", "loss": 0.34565603733062744}
+{"sample_index": 602, "prompt": "solve 3*x - 3 = -9 for x =>", "output": "x = -2", "loss": 0.1804054081439972}
+{"sample_index": 603, "prompt": "solve -3*x - 2 = 13 for x =>", "output": "x = -5", "loss": 0.16755865514278412}
+{"sample_index": 604, "prompt": "solve -2*(x - 5) - 1 = -4*(x - 1) + 13 for x =>", "output": "x = 4", "loss": 0.6388630867004395}
+{"sample_index": 605, "prompt": "solve -2*(x - 4) + 3 = 5*(x + 1) - 15 for x =>", "output": "x = 3", "loss": 0.5398494005203247}
+{"sample_index": 606, "prompt": "solve -1*(x + 2) - 2 = -3*(x - 5) - 9 for x =>", "output": "x = 5", "loss": 0.42728719115257263}
+{"sample_index": 607, "prompt": "solve x = -5 for x =>", "output": "x = -5", "loss": 0.3111296594142914}
+{"sample_index": 608, "prompt": "solve -2*x - 4 = -3*x - 10 for x =>", "output": "x = -6", "loss": 0.771217405796051}
+{"sample_index": 609, "prompt": "solve 5*(x + 4) + 5 = 25 for x =>", "output": "x = 0", "loss": 0.6536384224891663}
+{"sample_index": 610, "prompt": "solve -4*x - 2 = 10 for x =>", "output": "x = -3", "loss": 0.19717559218406677}
+{"sample_index": 611, "prompt": "solve x - 2 = -3 for x =>", "output": "x = -1", "loss": 0.21811440587043762}
+{"sample_index": 612, "prompt": "solve 4*x + 3 = -9 for x =>", "output": "x = -3", "loss": 0.2793101370334625}
+{"sample_index": 613, "prompt": "solve 1*(x) + 4 = 8 for x =>", "output": "x = 4", "loss": 0.527909517288208}
+{"sample_index": 614, "prompt": "solve 3*x**2 - 9*x - 54 = 0 for x =>", "output": "x = -3 or x = 6", "loss": 0.015625445172190666}
+{"sample_index": 615, "prompt": "solve 5*x - 4 = -29 for x =>", "output": "x = -5", "loss": 0.08262043446302414}
+{"sample_index": 616, "prompt": "solve 4*x = -12 for x =>", "output": "x = -3", "loss": 0.22294080257415771}
+{"sample_index": 617, "prompt": "solve 5*x - 2*x + 1 = 5*x + 13 for x =>", "output": "x = -6", "loss": 0.5323584675788879}
+{"sample_index": 618, "prompt": "solve -1*(x + 3) - 2 = 0 for x =>", "output": "x = -5", "loss": 0.39789897203445435}
+{"sample_index": 619, "prompt": "solve x - 3 = 0 for x =>", "output": "x = 3", "loss": 0.23871445655822754}
+{"sample_index": 620, "prompt": "solve x - 2 = 2*x - 2 for x =>", "output": "x = 0", "loss": 0.35352998971939087}
+{"sample_index": 621, "prompt": "solve -x - 9 = 6*x + 33 for x =>", "output": "x = -6", "loss": 0.1957917958498001}
+{"sample_index": 622, "prompt": "solve 2*x + 4 = 14 for x =>", "output": "x = 5", "loss": 0.1775999516248703}
+{"sample_index": 623, "prompt": "solve -6*x - 5 = 3*x + 4 for x =>", "output": "x = -1", "loss": 0.2345637083053589}
+{"sample_index": 624, "prompt": "solve 3*x**2 - 6*x = 0 for x =>", "output": "x = 0 or x = 2", "loss": 0.18729613721370697}
+{"sample_index": 625, "prompt": "solve -6*x - 9 = 4*x + 1 for x =>", "output": "x = -1", "loss": 0.2453267127275467}
+{"sample_index": 626, "prompt": "solve 4*x - 5 = -9 for x =>", "output": "x = -1", "loss": 0.19926805794239044}
+{"sample_index": 627, "prompt": "solve -5*(x + 2) - 4 = 3*(x - 1) + 21 for x =>", "output": "x = -4", "loss": 0.49239587783813477}
+{"sample_index": 628, "prompt": "solve -5*(x - 5) - 4 = 21 for x =>", "output": "x = 0", "loss": 0.8400441408157349}
+{"sample_index": 629, "prompt": "solve -3*x - 7 = -x - 5 for x =>", "output": "x = -1", "loss": 0.616417646408081}
+{"sample_index": 630, "prompt": "solve x + 3 = 7 for x =>", "output": "x = 4", "loss": 0.38671761751174927}
+{"sample_index": 631, "prompt": "solve 2 - 5*x = -8 for x =>", "output": "x = 2", "loss": 0.32744812965393066}
+{"sample_index": 632, "prompt": "solve x - 5*x + 1 = -2*x - 5 for x =>", "output": "x = 3", "loss": 0.5718711018562317}
+{"sample_index": 633, "prompt": "solve -3*x - 3 = 12 for x =>", "output": "x = -5", "loss": 0.2627580761909485}
+{"sample_index": 634, "prompt": "solve -4*(x) + 4 = -1*(x + 4) + 20 for x =>", "output": "x = -4", "loss": 0.5292044281959534}
+{"sample_index": 635, "prompt": "solve -5*x - 3 = 22 for x =>", "output": "x = -5", "loss": 0.13171091675758362}
+{"sample_index": 636, "prompt": "solve -4*x - 3*x + 1 = -4*x - 5 for x =>", "output": "x = 2", "loss": 0.4875359833240509}
+{"sample_index": 637, "prompt": "solve -2*(x) - 5 = -7 for x =>", "output": "x = 1", "loss": 0.4464624226093292}
+{"sample_index": 638, "prompt": "solve -2*x - 9 = -3*x - 6 for x =>", "output": "x = 3", "loss": 0.5298105478286743}
+{"sample_index": 639, "prompt": "solve -2*x - 3 = -9 for x =>", "output": "x = 3", "loss": 0.30533942580223083}
+{"sample_index": 640, "prompt": "solve 3*x**2 - 27*x + 54 = 0 for x =>", "output": "x = 3 or x = 6", "loss": 0.11468623578548431}
+{"sample_index": 641, "prompt": "solve 1 - 2*x = 1 for x =>", "output": "x = 0", "loss": 0.29742032289505005}
+{"sample_index": 642, "prompt": "solve 6*x - 10 = 62 - 6*x for x =>", "output": "x = 6", "loss": 0.1507163941860199}
+{"sample_index": 643, "prompt": "solve 4*x + 3 = 15 for x =>", "output": "x = 3", "loss": 0.33322805166244507}
+{"sample_index": 644, "prompt": "solve -5*x - 2 = 2*x + 40 for x =>", "output": "x = -6", "loss": 0.21166503429412842}
+{"sample_index": 645, "prompt": "solve 4*(x + 1) + 4 = 3*(x) + 7 for x =>", "output": "x = -1", "loss": 0.6377717852592468}
+{"sample_index": 646, "prompt": "solve -2*x - 10 = -5*x - 4 for x =>", "output": "x = 2", "loss": 0.517038106918335}
+{"sample_index": 647, "prompt": "solve x - 4*x - 5 = 0*x - 5 for x =>", "output": "x = 0", "loss": 0.5640639662742615}
+{"sample_index": 648, "prompt": "solve 5*(x + 2) + 5 = -3*(x + 1) + 66 for x =>", "output": "x = 6", "loss": 0.159395232796669}
+{"sample_index": 649, "prompt": "solve 1 - 2*x = -5 for x =>", "output": "x = 3", "loss": 0.3540637791156769}
+{"sample_index": 650, "prompt": "solve 3 - 2*x = 7 for x =>", "output": "x = -2", "loss": 0.20370464026927948}
+{"sample_index": 651, "prompt": "solve 3*x = -6*x - 9 for x =>", "output": "x = -1", "loss": 0.38128334283828735}
+{"sample_index": 652, "prompt": "solve 2*(x - 1) = -10 for x =>", "output": "x = -4", "loss": 0.4059184491634369}
+{"sample_index": 653, "prompt": "solve 2*x**2 - 18 = 0 for x =>", "output": "x = -3 or x = 3", "loss": 0.1455135941505432}
+{"sample_index": 654, "prompt": "solve x - 2 = -1 for x =>", "output": "x = 1", "loss": 0.4436444640159607}
+{"sample_index": 655, "prompt": "solve x**2 - 2*x - 3 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.02876412495970726}
+{"sample_index": 656, "prompt": "solve 4*(x - 2) - 3 = -15 for x =>", "output": "x = -1", "loss": 0.4821912348270416}
+{"sample_index": 657, "prompt": "solve -2*x - 3 = 7 - 4*x for x =>", "output": "x = 5", "loss": 0.5319535732269287}
+{"sample_index": 658, "prompt": "solve 4*(x + 4) + 4 = -4*(x + 4) + 52 for x =>", "output": "x = 2", "loss": 0.7216037511825562}
+{"sample_index": 659, "prompt": "solve 4*x + 5 = 1 for x =>", "output": "x = -1", "loss": 0.24050644040107727}
+{"sample_index": 660, "prompt": "solve 2*(x + 5) - 2 = 8 for x =>", "output": "x = 0", "loss": 0.7017830014228821}
+{"sample_index": 661, "prompt": "solve 5*x - 1 = -11 for x =>", "output": "x = -2", "loss": 0.19558031857013702}
+{"sample_index": 662, "prompt": "solve -2*(x + 5) + 1 = -11 for x =>", "output": "x = 1", "loss": 0.5300626158714294}
+{"sample_index": 663, "prompt": "solve 5*x - 5*x + 2 = 5*x + 7 for x =>", "output": "x = -1", "loss": 0.3877183496952057}
+{"sample_index": 664, "prompt": "solve 3*(x + 5) + 5 = -1*(x + 2) - 2 for x =>", "output": "x = -6", "loss": 0.39363011717796326}
+{"sample_index": 665, "prompt": "solve 3 - 2*x = 7 for x =>", "output": "x = -2", "loss": 0.20370464026927948}
+{"sample_index": 666, "prompt": "solve 4*x - 1 = -1 for x =>", "output": "x = 0", "loss": 0.08774813264608383}
+{"sample_index": 667, "prompt": "solve 3*x - 2 = 7 for x =>", "output": "x = 3", "loss": 0.3229331970214844}
+{"sample_index": 668, "prompt": "solve 3*(x + 2) + 4 = 5*(x + 5) - 27 for x =>", "output": "x = 6", "loss": 0.5241970419883728}
+{"sample_index": 669, "prompt": "solve 2*(x + 3) - 3 = 5*(x + 3) - 15 for x =>", "output": "x = 1", "loss": 0.7337960600852966}
+{"sample_index": 670, "prompt": "solve 5 - x = 6 for x =>", "output": "x = -1", "loss": 0.19113831222057343}
+{"sample_index": 671, "prompt": "solve -3*x - 1 = -16 for x =>", "output": "x = 5", "loss": 0.2689990699291229}
+{"sample_index": 672, "prompt": "solve -3*(x - 3) - 4 = 20 for x =>", "output": "x = -5", "loss": 0.417660653591156}
+{"sample_index": 673, "prompt": "solve 5*(x - 4) - 3 = 1*(x - 2) - 17 for x =>", "output": "x = 1", "loss": 0.7799791097640991}
+{"sample_index": 674, "prompt": "solve 8 - 5*x = 12 - 3*x for x =>", "output": "x = -2", "loss": 0.5792711973190308}
+{"sample_index": 675, "prompt": "solve 2*x + 4 = 12 for x =>", "output": "x = 4", "loss": 0.34117621183395386}
+{"sample_index": 676, "prompt": "solve 3*x**2 - 27 = 0 for x =>", "output": "x = -3 or x = 3", "loss": 0.0949515774846077}
+{"sample_index": 677, "prompt": "solve -4*x + 4*x - 5 = x - 1 for x =>", "output": "x = -4", "loss": 0.9242092370986938}
+{"sample_index": 678, "prompt": "solve -3*(x - 3) + 5 = -2*(x - 1) + 7 for x =>", "output": "x = 5", "loss": 0.4787638187408447}
+{"sample_index": 679, "prompt": "solve 3*x**2 + 6*x - 45 = 0 for x =>", "output": "x = -5 or x = 3", "loss": 0.1335473507642746}
+{"sample_index": 680, "prompt": "solve 2*x - 8 = 5*x - 11 for x =>", "output": "x = 1", "loss": 0.6981215476989746}
+{"sample_index": 681, "prompt": "solve 3*(x - 1) - 4 = -13 for x =>", "output": "x = -2", "loss": 0.3887704908847809}
+{"sample_index": 682, "prompt": "solve 4*x = 12 for x =>", "output": "x = 3", "loss": 0.24833230674266815}
+{"sample_index": 683, "prompt": "solve x = 0 for x =>", "output": "x = 0", "loss": 0.02758551947772503}
+{"sample_index": 684, "prompt": "solve 5*x - 3*x = -5*x + 35 for x =>", "output": "x = 5", "loss": 0.20798903703689575}
+{"sample_index": 685, "prompt": "solve 4*x - 9 = -2*x - 9 for x =>", "output": "x = 0", "loss": 0.42524850368499756}
+{"sample_index": 686, "prompt": "solve -4*x - 3 = 13 for x =>", "output": "x = -4", "loss": 0.26579007506370544}
+{"sample_index": 687, "prompt": "solve -5*(x - 2) + 4 = 5*(x - 1) - 1 for x =>", "output": "x = 2", "loss": 0.6417521238327026}
+{"sample_index": 688, "prompt": "solve 6 - x = 2 - 5*x for x =>", "output": "x = -1", "loss": 0.8593741655349731}
+{"sample_index": 689, "prompt": "solve -5*x - 1 = 3*x - 17 for x =>", "output": "x = 2", "loss": 0.6748290061950684}
+{"sample_index": 690, "prompt": "solve 3*x = 9 for x =>", "output": "x = 3", "loss": 0.34473469853401184}
+{"sample_index": 691, "prompt": "solve -x - 2*x - 5 = 0*x - 20 for x =>", "output": "x = 5", "loss": 0.19311165809631348}
+{"sample_index": 692, "prompt": "solve -5*x - 6 = 6*x - 61 for x =>", "output": "x = 5", "loss": 0.41779062151908875}
+{"sample_index": 693, "prompt": "solve 1 - x = 1 for x =>", "output": "x = 0", "loss": 0.454121470451355}
+{"sample_index": 694, "prompt": "solve 3*x - 5*x + 4 = x + 10 for x =>", "output": "x = -2", "loss": 0.45129814743995667}
+{"sample_index": 695, "prompt": "solve x - 3 = 1 for x =>", "output": "x = 4", "loss": 0.2330719232559204}
+{"sample_index": 696, "prompt": "solve 4*x - 3 = -19 for x =>", "output": "x = -4", "loss": 0.20464113354682922}
+{"sample_index": 697, "prompt": "solve 3*x - 2 = 7 for x =>", "output": "x = 3", "loss": 0.3229331970214844}
+{"sample_index": 698, "prompt": "solve 2*(x + 3) - 4 = 2 for x =>", "output": "x = 0", "loss": 0.5627042651176453}
+{"sample_index": 699, "prompt": "solve 9 - 3*x = x + 29 for x =>", "output": "x = -5", "loss": 0.16303160786628723}
+{"sample_index": 700, "prompt": "solve x + 4 = -1 for x =>", "output": "x = -5", "loss": 0.507386326789856}
+{"sample_index": 701, "prompt": "solve 3 - 3*x = 12 for x =>", "output": "x = -3", "loss": 0.25633174180984497}
+{"sample_index": 702, "prompt": "solve x + 2*x - 1 = -x + 7 for x =>", "output": "x = 2", "loss": 0.53217613697052}
+{"sample_index": 703, "prompt": "solve -3*x = -9 for x =>", "output": "x = 3", "loss": 0.32678210735321045}
+{"sample_index": 704, "prompt": "solve -4*x - 4 = 4*x - 20 for x =>", "output": "x = 2", "loss": 0.7261285185813904}
+{"sample_index": 705, "prompt": "solve -5*x = -5 for x =>", "output": "x = 1", "loss": 0.211295485496521}
+{"sample_index": 706, "prompt": "solve -3*(x + 2) - 5 = -5 for x =>", "output": "x = -2", "loss": 0.5925392508506775}
+{"sample_index": 707, "prompt": "solve -3*x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.20097915828227997}
+{"sample_index": 708, "prompt": "solve -5*x - 1 = 14 for x =>", "output": "x = -3", "loss": 0.1833728849887848}
+{"sample_index": 709, "prompt": "solve -4*x + 4*x - 5 = 4*x + 19 for x =>", "output": "x = -6", "loss": 0.3988426625728607}
+{"sample_index": 710, "prompt": "solve 4*(x - 1) + 3 = 3*(x - 4) + 13 for x =>", "output": "x = 2", "loss": 0.6353026032447815}
+{"sample_index": 711, "prompt": "solve 4*(x + 3) + 4 = -4*(x - 4) + 40 for x =>", "output": "x = 5", "loss": 0.3879142999649048}
+{"sample_index": 712, "prompt": "solve 3*x + 8 = 5*x + 20 for x =>", "output": "x = -6", "loss": 0.49609798192977905}
+{"sample_index": 713, "prompt": "solve 2*x - 10 = -5*x - 31 for x =>", "output": "x = -3", "loss": 0.3971894681453705}
+{"sample_index": 714, "prompt": "solve x**2 + 3*x - 10 = 0 for x =>", "output": "x = -5 or x = 2", "loss": 0.14794175326824188}
+{"sample_index": 715, "prompt": "solve 8 - 6*x = 2*x + 48 for x =>", "output": "x = -5", "loss": 0.2569175958633423}
+{"sample_index": 716, "prompt": "solve 5 - x = 8 for x =>", "output": "x = -3", "loss": 0.19594129920005798}
+{"sample_index": 717, "prompt": "solve 3 - 5*x = -17 for x =>", "output": "x = 4", "loss": 0.22254393994808197}
+{"sample_index": 718, "prompt": "solve -4*x + 5*x - 1 = -4*x - 21 for x =>", "output": "x = -4", "loss": 0.6510335206985474}
+{"sample_index": 719, "prompt": "solve -4*x - 2 = 10 for x =>", "output": "x = -3", "loss": 0.19717559218406677}
+{"sample_index": 720, "prompt": "solve 4 - x = 3 for x =>", "output": "x = 1", "loss": 0.5017005205154419}
+{"sample_index": 721, "prompt": "solve -5*x = 10 for x =>", "output": "x = -2", "loss": 0.23171524703502655}
+{"sample_index": 722, "prompt": "solve 1 - x = -1 for x =>", "output": "x = 2", "loss": 0.3707106411457062}
+{"sample_index": 723, "prompt": "solve x**2 + x - 6 = 0 for x =>", "output": "x = -3 or x = 2", "loss": 0.23130451142787933}
+{"sample_index": 724, "prompt": "solve -3*x - 8 = 6*x + 19 for x =>", "output": "x = -3", "loss": 0.4262949526309967}
+{"sample_index": 725, "prompt": "solve 3*(x + 2) + 1 = -4*(x - 5) + 8 for x =>", "output": "x = 3", "loss": 0.559720516204834}
+{"sample_index": 726, "prompt": "solve -3*x - x - 1 = 5*x - 37 for x =>", "output": "x = 4", "loss": 0.6294645071029663}
+{"sample_index": 727, "prompt": "solve -5*(x - 5) - 4 = 31 for x =>", "output": "x = -2", "loss": 0.45614713430404663}
+{"sample_index": 728, "prompt": "solve -3*x - 2 = -14 for x =>", "output": "x = 4", "loss": 0.16114915907382965}
+{"sample_index": 729, "prompt": "solve 3 - 2*x = 11 for x =>", "output": "x = -4", "loss": 0.27987053990364075}
+{"sample_index": 730, "prompt": "solve -3*x - 6 = -2*x for x =>", "output": "x = -6", "loss": 1.0851008892059326}
+{"sample_index": 731, "prompt": "solve 4*x + 5*x + 3 = 3*x - 3 for x =>", "output": "x = -1", "loss": 0.43728041648864746}
+{"sample_index": 732, "prompt": "solve -4*x - 1 = 11 for x =>", "output": "x = -3", "loss": 0.258963406085968}
+{"sample_index": 733, "prompt": "solve x**2 + 4*x = 0 for x =>", "output": "x = -4 or x = 0", "loss": 0.029552064836025238}
+{"sample_index": 734, "prompt": "solve 3*(x) + 1 = 4*(x - 4) + 19 for x =>", "output": "x = -2", "loss": 0.657012939453125}
+{"sample_index": 735, "prompt": "solve 3*x - 4 = 4*x - 2 for x =>", "output": "x = -2", "loss": 0.545387864112854}
+{"sample_index": 736, "prompt": "solve 3 - 2*x = -3 for x =>", "output": "x = 3", "loss": 0.5113201141357422}
+{"sample_index": 737, "prompt": "solve 6*x - 1 = 3*x - 16 for x =>", "output": "x = -5", "loss": 0.3829724192619324}
+{"sample_index": 738, "prompt": "solve -2*x = 4 for x =>", "output": "x = -2", "loss": 0.30035725235939026}
+{"sample_index": 739, "prompt": "solve 4*x - 2 = 14 for x =>", "output": "x = 4", "loss": 0.35411858558654785}
+{"sample_index": 740, "prompt": "solve 5*x + 4 = 19 for x =>", "output": "x = 3", "loss": 0.5007969737052917}
+{"sample_index": 741, "prompt": "solve 3*x - 3 = -4*x - 31 for x =>", "output": "x = -4", "loss": 0.441963255405426}
+{"sample_index": 742, "prompt": "solve 2*x**2 + 12*x + 16 = 0 for x =>", "output": "x = -4 or x = -2", "loss": 0.23445960879325867}
+{"sample_index": 743, "prompt": "solve -x = -4 for x =>", "output": "x = 4", "loss": 0.15359047055244446}
+{"sample_index": 744, "prompt": "solve x**2 - 5*x + 6 = 0 for x =>", "output": "x = 2 or x = 3", "loss": 0.9862576723098755}
+{"sample_index": 745, "prompt": "solve -1*(x - 2) - 4 = 2 for x =>", "output": "x = -4", "loss": 0.6025364398956299}
+{"sample_index": 746, "prompt": "solve x**2 - 9*x + 20 = 0 for x =>", "output": "x = 4 or x = 5", "loss": 0.2757282257080078}
+{"sample_index": 747, "prompt": "solve -2*(x + 4) - 4 = -3*(x + 2) - 10 for x =>", "output": "x = -4", "loss": 0.6186610460281372}
+{"sample_index": 748, "prompt": "solve -3*x - 4 = 8 for x =>", "output": "x = -4", "loss": 0.26900768280029297}
+{"sample_index": 749, "prompt": "solve 1*(x + 2) + 2 = 2*(x + 4) - 6 for x =>", "output": "x = 2", "loss": 0.7144749760627747}
+{"sample_index": 750, "prompt": "solve -3*x - 2 = 4 for x =>", "output": "x = -2", "loss": 0.33139467239379883}
+{"sample_index": 751, "prompt": "solve 1 - 2*x = -3 for x =>", "output": "x = 2", "loss": 0.28037846088409424}
+{"sample_index": 752, "prompt": "solve x + 4 = 8 for x =>", "output": "x = 4", "loss": 0.3939107358455658}
+{"sample_index": 753, "prompt": "solve 2*x**2 + 12*x + 10 = 0 for x =>", "output": "x = -5 or x = -1", "loss": 0.0781615823507309}
+{"sample_index": 754, "prompt": "solve x - 5 = -10 for x =>", "output": "x = -5", "loss": 0.41355282068252563}
+{"sample_index": 755, "prompt": "solve 2 - 4*x = 2*x - 34 for x =>", "output": "x = 6", "loss": 0.1686728298664093}
+{"sample_index": 756, "prompt": "solve -x - 2*x - 2 = 3*x - 26 for x =>", "output": "x = 4", "loss": 0.5730446577072144}
+{"sample_index": 757, "prompt": "solve -1*(x + 4) - 5 = -3*(x - 2) - 17 for x =>", "output": "x = -1", "loss": 0.7036219239234924}
+{"sample_index": 758, "prompt": "solve 4 - x = -1 for x =>", "output": "x = 5", "loss": 0.38735127449035645}
+{"sample_index": 759, "prompt": "solve -x - 2 = -6 for x =>", "output": "x = 4", "loss": 0.24258072674274445}
+{"sample_index": 760, "prompt": "solve 2*x - 4 = -10 for x =>", "output": "x = -3", "loss": 0.21282526850700378}
+{"sample_index": 761, "prompt": "solve 2*x**2 - 50 = 0 for x =>", "output": "x = -5 or x = 5", "loss": 0.0015807466115802526}
+{"sample_index": 762, "prompt": "solve -x = -3 for x =>", "output": "x = 3", "loss": 0.300753116607666}
+{"sample_index": 763, "prompt": "solve 2*x**2 - 18*x + 36 = 0 for x =>", "output": "x = 3 or x = 6", "loss": 0.08346842229366302}
+{"sample_index": 764, "prompt": "solve -2*(x + 2) - 4 = 3*(x + 5) - 28 for x =>", "output": "x = 1", "loss": 0.6350927948951721}
+{"sample_index": 765, "prompt": "solve 5*x - 2 = -27 for x =>", "output": "x = -5", "loss": 0.06669770181179047}
+{"sample_index": 766, "prompt": "solve x**2 - 4 = 0 for x =>", "output": "x = -2 or x = 2", "loss": 0.8507609367370605}
+{"sample_index": 767, "prompt": "solve -2*x - 4 = -14 for x =>", "output": "x = 5", "loss": 0.28156107664108276}
+{"sample_index": 768, "prompt": "solve 3*(x - 1) = 1*(x + 5) - 4 for x =>", "output": "x = 2", "loss": 0.7222654223442078}
+{"sample_index": 769, "prompt": "solve 4*(x - 2) - 1 = -9 for x =>", "output": "x = 0", "loss": 0.584353506565094}
+{"sample_index": 770, "prompt": "solve 3*x**2 + 18*x + 15 = 0 for x =>", "output": "x = -5 or x = -1", "loss": 0.05548638105392456}
+{"sample_index": 771, "prompt": "solve 5*(x + 1) - 1 = -11 for x =>", "output": "x = -3", "loss": 0.3486274480819702}
+{"sample_index": 772, "prompt": "solve 5*(x + 2) + 5 = -1*(x - 4) - 1 for x =>", "output": "x = -2", "loss": 0.5330575704574585}
+{"sample_index": 773, "prompt": "solve -2*x - 4 = -14 for x =>", "output": "x = 5", "loss": 0.28156107664108276}
+{"sample_index": 774, "prompt": "solve x + 2 = -3 for x =>", "output": "x = -5", "loss": 0.4905713200569153}
+{"sample_index": 775, "prompt": "solve 6 - x = 30 - 5*x for x =>", "output": "x = 6", "loss": 0.44206702709198}
+{"sample_index": 776, "prompt": "solve -2*x = 6*x + 8 for x =>", "output": "x = -1", "loss": 0.2900581657886505}
+{"sample_index": 777, "prompt": "solve -x = 2 for x =>", "output": "x = -2", "loss": 0.2897469997406006}
+{"sample_index": 778, "prompt": "solve 4*x - 5*x - 5 = 5*x - 35 for x =>", "output": "x = 5", "loss": 0.23611043393611908}
+{"sample_index": 779, "prompt": "solve -4*x - 3 = 13 for x =>", "output": "x = -4", "loss": 0.26579007506370544}
+{"sample_index": 780, "prompt": "solve 4 - x = 5 for x =>", "output": "x = -1", "loss": 0.4903027415275574}
+{"sample_index": 781, "prompt": "solve -2*x - 3 = -11 for x =>", "output": "x = 4", "loss": 0.16360248625278473}
+{"sample_index": 782, "prompt": "solve -5*(x + 1) + 5 = 1*(x - 5) - 7 for x =>", "output": "x = 2", "loss": 0.5869814157485962}
+{"sample_index": 783, "prompt": "solve x**2 + x - 30 = 0 for x =>", "output": "x = -6 or x = 5", "loss": 0.02742047794163227}
+{"sample_index": 784, "prompt": "solve x**2 - 4*x - 5 = 0 for x =>", "output": "x = -1 or x = 5", "loss": 0.017065124586224556}
+{"sample_index": 785, "prompt": "solve x + 4 = 9 for x =>", "output": "x = 5", "loss": 0.12620767951011658}
+{"sample_index": 786, "prompt": "solve 4*x - 4 = -2*x - 4 for x =>", "output": "x = 0", "loss": 0.34334585070610046}
+{"sample_index": 787, "prompt": "solve -2*(x - 3) - 5 = 1 for x =>", "output": "x = 0", "loss": 1.0860071182250977}
+{"sample_index": 788, "prompt": "solve 2*x + 2 = 6 for x =>", "output": "x = 2", "loss": 0.34356486797332764}
+{"sample_index": 789, "prompt": "solve 3 - 4*x = 19 for x =>", "output": "x = -4", "loss": 0.2202894389629364}
+{"sample_index": 790, "prompt": "solve 2*x**2 + 12*x + 16 = 0 for x =>", "output": "x = -4 or x = -2", "loss": 0.23445960879325867}
+{"sample_index": 791, "prompt": "solve -3*(x + 2) - 4 = -1*(x + 2) - 4 for x =>", "output": "x = -2", "loss": 0.7210936546325684}
+{"sample_index": 792, "prompt": "solve 1 - 5*x = 26 for x =>", "output": "x = -5", "loss": 0.17274346947669983}
+{"sample_index": 793, "prompt": "solve -3*x - 6 = -x - 4 for x =>", "output": "x = -1", "loss": 0.509703516960144}
+{"sample_index": 794, "prompt": "solve 5 - 2*x = 7 for x =>", "output": "x = -1", "loss": 0.08849268406629562}
+{"sample_index": 795, "prompt": "solve 3*x + 5*x - 4 = 0*x + 28 for x =>", "output": "x = 4", "loss": 0.5180755853652954}
+{"sample_index": 796, "prompt": "solve -2*(x + 4) + 4 = -14 for x =>", "output": "x = 5", "loss": 0.43202444911003113}
+{"sample_index": 797, "prompt": "solve -5*x - 1 = 4*x - 1 for x =>", "output": "x = 0", "loss": 0.32602792978286743}
+{"sample_index": 798, "prompt": "solve -2*x + 2*x + 4 = -2*x + 16 for x =>", "output": "x = 6", "loss": 0.4513392150402069}
+{"sample_index": 799, "prompt": "solve 3*x**2 - 33*x + 90 = 0 for x =>", "output": "x = 5 or x = 6", "loss": 0.0694480612874031}
+{"sample_index": 800, "prompt": "solve 2*x**2 - 4*x - 48 = 0 for x =>", "output": "x = -4 or x = 6", "loss": 0.08477187156677246}
+{"sample_index": 801, "prompt": "solve 5*(x + 4) - 3 = 17 for x =>", "output": "x = 0", "loss": 0.5851945877075195}
+{"sample_index": 802, "prompt": "solve 5 - 4*x = 5 for x =>", "output": "x = 0", "loss": 0.11693405359983444}
+{"sample_index": 803, "prompt": "solve 2 - 5*x = -18 for x =>", "output": "x = 4", "loss": 0.3019430935382843}
+{"sample_index": 804, "prompt": "solve 4*x + 2*x - 3 = x + 17 for x =>", "output": "x = 4", "loss": 0.3985433280467987}
+{"sample_index": 805, "prompt": "solve -5*x - 5*x + 4 = -x + 22 for x =>", "output": "x = -2", "loss": 0.7936133146286011}
+{"sample_index": 806, "prompt": "solve -4*x - 2*x + 5 = 5*x + 5 for x =>", "output": "x = 0", "loss": 0.3728003203868866}
+{"sample_index": 807, "prompt": "solve -5*(x) - 1 = 2*(x - 1) - 27 for x =>", "output": "x = 4", "loss": 0.43094581365585327}
+{"sample_index": 808, "prompt": "solve -5*(x - 2) + 2 = -4*(x + 5) + 38 for x =>", "output": "x = -6", "loss": 0.3642215132713318}
+{"sample_index": 809, "prompt": "solve 5*x + 2 = -8 for x =>", "output": "x = -2", "loss": 0.2346941977739334}
+{"sample_index": 810, "prompt": "solve 5*(x + 1) + 5 = 1*(x - 4) + 30 for x =>", "output": "x = 4", "loss": 0.542647123336792}
+{"sample_index": 811, "prompt": "solve 2*x + 5 = 11 for x =>", "output": "x = 3", "loss": 0.2833386957645416}
+{"sample_index": 812, "prompt": "solve 2*x - 4 = -14 for x =>", "output": "x = -5", "loss": 0.21810081601142883}
+{"sample_index": 813, "prompt": "solve 1*(x + 3) - 1 = -3 for x =>", "output": "x = -5", "loss": 0.44826656579971313}
+{"sample_index": 814, "prompt": "solve 2*x + 5 = -3 for x =>", "output": "x = -4", "loss": 0.49673333764076233}
+{"sample_index": 815, "prompt": "solve -1*(x - 3) + 4 = 5 for x =>", "output": "x = 2", "loss": 0.6738320589065552}
+{"sample_index": 816, "prompt": "solve 1 - 2*x = -7 for x =>", "output": "x = 4", "loss": 0.1647631973028183}
+{"sample_index": 817, "prompt": "solve -1*(x + 3) + 5 = 2 for x =>", "output": "x = 0", "loss": 0.7513293623924255}
+{"sample_index": 818, "prompt": "solve x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.23842884600162506}
+{"sample_index": 819, "prompt": "solve -2*x + x - 2 = -4*x - 5 for x =>", "output": "x = -1", "loss": 0.6131599545478821}
+{"sample_index": 820, "prompt": "solve 5*x + 2*x - 3 = -4*x - 47 for x =>", "output": "x = -4", "loss": 0.5393283367156982}
+{"sample_index": 821, "prompt": "solve 4*x - 3*x - 5 = -x - 3 for x =>", "output": "x = 1", "loss": 0.41044682264328003}
+{"sample_index": 822, "prompt": "solve 10 - 2*x = -5*x - 5 for x =>", "output": "x = -5", "loss": 0.7907534241676331}
+{"sample_index": 823, "prompt": "solve -2*(x + 5) - 5 = 4*(x + 2) - 41 for x =>", "output": "x = 3", "loss": 0.5723194479942322}
+{"sample_index": 824, "prompt": "solve 4 - 2*x = 4 for x =>", "output": "x = 0", "loss": 0.1754743903875351}
+{"sample_index": 825, "prompt": "solve 2 - 5*x = 14 - 2*x for x =>", "output": "x = -4", "loss": 0.6063041687011719}
+{"sample_index": 826, "prompt": "solve 5*x + 3 = -2 for x =>", "output": "x = -1", "loss": 0.15802262723445892}
+{"sample_index": 827, "prompt": "solve -x - 6 = 2*x + 12 for x =>", "output": "x = -6", "loss": 0.46547770500183105}
+{"sample_index": 828, "prompt": "solve 3*x**2 - 27 = 0 for x =>", "output": "x = -3 or x = 3", "loss": 0.0949515774846077}
+{"sample_index": 829, "prompt": "solve 2*x = -4 for x =>", "output": "x = -2", "loss": 0.2161225974559784}
+{"sample_index": 830, "prompt": "solve 6 - 2*x = 4*x + 24 for x =>", "output": "x = -3", "loss": 0.3551155924797058}
+{"sample_index": 831, "prompt": "solve 3*x + 4 = 19 for x =>", "output": "x = 5", "loss": 0.0717087909579277}
+{"sample_index": 832, "prompt": "solve -5*(x - 2) + 5 = 1*(x - 1) + 28 for x =>", "output": "x = -2", "loss": 0.537394642829895}
+{"sample_index": 833, "prompt": "solve 2*x + 2*x - 3 = -2*x - 3 for x =>", "output": "x = 0", "loss": 0.3864023685455322}
+{"sample_index": 834, "prompt": "solve 1*(x - 3) - 1 = 1 for x =>", "output": "x = 5", "loss": 0.24150876700878143}
+{"sample_index": 835, "prompt": "solve 3*x + 3 = 18 for x =>", "output": "x = 5", "loss": 0.1058480441570282}
+{"sample_index": 836, "prompt": "solve 2*x - 4*x - 2 = -5*x - 5 for x =>", "output": "x = -1", "loss": 0.3803034722805023}
+{"sample_index": 837, "prompt": "solve 2*x - 5 = -13 for x =>", "output": "x = -4", "loss": 0.2065485268831253}
+{"sample_index": 838, "prompt": "solve 1 - 5*x = x - 23 for x =>", "output": "x = 4", "loss": 0.6765044331550598}
+{"sample_index": 839, "prompt": "solve -3*x = -3 for x =>", "output": "x = 1", "loss": 0.209303617477417}
+{"sample_index": 840, "prompt": "solve 2*x**2 - 16*x + 30 = 0 for x =>", "output": "x = 3 or x = 5", "loss": 0.05992165952920914}
+{"sample_index": 841, "prompt": "solve 3*x**2 + 6*x - 9 = 0 for x =>", "output": "x = -3 or x = 1", "loss": 0.043818969279527664}
+{"sample_index": 842, "prompt": "solve 4*(x - 4) + 1 = -4*(x + 1) + 5 for x =>", "output": "x = 2", "loss": 0.6104461550712585}
+{"sample_index": 843, "prompt": "solve -2*(x + 2) = -4*(x - 2) - 18 for x =>", "output": "x = -3", "loss": 0.6620222330093384}
+{"sample_index": 844, "prompt": "solve 4*(x + 4) + 3 = 3*(x - 1) + 20 for x =>", "output": "x = -2", "loss": 0.685954213142395}
+{"sample_index": 845, "prompt": "solve 6 - 5*x = x + 12 for x =>", "output": "x = -1", "loss": 0.14552918076515198}
+{"sample_index": 846, "prompt": "solve -x - 4 = -7 for x =>", "output": "x = 3", "loss": 0.3311940133571625}
+{"sample_index": 847, "prompt": "solve 6 - 2*x = 7 - x for x =>", "output": "x = -1", "loss": 0.19002704322338104}
+{"sample_index": 848, "prompt": "solve 5*x + 4 = -6 for x =>", "output": "x = -2", "loss": 0.2801781892776489}
+{"sample_index": 849, "prompt": "solve 1 - x = 5 for x =>", "output": "x = -4", "loss": 0.30728521943092346}
+{"sample_index": 850, "prompt": "solve x + 2 = 7 for x =>", "output": "x = 5", "loss": 0.12480585277080536}
+{"sample_index": 851, "prompt": "solve -5*x + 4*x + 1 = -5*x - 23 for x =>", "output": "x = -6", "loss": 0.4280177056789398}
+{"sample_index": 852, "prompt": "solve 3*x + 6 = x + 2 for x =>", "output": "x = -2", "loss": 0.6228641271591187}
+{"sample_index": 853, "prompt": "solve -4*x - 3 = 5 for x =>", "output": "x = -2", "loss": 0.31514662504196167}
+{"sample_index": 854, "prompt": "solve -4*x + 2*x - 5 = -x - 7 for x =>", "output": "x = 2", "loss": 0.40501365065574646}
+{"sample_index": 855, "prompt": "solve -4*(x) - 1 = 5*(x + 3) - 52 for x =>", "output": "x = 4", "loss": 0.5126509070396423}
+{"sample_index": 856, "prompt": "solve 3*x + 4*x + 2 = 4*x + 11 for x =>", "output": "x = 3", "loss": 0.5486382842063904}
+{"sample_index": 857, "prompt": "solve 3*x + 5*x + 2 = 0*x - 14 for x =>", "output": "x = -2", "loss": 0.3953818380832672}
+{"sample_index": 858, "prompt": "solve -3*(x + 4) - 2 = -5*(x + 2) - 16 for x =>", "output": "x = -6", "loss": 0.5543826818466187}
+{"sample_index": 859, "prompt": "solve 1 - x = 0 for x =>", "output": "x = 1", "loss": 0.19456063210964203}
+{"sample_index": 860, "prompt": "solve -x - 3*x - 5 = -5*x - 11 for x =>", "output": "x = -6", "loss": 0.7092797160148621}
+{"sample_index": 861, "prompt": "solve 4 - 3*x = 1 for x =>", "output": "x = 1", "loss": 0.3000045120716095}
+{"sample_index": 862, "prompt": "solve -3*(x - 2) - 5 = 13 for x =>", "output": "x = -4", "loss": 0.4512382447719574}
+{"sample_index": 863, "prompt": "solve 2*x**2 + 20*x + 48 = 0 for x =>", "output": "x = -6 or x = -4", "loss": 0.03933689743280411}
+{"sample_index": 864, "prompt": "solve -4*(x - 1) = 4 for x =>", "output": "x = 0", "loss": 0.4717668890953064}
+{"sample_index": 865, "prompt": "solve 2*(x + 1) + 1 = 3*(x - 5) + 22 for x =>", "output": "x = -4", "loss": 0.6109229326248169}
+{"sample_index": 866, "prompt": "solve 2*x**2 + 8*x + 6 = 0 for x =>", "output": "x = -3 or x = -1", "loss": 0.2328634262084961}
+{"sample_index": 867, "prompt": "solve -4*x - 1 = 14 - x for x =>", "output": "x = -5", "loss": 0.2111024409532547}
+{"sample_index": 868, "prompt": "solve 2*(x + 4) - 2 = 8 for x =>", "output": "x = 1", "loss": 0.6294999718666077}
+{"sample_index": 869, "prompt": "solve 3*x = 15 for x =>", "output": "x = 5", "loss": 0.04397783800959587}
+{"sample_index": 870, "prompt": "solve x + x + 3 = -2*x + 11 for x =>", "output": "x = 2", "loss": 0.8007845878601074}
+{"sample_index": 871, "prompt": "solve -3*(x - 3) + 3 = 3 for x =>", "output": "x = 3", "loss": 0.5909674167633057}
+{"sample_index": 872, "prompt": "solve 2 - 4*x = 2 for x =>", "output": "x = 0", "loss": 0.34950029850006104}
+{"sample_index": 873, "prompt": "solve -6*x - 3 = 1 - 2*x for x =>", "output": "x = -1", "loss": 0.41707515716552734}
+{"sample_index": 874, "prompt": "solve 2*x**2 - 6*x - 20 = 0 for x =>", "output": "x = -2 or x = 5", "loss": 0.07296574860811234}
+{"sample_index": 875, "prompt": "solve -4*(x + 2) = -20 for x =>", "output": "x = 3", "loss": 0.4302881360054016}
+{"sample_index": 876, "prompt": "solve 2 - 4*x = 6*x + 12 for x =>", "output": "x = -1", "loss": 0.1827644556760788}
+{"sample_index": 877, "prompt": "solve 5*x - 5 = -10 for x =>", "output": "x = -1", "loss": 0.13641688227653503}
+{"sample_index": 878, "prompt": "solve 3*(x - 5) + 4 = 1 for x =>", "output": "x = 4", "loss": 0.33290526270866394}
+{"sample_index": 879, "prompt": "solve 4*(x - 3) - 2 = -2 for x =>", "output": "x = 3", "loss": 0.3698709011077881}
+{"sample_index": 880, "prompt": "solve 3*x**2 - 3*x - 36 = 0 for x =>", "output": "x = -3 or x = 4", "loss": 0.47275876998901367}
+{"sample_index": 881, "prompt": "solve 4*x + 4 = 12 for x =>", "output": "x = 2", "loss": 0.3710915744304657}
+{"sample_index": 882, "prompt": "solve 4*(x - 2) + 2 = -3*(x - 1) + 5 for x =>", "output": "x = 2", "loss": 0.6251233220100403}
+{"sample_index": 883, "prompt": "solve -2*x - 1 = -5 for x =>", "output": "x = 2", "loss": 0.2690047323703766}
+{"sample_index": 884, "prompt": "solve -x = -1 for x =>", "output": "x = 1", "loss": 0.27869486808776855}
+{"sample_index": 885, "prompt": "solve -4*x = 12 for x =>", "output": "x = -3", "loss": 0.1385592818260193}
+{"sample_index": 886, "prompt": "solve 5 - 6*x = 3*x - 49 for x =>", "output": "x = 6", "loss": 0.22214068472385406}
+{"sample_index": 887, "prompt": "solve -4*(x - 4) + 2 = 5*(x + 3) + 12 for x =>", "output": "x = -1", "loss": 0.4903809428215027}
+{"sample_index": 888, "prompt": "solve 3*x**2 + 3*x - 6 = 0 for x =>", "output": "x = -2 or x = 1", "loss": 0.04799346253275871}
+{"sample_index": 889, "prompt": "solve 5 - 2*x = -3 for x =>", "output": "x = 4", "loss": 0.4061303734779358}
+{"sample_index": 890, "prompt": "solve 4*x + 4 = 4 for x =>", "output": "x = 0", "loss": 0.12785060703754425}
+{"sample_index": 891, "prompt": "solve -5*x - 5 = -10 for x =>", "output": "x = 1", "loss": 0.5182268023490906}
+{"sample_index": 892, "prompt": "solve x**2 + 6*x + 5 = 0 for x =>", "output": "x = -5 or x = -1", "loss": 0.07784660160541534}
+{"sample_index": 893, "prompt": "solve x**2 + 7*x + 12 = 0 for x =>", "output": "x = -4 or x = -3", "loss": 0.20808950066566467}
+{"sample_index": 894, "prompt": "solve 3*(x - 1) - 4 = -10 for x =>", "output": "x = -1", "loss": 0.46321922540664673}
+{"sample_index": 895, "prompt": "solve -2*x - 3 = -3 for x =>", "output": "x = 0", "loss": 0.24476110935211182}
+{"sample_index": 896, "prompt": "solve -5*(x - 5) - 1 = 39 for x =>", "output": "x = -3", "loss": 0.32197022438049316}
+{"sample_index": 897, "prompt": "solve 2*(x + 5) + 1 = 4*(x - 3) + 25 for x =>", "output": "x = -1", "loss": 0.7593966722488403}
+{"sample_index": 898, "prompt": "solve 4 - 2*x = 0 for x =>", "output": "x = 2", "loss": 0.4819926917552948}
+{"sample_index": 899, "prompt": "solve 1*(x + 4) - 1 = 4*(x + 2) - 23 for x =>", "output": "x = 6", "loss": 0.4897530674934387}
+{"sample_index": 900, "prompt": "solve -3*x - 4*x + 1 = 2*x + 19 for x =>", "output": "x = -2", "loss": 0.4924090802669525}
+{"sample_index": 901, "prompt": "solve 3*x + 3 = 3 for x =>", "output": "x = 0", "loss": 0.0938132256269455}
+{"sample_index": 902, "prompt": "solve 2*x - 5*x - 4 = x - 8 for x =>", "output": "x = 1", "loss": 0.3887060880661011}
+{"sample_index": 903, "prompt": "solve 2*x + 5*x - 5 = 2*x + 25 for x =>", "output": "x = 6", "loss": 0.318507581949234}
+{"sample_index": 904, "prompt": "solve 1*(x + 3) + 2 = -5*(x - 1) - 36 for x =>", "output": "x = -6", "loss": 0.34113365411758423}
+{"sample_index": 905, "prompt": "solve -2*x - 2 = 4 for x =>", "output": "x = -3", "loss": 0.3388458788394928}
+{"sample_index": 906, "prompt": "solve -3*x - 4*x + 3 = -2*x + 8 for x =>", "output": "x = -1", "loss": 0.4288948178291321}
+{"sample_index": 907, "prompt": "solve 3*x**2 - 24*x + 36 = 0 for x =>", "output": "x = 2 or x = 6", "loss": 0.26503485441207886}
+{"sample_index": 908, "prompt": "solve 2*(x) - 1 = -5*(x) + 6 for x =>", "output": "x = 1", "loss": 0.5693261623382568}
+{"sample_index": 909, "prompt": "solve 2*(x - 1) + 5 = -3*(x + 2) + 19 for x =>", "output": "x = 2", "loss": 0.6244906187057495}
+{"sample_index": 910, "prompt": "solve 2*x - 2*x - 1 = -3*x + 2 for x =>", "output": "x = 1", "loss": 0.4572293162345886}
+{"sample_index": 911, "prompt": "solve -4*x - 3 = 6*x + 17 for x =>", "output": "x = -2", "loss": 0.3626302480697632}
+{"sample_index": 912, "prompt": "solve 4 - 3*x = -8 for x =>", "output": "x = 4", "loss": 0.22025610506534576}
+{"sample_index": 913, "prompt": "solve 2*x + 2*x + 3 = -4*x + 43 for x =>", "output": "x = 5", "loss": 0.25263339281082153}
+{"sample_index": 914, "prompt": "solve 2*x - 5 = -13 for x =>", "output": "x = -4", "loss": 0.2065485268831253}
+{"sample_index": 915, "prompt": "solve 1 - 3*x = -11 for x =>", "output": "x = 4", "loss": 0.163169264793396}
+{"sample_index": 916, "prompt": "solve 5*x - 1 = 14 for x =>", "output": "x = 3", "loss": 0.32665109634399414}
+{"sample_index": 917, "prompt": "solve 4*x - x - 3 = 5*x - 5 for x =>", "output": "x = 1", "loss": 0.4834975600242615}
+{"sample_index": 918, "prompt": "solve -3*x - 3 = 12 for x =>", "output": "x = -5", "loss": 0.2627580761909485}
+{"sample_index": 919, "prompt": "solve 3*x = -15 for x =>", "output": "x = -5", "loss": 0.12369366735219955}
+{"sample_index": 920, "prompt": "solve x**2 + 3*x = 0 for x =>", "output": "x = -3 or x = 0", "loss": 0.025152890011668205}
+{"sample_index": 921, "prompt": "solve 2*x - 2*x + 3 = -4*x + 3 for x =>", "output": "x = 0", "loss": 0.46805256605148315}
+{"sample_index": 922, "prompt": "solve x - 7 = -3*x - 27 for x =>", "output": "x = -5", "loss": 0.2671205401420593}
+{"sample_index": 923, "prompt": "solve -2*x - 4 = -6 for x =>", "output": "x = 1", "loss": 0.2415866255760193}
+{"sample_index": 924, "prompt": "solve 2*(x + 2) + 5 = 3*(x + 3) - 5 for x =>", "output": "x = 5", "loss": 0.5776424407958984}
+{"sample_index": 925, "prompt": "solve x + 2*x + 2 = 4*x - 2 for x =>", "output": "x = 4", "loss": 0.808090090751648}
+{"sample_index": 926, "prompt": "solve -5*(x - 5) + 2 = 22 for x =>", "output": "x = 1", "loss": 0.7175474762916565}
+{"sample_index": 927, "prompt": "solve 5*x - 3 = -6*x - 58 for x =>", "output": "x = -5", "loss": 0.35387688875198364}
+{"sample_index": 928, "prompt": "solve 4 - 3*x = 13 for x =>", "output": "x = -3", "loss": 0.27882641553878784}
+{"sample_index": 929, "prompt": "solve 3*x + 1 = -14 for x =>", "output": "x = -5", "loss": 0.1893308013677597}
+{"sample_index": 930, "prompt": "solve 2*(x) - 1 = -9 for x =>", "output": "x = -4", "loss": 0.30439549684524536}
+{"sample_index": 931, "prompt": "solve 2*x**2 - 4*x - 6 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.39589518308639526}
+{"sample_index": 932, "prompt": "solve -5*x + 5*x - 3 = 4*x - 3 for x =>", "output": "x = 0", "loss": 0.32213547825813293}
+{"sample_index": 933, "prompt": "solve 5 - x = 1 for x =>", "output": "x = 4", "loss": 0.3225058615207672}
+{"sample_index": 934, "prompt": "solve -3*x - 1 = -13 for x =>", "output": "x = 4", "loss": 0.17081797122955322}
+{"sample_index": 935, "prompt": "solve 10 - 4*x = 4*x + 42 for x =>", "output": "x = -4", "loss": 0.3301337957382202}
+{"sample_index": 936, "prompt": "solve 3*x - 2 = 13 for x =>", "output": "x = 5", "loss": 0.12895964086055756}
+{"sample_index": 937, "prompt": "solve 3*x**2 + 3*x - 60 = 0 for x =>", "output": "x = -5 or x = 4", "loss": 0.4771782457828522}
+{"sample_index": 938, "prompt": "solve -5*x - 9 = 2*x - 9 for x =>", "output": "x = 0", "loss": 0.4262499511241913}
+{"sample_index": 939, "prompt": "solve 3*x - 2 = -14 for x =>", "output": "x = -4", "loss": 0.19650188088417053}
+{"sample_index": 940, "prompt": "solve x**2 - 6*x = 0 for x =>", "output": "x = 0 or x = 6", "loss": 0.024906985461711884}
+{"sample_index": 941, "prompt": "solve -1*(x + 3) + 5 = 2*(x + 3) - 22 for x =>", "output": "x = 6", "loss": 0.48421579599380493}
+{"sample_index": 942, "prompt": "solve 3*x + 5 = 17 for x =>", "output": "x = 4", "loss": 0.41090700030326843}
+{"sample_index": 943, "prompt": "solve -3*x - 5 = 7 for x =>", "output": "x = -4", "loss": 0.356894314289093}
+{"sample_index": 944, "prompt": "solve -5*x + x + 1 = 3*x + 15 for x =>", "output": "x = -2", "loss": 0.3810048997402191}
+{"sample_index": 945, "prompt": "solve 5 - 3*x = 17 for x =>", "output": "x = -4", "loss": 0.2282043993473053}
+{"sample_index": 946, "prompt": "solve -4*(x + 4) = -1*(x - 4) - 32 for x =>", "output": "x = 4", "loss": 0.43183061480522156}
+{"sample_index": 947, "prompt": "solve -3*(x + 2) - 4 = -1*(x + 5) - 15 for x =>", "output": "x = 5", "loss": 0.42656323313713074}
+{"sample_index": 948, "prompt": "solve x**2 + 5*x - 6 = 0 for x =>", "output": "x = -6 or x = 1", "loss": 0.10908689349889755}
+{"sample_index": 949, "prompt": "solve 2*x**2 + 10*x = 0 for x =>", "output": "x = -5 or x = 0", "loss": 0.03888227045536041}
+{"sample_index": 950, "prompt": "solve -5*x = -20 for x =>", "output": "x = 4", "loss": 0.1673332303762436}
+{"sample_index": 951, "prompt": "solve -5*(x - 3) - 3 = -3*(x + 2) + 30 for x =>", "output": "x = -6", "loss": 0.46109041571617126}
+{"sample_index": 952, "prompt": "solve -2*x - 3*x - 4 = -x + 20 for x =>", "output": "x = -6", "loss": 0.7154890298843384}
+{"sample_index": 953, "prompt": "solve 4*x - 4 = -20 for x =>", "output": "x = -4", "loss": 0.18828085064888}
+{"sample_index": 954, "prompt": "solve 3*(x - 4) - 1 = 1*(x - 5) for x =>", "output": "x = 4", "loss": 0.4550236165523529}
+{"sample_index": 955, "prompt": "solve -x - 3 = -4 for x =>", "output": "x = 1", "loss": 0.23629122972488403}
+{"sample_index": 956, "prompt": "solve 2*(x - 3) - 2 = -8 for x =>", "output": "x = 0", "loss": 0.7557179927825928}
+{"sample_index": 957, "prompt": "solve 4*x - 1 = 3 for x =>", "output": "x = 1", "loss": 0.20414568483829498}
+{"sample_index": 958, "prompt": "solve -5*x - 3 = 2*x - 38 for x =>", "output": "x = 5", "loss": 0.23000510036945343}
+{"sample_index": 959, "prompt": "solve 4 - 3*x = 1 for x =>", "output": "x = 1", "loss": 0.3000045120716095}
+{"sample_index": 960, "prompt": "solve 2*x**2 + 8*x + 6 = 0 for x =>", "output": "x = -3 or x = -1", "loss": 0.2328634262084961}
+{"sample_index": 961, "prompt": "solve -1*(x - 1) + 2 = 1 for x =>", "output": "x = 2", "loss": 0.5643218755722046}
+{"sample_index": 962, "prompt": "solve 3*x - 7 = 14 - 4*x for x =>", "output": "x = 3", "loss": 0.4425344467163086}
+{"sample_index": 963, "prompt": "solve 3*x + 1 = 16 for x =>", "output": "x = 5", "loss": 0.0938781127333641}
+{"sample_index": 964, "prompt": "solve -2*(x + 1) + 4 = -8 for x =>", "output": "x = 5", "loss": 0.46985065937042236}
+{"sample_index": 965, "prompt": "solve 5*x - 1 = -11 for x =>", "output": "x = -2", "loss": 0.19558031857013702}
+{"sample_index": 966, "prompt": "solve x**2 + 9*x + 20 = 0 for x =>", "output": "x = -5 or x = -4", "loss": 0.08373098075389862}
+{"sample_index": 967, "prompt": "solve 2*x**2 - 4*x - 6 = 0 for x =>", "output": "x = -1 or x = 3", "loss": 0.39589518308639526}
+{"sample_index": 968, "prompt": "solve -4*x - 5 = 15 for x =>", "output": "x = -5", "loss": 0.19057947397232056}
+{"sample_index": 969, "prompt": "solve -4*(x + 4) - 3 = 5*(x + 3) - 25 for x =>", "output": "x = -1", "loss": 0.7495513558387756}
+{"sample_index": 970, "prompt": "solve -3*(x + 1) - 4 = -13 for x =>", "output": "x = 2", "loss": 0.4350704848766327}
+{"sample_index": 971, "prompt": "solve 3*x**2 + 15*x = 0 for x =>", "output": "x = -5 or x = 0", "loss": 0.013347746804356575}
+{"sample_index": 972, "prompt": "solve x**2 - 4*x - 5 = 0 for x =>", "output": "x = -1 or x = 5", "loss": 0.017065124586224556}
+{"sample_index": 973, "prompt": "solve -2*(x + 2) + 3 = 2*(x + 5) - 3 for x =>", "output": "x = -2", "loss": 0.7339509725570679}
+{"sample_index": 974, "prompt": "solve 5*x - 4 = -24 for x =>", "output": "x = -4", "loss": 0.29457464814186096}
+{"sample_index": 975, "prompt": "solve x - 4 = -3 for x =>", "output": "x = 1", "loss": 0.3653726577758789}
+{"sample_index": 976, "prompt": "solve 1*(x - 2) - 2 = -7 for x =>", "output": "x = -3", "loss": 0.4611402153968811}
+{"sample_index": 977, "prompt": "solve 3 - 4*x = 19 for x =>", "output": "x = -4", "loss": 0.2202894389629364}
+{"sample_index": 978, "prompt": "solve 3*x = 12 for x =>", "output": "x = 4", "loss": 0.2785250246524811}
+{"sample_index": 979, "prompt": "solve -3*x - 4 = -4 for x =>", "output": "x = 0", "loss": 0.2846316397190094}
+{"sample_index": 980, "prompt": "solve 5*x + 2 = 12 for x =>", "output": "x = 2", "loss": 0.3068940043449402}
+{"sample_index": 981, "prompt": "solve x - 7 = -x - 5 for x =>", "output": "x = 1", "loss": 0.5042285323143005}
+{"sample_index": 982, "prompt": "solve 3*(x) - 2 = -14 for x =>", "output": "x = -4", "loss": 0.32369065284729004}
+{"sample_index": 983, "prompt": "solve -5*(x) + 4 = -4*(x) + 10 for x =>", "output": "x = -6", "loss": 0.49999508261680603}
+{"sample_index": 984, "prompt": "solve 2 - 2*x = 2 for x =>", "output": "x = 0", "loss": 0.18663595616817474}
+{"sample_index": 985, "prompt": "solve -4*(x + 1) - 5 = -13 for x =>", "output": "x = 1", "loss": 0.4034402072429657}
+{"sample_index": 986, "prompt": "solve 5*x - 3 = 7 for x =>", "output": "x = 2", "loss": 0.18079803884029388}
+{"sample_index": 987, "prompt": "solve 5*(x - 5) = -3*(x - 5) - 16 for x =>", "output": "x = 3", "loss": 0.6446673274040222}
+{"sample_index": 988, "prompt": "solve 5 - 3*x = -7 for x =>", "output": "x = 4", "loss": 0.28063905239105225}
+{"sample_index": 989, "prompt": "solve x - 1 = 2 for x =>", "output": "x = 3", "loss": 0.16574130952358246}
+{"sample_index": 990, "prompt": "solve -4*x - 2 = 6 for x =>", "output": "x = -2", "loss": 0.27866992354393005}
+{"sample_index": 991, "prompt": "solve -4*x - 1 = 3 for x =>", "output": "x = -1", "loss": 0.11063019186258316}
+{"sample_index": 992, "prompt": "solve x + 6 = 5*x - 6 for x =>", "output": "x = 3", "loss": 0.6257746815681458}
+{"sample_index": 993, "prompt": "solve 3*x - 4 = -16 for x =>", "output": "x = -4", "loss": 0.17455992102622986}
+{"sample_index": 994, "prompt": "solve 6*x - 1 = 47 - 6*x for x =>", "output": "x = 4", "loss": 0.5634458065032959}
+{"sample_index": 995, "prompt": "solve 2 - 2*x = 0 for x =>", "output": "x = 1", "loss": 0.08644098043441772}
+{"sample_index": 996, "prompt": "solve 5*x + 5*x - 5 = x - 14 for x =>", "output": "x = -1", "loss": 0.40482097864151}
+{"sample_index": 997, "prompt": "solve -x - 2 = 1 for x =>", "output": "x = -3", "loss": 0.4672245383262634}
+{"sample_index": 998, "prompt": "solve 1 - x = 1 for x =>", "output": "x = 0", "loss": 0.454121470451355}
+{"sample_index": 999, "prompt": "solve 2*x - 5 = -11 for x =>", "output": "x = -3", "loss": 0.23622067272663116}

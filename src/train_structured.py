@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import math
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -14,7 +15,7 @@ from tqdm.auto import tqdm
 from transformers import AutoTokenizer
 
 try:
-    from .node_types import ID_TO_NODE_TYPE
+    from .node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
     from .structured_dataset import StructuredCollator, StructuredJsonlDataset
     from .structured_model import StructuredCausalLM
     from .utils import (
@@ -26,7 +27,7 @@ try:
         write_summary,
     )
 except ImportError:
-    from node_types import ID_TO_NODE_TYPE
+    from node_types import ID_TO_NODE_TYPE, NODE_TYPE_TO_ID
     from structured_dataset import StructuredCollator, StructuredJsonlDataset
     from structured_model import StructuredCausalLM
     from utils import (
@@ -126,6 +127,92 @@ def maybe_save_checkpoint(
     model.save_pretrained(save_dir)
     tokenizer.save_pretrained(save_dir)
     return save_dir
+
+
+def summarize_named_parameters(model: torch.nn.Module, max_names: int = 20) -> dict[str, Any]:
+    """Record enough parameter names to verify what is being optimized."""
+
+    trainable = []
+    frozen = []
+    for name, parameter in model.named_parameters():
+        record = {
+            "name": name,
+            "shape": list(parameter.shape),
+            "numel": parameter.numel(),
+        }
+        if parameter.requires_grad:
+            trainable.append(record)
+        else:
+            frozen.append(record)
+
+    return {
+        "trainable_parameter_count": len(trainable),
+        "frozen_parameter_count": len(frozen),
+        "trainable_parameter_names_sample": trainable[:max_names],
+        "frozen_parameter_names_sample": frozen[:max_names],
+        "node_type_embedding_trainable": bool(model.node_type_embedding.weight.requires_grad),
+        "node_type_embedding_shape": list(model.node_type_embedding.weight.shape),
+    }
+
+
+def summarize_node_type_usage(dataset: StructuredJsonlDataset, max_examples: int = 128) -> dict[str, Any]:
+    """Verify that structured preprocessing produces nontrivial node-type labels."""
+
+    counts: Counter[str] = Counter()
+    checked_examples = min(len(dataset), max_examples)
+    prompts_with_non_other = 0
+
+    for index in range(checked_examples):
+        item = dataset[index]
+        prompt_len = int((item["labels"] == -100).sum().item())
+        prompt_node_type_ids = item["node_type_ids"][:prompt_len].tolist()
+        prompt_node_type_names = [ID_TO_NODE_TYPE[int(node_type_id)] for node_type_id in prompt_node_type_ids]
+        counts.update(prompt_node_type_names)
+        if any(node_type_id != NODE_TYPE_TO_ID["OTHER"] for node_type_id in prompt_node_type_ids):
+            prompts_with_non_other += 1
+
+    total_prompt_tokens = sum(counts.values())
+    non_other_tokens = total_prompt_tokens - counts.get("OTHER", 0)
+    return {
+        "examples_checked": checked_examples,
+        "prompt_node_type_counts": dict(sorted(counts.items())),
+        "unique_prompt_node_types": len(counts),
+        "non_other_prompt_node_type_tokens": non_other_tokens,
+        "total_prompt_node_type_tokens": total_prompt_tokens,
+        "prompts_with_non_other_node_types": prompts_with_non_other,
+    }
+
+
+def verify_structured_checkpoint(checkpoint_dir: Path) -> dict[str, Any]:
+    """Check that a saved structured checkpoint contains learned node-type weights."""
+
+    state_path = checkpoint_dir / "structured_state.pt"
+    result: dict[str, Any] = {
+        "structured_state_path": str(state_path),
+        "structured_state_exists": state_path.exists(),
+        "has_node_type_embedding": False,
+        "node_type_embedding_shape": None,
+        "node_type_embedding_abs_sum": None,
+        "node_type_embedding_nonzero": False,
+    }
+    if not state_path.exists():
+        return result
+
+    state = torch.load(state_path, map_location="cpu")
+    weight = state.get("node_type_embedding", {}).get("weight")
+    if weight is None:
+        return result
+
+    abs_sum = float(weight.abs().sum().item())
+    result.update(
+        {
+            "has_node_type_embedding": True,
+            "node_type_embedding_shape": list(weight.shape),
+            "node_type_embedding_abs_sum": abs_sum,
+            "node_type_embedding_nonzero": abs_sum > 0.0,
+        }
+    )
+    return result
 
 
 def parse_args() -> argparse.Namespace:
@@ -260,6 +347,7 @@ def main() -> None:
     resize_base_embeddings_if_needed(model, tokenizer, tokenizer_vocab_grew)
     model.base.config.pad_token_id = tokenizer.pad_token_id
     total_params, trainable_params = count_parameters(model)
+    parameter_summary = summarize_named_parameters(model)
 
     train_dataset = StructuredJsonlDataset(args.train_path, tokenizer, max_length=args.max_length).take(
         args.max_train_samples
@@ -270,6 +358,7 @@ def main() -> None:
     test_dataset = StructuredJsonlDataset(args.test_path, tokenizer, max_length=args.max_length).take(
         args.max_test_samples
     )
+    node_type_usage = summarize_node_type_usage(train_dataset)
 
     collator = StructuredCollator(tokenizer)
     train_loader = DataLoader(
@@ -316,6 +405,11 @@ def main() -> None:
 
     sample_item = train_dataset[0]
     log_sample_example(sample_item)
+    print("Structured verification:")
+    print(f"Trainable parameter tensors: {parameter_summary['trainable_parameter_count']}")
+    print(f"Frozen parameter tensors: {parameter_summary['frozen_parameter_count']}")
+    print(f"Node-type embedding trainable: {parameter_summary['node_type_embedding_trainable']}")
+    print(f"Node-type usage summary: {node_type_usage}")
     append_jsonl(
         metrics_file,
         {
@@ -342,6 +436,8 @@ def main() -> None:
             "sample_output": sample_item["output"],
             "sample_input_length": int(sample_item["input_ids"].shape[0]),
             "sample_masked_positions": int((sample_item["labels"] == -100).sum().item()),
+            "parameter_summary": parameter_summary,
+            "node_type_usage": node_type_usage,
         },
     )
 
@@ -432,6 +528,7 @@ def main() -> None:
             )
 
     final_checkpoint = maybe_save_checkpoint(model, tokenizer, args.output_dir, "final-model")
+    final_checkpoint_verification = verify_structured_checkpoint(final_checkpoint)
 
     if args.save_best_checkpoint and best_checkpoint is not None:
         print(f"Loading best checkpoint from {best_checkpoint}")
@@ -440,6 +537,7 @@ def main() -> None:
         model.base.config.pad_token_id = tokenizer.pad_token_id
     else:
         best_checkpoint = final_checkpoint
+    best_checkpoint_verification = verify_structured_checkpoint(best_checkpoint)
 
     # Test evaluation is run once after model-selection decisions are finished.
     test_loss = evaluate_loss(model, test_loader, device)
@@ -456,6 +554,8 @@ def main() -> None:
             "final_checkpoint": str(final_checkpoint),
             "best_val_loss": best_val_loss,
             "test_loss": test_loss,
+            "best_checkpoint_verification": best_checkpoint_verification,
+            "final_checkpoint_verification": final_checkpoint_verification,
         },
     )
 
@@ -476,7 +576,16 @@ def main() -> None:
             f"Total parameters: {total_params}",
             f"Trainable parameters: {trainable_params}",
             f"Frozen parameters: {total_params - trainable_params}",
+            f"Trainable parameter tensors: {parameter_summary['trainable_parameter_count']}",
+            f"Frozen parameter tensors: {parameter_summary['frozen_parameter_count']}",
+            "Trainable parameter sample: "
+            + ", ".join(item["name"] for item in parameter_summary["trainable_parameter_names_sample"][:10]),
             f"Freeze base: {args.freeze_base}",
+            f"Node-type embedding trainable: {parameter_summary['node_type_embedding_trainable']}",
+            f"Node-type embedding shape: {parameter_summary['node_type_embedding_shape']}",
+            f"Node-type usage over {node_type_usage['examples_checked']} train examples: {node_type_usage['prompt_node_type_counts']}",
+            f"Non-OTHER prompt node-type tokens: {node_type_usage['non_other_prompt_node_type_tokens']} / {node_type_usage['total_prompt_node_type_tokens']}",
+            f"Prompts with non-OTHER node types: {node_type_usage['prompts_with_non_other_node_types']}",
             f"Train examples: {len(train_dataset)}",
             f"Validation examples: {len(val_dataset)}",
             f"Test examples: {len(test_dataset)}",
@@ -491,6 +600,13 @@ def main() -> None:
             f"Best validation loss: {best_val_loss:.6f}",
             f"Last validation loss: {last_val_loss:.6f}",
             f"Test loss: {test_loss:.6f}",
+            f"Best checkpoint structured_state.pt exists: {best_checkpoint_verification['structured_state_exists']}",
+            f"Best checkpoint node_type_embedding present: {best_checkpoint_verification['has_node_type_embedding']}",
+            f"Best checkpoint node_type_embedding shape: {best_checkpoint_verification['node_type_embedding_shape']}",
+            f"Best checkpoint node_type_embedding abs sum: {best_checkpoint_verification['node_type_embedding_abs_sum']}",
+            f"Best checkpoint node_type_embedding nonzero: {best_checkpoint_verification['node_type_embedding_nonzero']}",
+            f"Final checkpoint structured_state.pt exists: {final_checkpoint_verification['structured_state_exists']}",
+            f"Final checkpoint node_type_embedding nonzero: {final_checkpoint_verification['node_type_embedding_nonzero']}",
             f"Save best checkpoint: {args.save_best_checkpoint}",
             "Generation evaluation: skipped in v1 for inputs_embeds-based structured model.",
         ],
